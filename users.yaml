@@ -1,0 +1,67 @@
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user1
+    namespace: hobbyfarm-system
+spec:
+    email: user1
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - event01
+    - demo99
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "16"
+      terminal_theme: GitHub
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user2
+    namespace: hobbyfarm-system
+spec:
+    email: user2
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - event01
+    - demo99
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "16"
+      terminal_theme: GitHub
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user3
+    namespace: hobbyfarm-system
+spec:
+    email: user3
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - event01
+    - demo99
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "16"
+      terminal_theme: GitHub
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user4
+    namespace: hobbyfarm-system
+spec:
+    email: user4
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - event01
+    - demo99
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "16"
+      terminal_theme: Solarized_Dark_Higher_Contrast
