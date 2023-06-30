@@ -1,3 +1,49 @@
+
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: admin
+    namespace: hobbyfarm-system
+spec:
+    email: admin
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes: []
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "16"
+      terminal_theme: GitHub
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+    name: hobbyfarm-admin
+    namespace: hobbyfarm-system
+    labels:
+      rbac.hobbyfarm.io/managed: "true" # must be present in order to configure this role in admin ui
+rules:
+  - apiGroups: ["hobbyfarm.io"]
+    resources: ["*"]
+    verbs: ["*"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["roles", "rolebindings"]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: hobbyfarm-admin-rolebinding
+  namespace: hobbyfarm-system
+subjects:
+  - kind: User
+    name: admin
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: hobbyfarm-admin
+  apiGroup: rbac.authorization.k8s.io
+---
 apiVersion: hobbyfarm.io/v2
 kind: User
 metadata:
