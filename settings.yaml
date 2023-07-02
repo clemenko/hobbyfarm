@@ -111,3 +111,33 @@ spec:
       ctxAccessCode: example-access-code
       terminal_fontSize: "16"
       terminal_theme: Solarized_Dark_Higher_Contrast
+
+---
+
+apiVersion: hobbyfarm.io/v1
+dataType: boolean
+displayName: Registration Disabled
+kind: Setting
+metadata:
+  labels:
+    hobbyfarm.io/setting-scope: public
+  name: registration-disabled
+  namespace: hobbyfarm-system
+value: "true"
+valueType: scalar
+
+---
+
+apiVersion: hobbyfarm.io/v1
+dataType: string
+displayName: User UI MOTD
+kind: Setting
+metadata:
+  labels:
+    hobbyfarm.io/setting-scope: public
+  name: motd-ui
+  namespace: hobbyfarm-system
+value: Welcome to the RGS Workshop
+valueType: scalar
+
+---

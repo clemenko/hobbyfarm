@@ -16,4 +16,4 @@ helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm-system --set ingress.
 sleep 10 
 
 ### add users
-kubectl apply -f users.yaml
+kubectl apply -f settings.yaml
