@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-
+# https://github.com/zackbradys/rgs-hobbyfarm/tree/main/examples
 # script to build a single vm with k3s and hobby-farm
 
 password=Pa22word
-size=s-8vcpu-16gb-amd
+#size=s-8vcpu-16gb-amd
+size=s-4vcpu-8gb-amd 
 key=30:98:4f:c5:47:c2:88:28:fe:3c:23:cd:52:49:51:01
 domain=rfed.io
 image=rockylinux-9-x64
@@ -56,14 +57,17 @@ echo -e -n " - deploying hobbyfarm "
 helm repo add hobbyfarm https://hobbyfarm.github.io/hobbyfarm --force-update > /dev/null 2>&1
 
 ### Create Namespace
-kubectl create namespace hobbyfarm-system > /dev/null 2>&1
+kubectl create namespace hobbyfarm > /dev/null 2>&1
 
 ### Create Certificates
-kubectl -n hobbyfarm-system create secret generic tls-ca --from-file=/Users/clemenko/Dropbox/work/rfed.me/io/cacerts.pem  > /dev/null 2>&1
-kubectl -n hobbyfarm-system create secret tls tls-hobbyfarm-certs  --cert=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.cert --key=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.key > /dev/null 2>&1
+kubectl -n hobbyfarm create secret generic tls-ca --from-file=/Users/clemenko/Dropbox/work/rfed.me/io/cacerts.pem  > /dev/null 2>&1
+kubectl -n hobbyfarm create secret tls tls-hobbyfarm-certs  --cert=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.cert --key=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.key > /dev/null 2>&1
+
+### adding logos
+kubectl create configmap rgs-logo -n hobbyfarm --from-file=/Users/clemenko/Dropbox/work/rancher_files/branding/rancherfederal/rfed-logo-stacked.svg
 
 ### Install Hobbyfarm
-helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm-system --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=backend.rfed.io --set ingress.hostnames.admin=hobby-admin.rfed.io --set ingress.hostnames.ui=hobbyfarm.rfed.io --set ingress.hostnames.shell=hobby-shell.refd.io  > /dev/null 2>&1
+helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=backend.rfed.io --set ingress.hostnames.admin=hobby-admin.rfed.io --set ingress.hostnames.ui=hobbyfarm.rfed.io --set ingress.hostnames.shell=hobby-shell.refd.io  --set admin.config.title="RGS - Workshop" > /dev/null 2>&1
 #--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
 
 sleep 30

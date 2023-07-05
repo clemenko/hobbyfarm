@@ -59,6 +59,7 @@ spec:
       ctxAccessCode: example-access-code
       terminal_fontSize: "16"
       terminal_theme: GitHub
+      theme: light
 ---
 apiVersion: hobbyfarm.io/v2
 kind: User
@@ -75,6 +76,7 @@ spec:
       ctxAccessCode: example-access-code
       terminal_fontSize: "16"
       terminal_theme: GitHub
+      theme: light
 ---
 apiVersion: hobbyfarm.io/v2
 kind: User
@@ -91,6 +93,7 @@ spec:
       ctxAccessCode: example-access-code
       terminal_fontSize: "16"
       terminal_theme: GitHub
+      theme: light
 ---
 apiVersion: hobbyfarm.io/v2
 kind: User
@@ -106,7 +109,8 @@ spec:
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "16"
-      terminal_theme: Solarized_Dark_Higher_Contrast
+      terminal_theme: GitHub
+      theme: light
 
 ---
 
