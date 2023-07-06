@@ -83,7 +83,7 @@ echo -e -n " - adding settings "
 kubectl apply -f settings.yaml > /dev/null 2>&1
 
 ### add aws secret
-kubectl create secret -n hobbyfarm generic aws-creds --from-literal=AWS_ACCESS_KEY_ID= --from-literal=AWS_SECRET_ACCESS_KEY=
+kubectl create secret -n hobbyfarm generic aws-creds --from-literal=access_keys= --from-literal=secret_key=
 
 echo -e "$GREEN" "ok" "$NO_COLOR"
 }

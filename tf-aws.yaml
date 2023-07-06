@@ -36,7 +36,7 @@ metadata:
   namespace: hobbyfarm
 spec:
   git:
-    branch: master
+    branch: main
     intervalSeconds: 1800
     url: https://github.com/clemenko/hobbyfarm/tree/main/terraform # https://github.com/hobbyfarm/tf-module-aws
 ---
