@@ -1,6 +1,7 @@
 variable "public_key" {}
 variable "image" {}
 variable "disk" {}
+variable "instance_type" {}
 variable "name" {}
 variable "subnet" {}
 variable "vpc_security_group_id" {}
@@ -21,7 +22,7 @@ resource "aws_key_pair" "instance_keypair" {
 
 resource "aws_instance" "instance" {
   ami           = "${var.image}"
-  instance_type = "${var.size}"
+  instance_type = "${var.instance_type}"
   key_name = "${aws_key_pair.instance_keypair.key_name}"
   subnet_id = "${var.subnet}"
   vpc_security_group_ids = ["${var.vpc_security_group_id}"]
@@ -32,7 +33,7 @@ resource "aws_instance" "instance" {
     DoNotDelete = "true"
   }
   root_block_device {
-    volume_type = "standard"
+    volume_type = "gp3"
     volume_size = "${var.disk}"
     delete_on_termination = true
   }
