@@ -8,8 +8,6 @@ spec:
     rocky-9.2: 100
     ubuntu-22.04: 100
   display_name: aws-env
-  dnssuffix: null
-  ip_translation_map: null
   environment_specifics:
     cred_secret: aws-creds
     executor_image: rancher/terraform-controller-executor:v0.0.13-alpha1
@@ -76,8 +74,8 @@ spec:
   courses: null
   creator: admin
   description: workshop
-  start_time: Thu Jul 06 19:08:51 UTC 2023
-  end_time: Thu Jul 13 19:08:39 UTC 2023
+  start_time: now
+  end_time: 8h
   event_name: workshop
   on_demand: true
   printable: false
