@@ -64,11 +64,15 @@ kubectl -n hobbyfarm create secret generic tls-ca --from-file=/Users/clemenko/Dr
 kubectl -n hobbyfarm create secret tls tls-hobbyfarm-certs  --cert=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.cert --key=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.key > /dev/null 2>&1
 
 ### adding logos
-kubectl create configmap rgs-logo -n hobbyfarm --from-file=/Users/clemenko/Dropbox/work/rancher_files/branding/rancherfederal/rfed-logo-stacked.svg
+kubectl create configmap rgs-logo -n hobbyfarm --from-file=rancher-labs-stacked-color.svg=rfed-logo-stacked.svg > /dev/null 2>&1
+
+exit 
 
 ### Install Hobbyfarm
 helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=backend.rfed.io --set ingress.hostnames.admin=hobby-admin.rfed.io --set ingress.hostnames.ui=hobbyfarm.rfed.io --set ingress.hostnames.shell=hobby-shell.refd.io  --set admin.config.title="RGS - Workshop" > /dev/null 2>&1
 #--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+
+# helm upgrade -i hobbyfarm charts/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=backend.rfed.io --set ingress.hostnames.admin=hobby-admin.rfed.io --set ingress.hostnames.ui=hobbyfarm.rfed.io --set ingress.hostnames.shell=hobby-shell.refd.io  --set admin.config.title="RGS - Workshop"  --set ui.config.title="RGS - Workshop"  --set admin.config.login.customlogo=rgs-logo --set ui.config.login.customlogo=rgs-logo 
 
 sleep 30
 
@@ -77,6 +81,10 @@ echo -e "$GREEN" "ok" "$NO_COLOR"
 echo -e -n " - adding settings "
 ### add users
 kubectl apply -f settings.yaml > /dev/null 2>&1
+
+### add aws secret
+kubectl create secret -n hobbyfarm generic aws-creds --from-literal=AWS_ACCESS_KEY_ID= --from-literal=AWS_SECRET_ACCESS_KEY=
+
 echo -e "$GREEN" "ok" "$NO_COLOR"
 }
 
