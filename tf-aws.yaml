@@ -7,6 +7,7 @@ spec:
   count_capacity:
     rocky-9.2: 100
     ubuntu-22.04: 100
+    sles-15-sp4: 100
   display_name: aws-env
   environment_specifics:
     cred_secret: aws-creds
@@ -20,13 +21,18 @@ spec:
     rocky-9.2:
       disk: "50"
       image: ami-09c77dc92e45bc3ea
-      instance_type: m5.large
+      instance_type: m5.xlarge
       ssh_username: rocky
     ubuntu-22.04:
       disk: "50"
-      image: ami-09c77dc92e45bc3ea
-      instance_type: m5.large
+      image: ami-053b0d53c279acc90
+      instance_type: m5.xlarge
       ssh_username: ubuntu
+    sles-15-sp4:
+      disk: "50"
+      image: ami-021b67c90e3e68a8f
+      instance_type: m5.xlarge
+      ssh_username: ec2-user
   ws_endpoint: hobby-shell.rfed.io
 ---
 apiVersion: terraformcontroller.cattle.io/v1
@@ -38,7 +44,7 @@ spec:
   git:
     branch: main
     intervalSeconds: 1800
-    url: https://github.com/clemenko/hobbyfarm/tree/main/terraform # https://github.com/hobbyfarm/tf-module-aws
+    url: https://github.com/zackbradys/tf-module-aws # https://github.com/hobbyfarm/tf-module-aws
 ---
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
@@ -65,26 +71,38 @@ spec:
   name: ubuntu-22.04
 ---
 apiVersion: hobbyfarm.io/v1
-kind: ScheduledEvent
+kind: VirtualMachineTemplate
 metadata:
-  name: workshop
+  name: sles-15-sp4
   namespace: hobbyfarm
 spec:
-  access_code: workshop
-  creator: admin
-  description: workshop
-  #start_time: now
-  end_time: 8h
-  event_name: workshop
-  on_demand: true
-  printable: false
-  required_vms:
-    aws-env:
-      rocky-9.2: 20
-  restricted_bind: true
-  restricted_bind_value: workshop
-  scenarios:
-  - workshop
+  config_map:
+    cloud-config: ""
+    webinterfaces: '[]'
+  image: sles-15-sp4
+  name: sles-15-sp4
+---
+#apiVersion: hobbyfarm.io/v1
+#kind: ScheduledEvent
+#metadata:
+#  name: workshop
+#  namespace: hobbyfarm
+#spec:
+#  access_code: workshop
+#  creator: admin
+#  description: workshop
+#  #start_time: now
+#  end_time: 8h
+#  event_name: workshop
+#  on_demand: true
+#  printable: false
+#  required_vms:
+#    aws-env:
+#      rocky-9.2: 20
+#  restricted_bind: true
+#  restricted_bind_value: workshop
+#  scenarios:
+#  - workshop
 
 
 

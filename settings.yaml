@@ -162,4 +162,4 @@ spec:
   virtualmachines:
   - node1: rocky-9.2
     node2: ubuntu-22.04
-#    node3: ubuntu-22.04
+    node3: sles-15-sp4
