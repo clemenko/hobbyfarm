@@ -1,0 +1,93 @@
+apiVersion: hobbyfarm.io/v1
+kind: Environment
+metadata:
+  name: aws-env
+  namespace: hobbyfarm
+spec:
+  count_capacity:
+    rocky-9.2: 100
+    ubuntu-22.04: 100
+  display_name: aws-env
+  dnssuffix: null
+  ip_translation_map: null
+  environment_specifics:
+    cred_secret: aws-creds
+    executor_image: rancher/terraform-controller-executor:v0.0.13-alpha1
+    module: tf-module-aws
+    region: us-east-1
+    subnet: subnet-0ca6bea3c0d18b6f3
+    vpc_security_group_id: sg-0c87eb1835fdbb24f
+  provider: aws
+  template_mapping:
+    rocky-9.2:
+      disk: "50"
+      image: ami-09c77dc92e45bc3ea
+      size: t3.medium
+      ssh_username: rocky
+    ubuntu-22.04:
+      disk: "50"
+      image: ami-09c77dc92e45bc3ea
+      size: t3.medium
+      ssh_username: ubuntu
+  ws_endpoint: hobby-shell.rfed.io
+---
+apiVersion: terraformcontroller.cattle.io/v1
+kind: Module
+metadata:
+  name: tf-module-aws
+  namespace: hobbyfarm
+spec:
+  git:
+    branch: master
+    intervalSeconds: 1800
+    url: https://github.com/hobbyfarm/tf-module-aws
+---
+apiVersion: hobbyfarm.io/v1
+kind: VirtualMachineTemplate
+metadata:
+  name: rocky-9.2
+  namespace: hobbyfarm
+spec:
+  config_map:
+    cloud-config: ""
+    webinterfaces: '[]'
+  image: rocky-9.2
+  name: rocky-9.2
+---
+apiVersion: hobbyfarm.io/v1
+kind: VirtualMachineTemplate
+metadata:
+  name: ubuntu-22.04
+  namespace: hobbyfarm
+spec:
+  config_map:
+    cloud-config: ""
+    webinterfaces: '[]'
+  image: ubuntu-22.04
+  name: ubuntu-22.04
+---
+apiVersion: hobbyfarm.io/v1
+kind: ScheduledEvent
+metadata:
+  name: workshop
+  namespace: hobbyfarm
+spec:
+  access_code: workshop
+  courses: null
+  creator: admin
+  description: workshop
+  start_time: Thu Jul 06 19:08:51 UTC 2023
+  end_time: Thu Jul 13 19:08:39 UTC 2023
+  event_name: workshop
+  on_demand: true
+  printable: false
+  required_vms:
+    aws-env:
+      rocky-9.2: 20
+  restricted_bind: true
+  restricted_bind_value: workshop
+  scenarios:
+  - workshop
+
+
+
