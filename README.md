@@ -14,4 +14,4 @@ https://hobbyfarm.github.io/docs/setup/post_install/
 
 ### gif
 
-![gif](https://andyc.info/hobbyfarm_workshop.gif)
+https://andyc.info/hobbyfarm_workshop.gif
