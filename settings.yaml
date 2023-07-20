@@ -40,12 +40,12 @@ kind: Environment
 metadata:
   name: do-env
   namespace: hobbyfarm
-  labels:
+  annotations:
     hobbyfarm.io/provisioner: digitalocean
 spec:
   environment_specifics:
     region: nyc1 # any valid digitalocean region slug
-    token_secret: do-token # a secret with key of 'token' and value
+    token-secret: do-token # a secret with key of 'token' and value
   count_capacity:
     do-rocky-9.2: 100
     do-ubuntu-22.04: 100
