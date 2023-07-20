@@ -55,9 +55,11 @@ spec:
     do-rocky-9.2:
       image: rockylinux-9-x64
       size: s-4vcpu-8gb-amd
+      ssh_username: rocky
     do-ubuntu-22.04:
       image: ubuntu-22-04-x64
       size: s-4vcpu-8gb-amd
+      ssh_username: ubuntu
   ws_endpoint: hobby-shell.rfed.io
 ---
 apiVersion: hobbyfarm.io/v1
