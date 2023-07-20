@@ -76,7 +76,7 @@ kubectl create secret -n hobbyfarm generic do-token --from-literal=token=$DO_TOK
 exit
 
 ### Install Hobbyfarm
-helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=backend.rfed.io --set ingress.hostnames.admin=hobby-admin.rfed.io --set ingress.hostnames.ui=hobbyfarm.rfed.io --set ingress.hostnames.shell=hobby-shell.rfed.io  --set ui.config.title="RGS - Workshop"  --set ui.config.login.customlogo=rgs-logo --set terraform.enabled=true --set shell.replicas=3 --set gargantua.image=ebauman/gargantua:pr-154 > /dev/null 2>&1
+helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=backend.rfed.io --set ingress.hostnames.admin=hobby-admin.rfed.io --set ingress.hostnames.ui=hobbyfarm.rfed.io --set ingress.hostnames.shell=hobby-shell.rfed.io  --set ui.config.title="RGS - Workshop"  --set ui.config.login.customlogo=rgs-logo --set terraform.enabled=true --set shell.replicas=3 --set gargantua.image=ebauman/gargantua:pr-154-2 > /dev/null 2>&1
 
 #--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
 
