@@ -271,6 +271,17 @@ kubectl  get pod -n longhorn-system  -o wide
 kubectl get sc
 ```
 
+#### encryption?
+
+Longhorn has the ability for encryption at rest. We need to enable it.
+
+```ctr:node1
+kubectl apply -f https://raw.githubusercontent.com/clemenko/k8s_yaml/master/longhorn_encryption.yml
+
+# verify the new storageclass
+kubectl get sc
+```
+
 ####
 Now we can use the Rancher proxy to get to the dashboard.
 
@@ -321,7 +332,7 @@ We can continue to use helm to install Gitea. https://gitea.com
 ```ctr:node1
 helm repo add gitea-charts https://dl.gitea.io/charts/ --force-update
 
-helm upgrade -i gitea gitea-charts/gitea --namespace gitea --create-namespace --set gitea.admin.password=Pa22word --set gitea.admin.username=gitea --set persistence.size=500Mi --set postgresql.persistence.size=500Mi --set gitea.config.server.ROOT_URL=http://git.${vminfo:node1:public_ip}.sslip.io --set gitea.config.server.DOMAIN=git.${vminfo:node1:public_ip}.sslip.io --set ingress.enabled=true --set ingress.hosts[0].host=git.${vminfo:node1:public_ip}.sslip.io --set ingress.hosts[0].paths[0].path=/ --set ingress.hosts[0].paths[0].pathType=Prefix
+helm upgrade -i gitea gitea-charts/gitea --namespace gitea --create-namespace --set gitea.admin.password=Pa22word --set gitea.admin.username=gitea --set persistence.size=500Mi --set gitea.config.server.ROOT_URL=http://git.${vminfo:node1:public_ip}.sslip.io --set gitea.config.server.DOMAIN=git.${vminfo:node1:public_ip}.sslip.io --set ingress.enabled=true --set ingress.hosts[0].host=git.${vminfo:node1:public_ip}.sslip.io --set ingress.hosts[0].paths[0].path=/ --set ingress.hosts[0].paths[0].pathType=Prefix --set postgresql-ha.enabled=false --set redis-cluster.enabled=false --set gitea.config.database.DB_TYPE=sqlite3 --set gitea.config.session.PROVIDER=memory  --set gitea.config.cache.ADAPTER=memory --set gitea.config.queue.TYPE=level
 
 # wait for it to complete
 watch kubectl get pod -n gitea
@@ -342,7 +353,7 @@ The username is `gitea`.
 The password is `Pa22word`.
 
 ####
-We need to edit fleet yaml : http://git.${vminfo:node1:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml
+We need to edit flask yaml : http://git.${vminfo:node1:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml
 
 **CHANGE X.X.X.X to the ${vminfo:node1:public_ip} in Gitea!**
 

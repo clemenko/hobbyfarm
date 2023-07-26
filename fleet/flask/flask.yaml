@@ -27,11 +27,6 @@ metadata:
     app: flask
 spec:
   replicas: 3
-  strategy:
-    rollingUpdate:
-      maxSurge: 0
-      maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: flask
@@ -44,8 +39,7 @@ spec:
       - name: flask
         securityContext:
           allowPrivilegeEscalation: false
-        image: clemenko/flask_simple #rockylinux
-        #command: [ "/bin/sh", "-c", "sleep 3003003240204242" ]
+        image: clemenko/flask_simple 
         ports:
         - containerPort: 5000
         imagePullPolicy: Always
@@ -72,8 +66,6 @@ spec:
         args: ["--appendonly", "yes"]
         securityContext:
           allowPrivilegeEscalation: false
-          seLinuxOptions:
-            level: "s0:c123,c456"
         ports:
         - containerPort: 6379
         volumeMounts:
