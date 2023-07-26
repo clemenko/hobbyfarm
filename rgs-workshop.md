@@ -350,11 +350,11 @@ Once edited we can add to fleet with:
 kubectl apply -f http://git.${vminfo:node1:public_ip}.sslip.io/gitea/workshop/raw/branch/main/fleet/gitea.yaml
 ```
 
-### On to Profit!
+### On to Profit
 
 ---
 
-## Stop when you get here.
+## Stop when you get here
 
 We will walk through all the interfaces together.
 
