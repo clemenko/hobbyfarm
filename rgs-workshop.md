@@ -342,9 +342,9 @@ The username is `gitea`.
 The password is `Pa22word`.
 
 ####
-We need to edit fleet yaml : http://git.${vminfo:node1:public_ip}.sslip.io/gitea/workshop/src/branch/main/fleet/gitea.yaml  
+We need to edit fleet yaml : http://git.${vminfo:node1:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml
 
-**CHANGE 88.88.88.88 to the ${vminfo:node1:public_ip} in Gitea!**
+**CHANGE X.X.X.X to the ${vminfo:node1:public_ip} in Gitea!**
 
 ### On to Fleet
 
@@ -370,6 +370,14 @@ spec:
   - fleet/flask
 ```
 
+We can now deploy the file to add to Fleet.
+
+```ctr:node1
+kubectl apply -f /root/gitea.yaml
+```
+
+Now we can Navigate to https://rancher.${vminfo:node1:public_ip}.sslip.io/dashboard/c/local/fleet/fleet.cattle.io.gitrepo  
+Change "fleet-default" to "fleet-local" in the top right corner.
 
 ### On to Profit
 

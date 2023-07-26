@@ -8,7 +8,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: flask.88.88.88.88.sslip.io
+  - host: flask.X.X.X.X.sslip.io
     http:
       paths:
       - path: /
