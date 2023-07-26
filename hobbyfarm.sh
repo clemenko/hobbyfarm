@@ -83,7 +83,6 @@ helm install hf-provisioner-digitalocean hf-provisioner-digitalocean/chart/hf-pr
 #--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
 
 # https://github.com/hobbyfarm/hf-provisioner-digitalocean
-
 # helm install hf-provisioner-digitalocean ./chart/hf-provisioner-digitalocean --namespace hobbyfarm
 
 sleep 30
