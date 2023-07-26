@@ -9,32 +9,37 @@ This training platform is open-source. And can be found at https://github.com/ho
 ####
 The good news is that all the fields are clickable and do not require copying and pasting. This will create great success.
 
+####
+We are building 3 vms:
+* **rocky** ( Rocky 9.2 ) - Control Plane/etcd/Worker
+* **ubuntu** ( Ubuntu 22.04 ) - Worker
+* **sles** ( SLES 15 - SP4 ) - Worker
+
+####
+Hope we have some fun.
+
 ---
-## RKE2 - Install - node1
+## RKE2 - Install - rocky
 
 If you are bored you can read the [docs](https://docs.rke2.io/). For speed, we are completing an online installation.
 
 There is another git repository with all the air-gapping instructions [https://github.com/clemenko/rke_airgap_install](https://github.com/clemenko/rke_airgap_install).
 
-Heck [watch the video](https://www.youtube.com/watch?v=IkQJc5-_duo).
-
-### node1
-
 #### sudo
 
 We need to sudo and create an account and directory.
 
-```ctr:node1
+```ctr:rocky
 sudo -i
 useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U
 mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
 ```
 
-#### yaml
+#### config.yaml
 
-Next we create a config yaml on node1.
+Next we create a config yaml on rocky.
 
-```file:yaml:/etc/rancher/rke2/config.yaml:node1
+```file:yaml:/etc/rancher/rke2/config.yaml:rocky
 #profile: cis-1.6
 token: bootStrapAllTheThings
 selinux: true
@@ -42,11 +47,11 @@ secrets-encryption: true
 write-kubeconfig-mode: 0600
 ```
 
-#### tls passthrough
+#### nginx tls passthrough
 
 And enable SSL/TLS passthrough for nginx.
 
-```file:yaml:/var/lib/rancher/rke2/server/manifests/rke2-ingress-nginx-config.yaml:node1
+```file:yaml:/var/lib/rancher/rke2/server/manifests/rke2-ingress-nginx-config.yaml:rocky
 apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
@@ -65,7 +70,7 @@ Great. We have all the files setup. We can now install rke2 and start it.
 
 #### rke2 install
 
-```ctr:node1
+```ctr:rocky
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.25 sh - 
 systemctl enable --now rke2-server.service
 ```
@@ -74,13 +79,13 @@ systemctl enable --now rke2-server.service
 server install options https://docs.rke2.io/install/configuration#configuring-the-linux-installation-script
 ```
 
-We should enable kubectl on node1.
+We should enable kubectl on rocky.
 
 #### kubeconfig
 
 We need to set some environment variables.
 
-```ctr:node1
+```ctr:rocky
 echo "export PATH=$PATH:/usr/local/bin/" >> ~/.bashrc
 echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml " >> ~/.bashrc
 source ~/.bashrc
@@ -92,29 +97,29 @@ ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl  /usr/local/bin/kubectl
 kubectl get node
 ```
 
-### on to node2
+### on to ubuntu
 
 ---
 
-## RKE2 - Install - node2
+## RKE2 - Install - ubuntu
 
 #### sudo
 
 We need to sudo and create an account and directory.
 
-```ctr:node2
+```ctr:ubuntu
 sudo -i
 mkdir -p /etc/rancher/rke2/
 ```
 
 #### yaml
 
-Next we create a config yaml on node2.
+Next we create a config yaml on ubuntu.
 
-```file:yaml:/etc/rancher/rke2/config.yaml:node2
+```file:yaml:/etc/rancher/rke2/config.yaml:ubuntu
 #profile: cis-1.6
 token: bootStrapAllTheThings
-server: https://${vminfo:node1:public_ip}:9345
+server: https://${vminfo:rocky:public_ip}:9345
 selinux: true
 secrets-encryption: true
 write-kubeconfig-mode: 0600
@@ -124,42 +129,42 @@ write-kubeconfig-mode: 0600
 
 Great. We have all the files setup. We can now install rke2 and start it.
 
-```ctr:node2
+```ctr:ubuntu
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.25 INSTALL_RKE2_TYPE=agent sh - 
 systemctl enable --now rke2-agent.service
 ```
 
-#### watch - node1
+#### watch - rocky
 
-While this is starting we can watch from the node1.
+While this is starting we can watch from the rocky.
 
-```ctr:node1
-kubectl get node -o wide -w
+```ctr:rocky
+watch -n 5 kubectl get node -o wide
 ```
 
-### On to node3
+### On to sles
 
 ---
 
-## RKE2 - Install - node3
+## RKE2 - Install - sles
 
 #### sudo
 
 We need to sudo and create an account and directory.
 
-```ctr:node3
+```ctr:sles
 sudo -i
 mkdir -p /etc/rancher/rke2/
 ```
 
 #### yaml
 
-Next we create a config yaml on node3.
+Next we create a config yaml on sles.
 
-```file:yaml:/etc/rancher/rke2/config.yaml:node3
+```file:yaml:/etc/rancher/rke2/config.yaml:sles
 #profile: cis-1.6
 token: bootStrapAllTheThings
-server: https://${vminfo:node1:public_ip}:9345
+server: https://${vminfo:rocky:public_ip}:9345
 selinux: true
 secrets-encryption: true
 write-kubeconfig-mode: 0600
@@ -169,18 +174,14 @@ write-kubeconfig-mode: 0600
 
 Great. We have all the files setup. We can now install rke2 and start it.
 
-```ctr:node3
+```ctr:sles
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.25 INSTALL_RKE2_TYPE=agent sh - 
 systemctl enable --now rke2-agent.service
 ```
 
-#### watch - node1
+#### watch - rocky
 
-While this is starting we can watch from the node1.
-
-```ctr:node1
-kubectl get node -o wide -w
-```
+While this is starting we can click on the rocky tab to watch.
 
 ### We now have a 3 node cluster!
 
@@ -188,13 +189,31 @@ We should talk about the STIG next.
 
 ---
 
+## RKE2 - STIG
+
+There is a nice article about it from [Businesswire](https://www.businesswire.com/news/home/20221101005546/en/DISA-Validates-Rancher-Government-Solutions%E2%80%99-Kubernetes-Distribution-RKE2-Security-Technical-Implementation-Guide).
+
+You can download the STIG itself from [https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_RGS_RKE2_V1R1_STIG.zip](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_RGS_RKE2_V1R1_STIG.zip).   
+The SITG viewer can be found on DISA's site at [https://public.cyber.mil/stigs/srg-stig-tools/](https://public.cyber.mil/stigs/srg-stig-tools/). For this guide I have simplified the controls and provided simple steps to ensure compliance. Hope this helps a little.
+
+We even have a tl:dr for Rancher https://github.com/clemenko/rancher_stig.
+
+Bottom Line
+
+* Enable SElinux
+* Update the config for the Control Plane and Worker nodes.
+
+Enough STIG. Let's start deploying applications like Rancher
+
+---
+
 ## Rancher - Install
 
 #### install helm
 
-We will need helm on node1
+We will need helm on rocky
 
-```ctr:node1
+```ctr:rocky
 curl -s https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```
 
@@ -202,7 +221,7 @@ curl -s https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | ba
 
 We need to add the helm repos for CertManager and Rancher. Then we install.
 
-```ctr:node1
+```ctr:rocky
 # helm repo add
 helm repo add rancher-latest https://releases.rancher.com/server-charts/latest --force-update
 helm repo add jetstack https://charts.jetstack.io --force-update
@@ -211,25 +230,25 @@ helm repo add jetstack https://charts.jetstack.io --force-update
 helm upgrade -i cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --set installCRDs=true
 
 # helm install rancher
-helm upgrade -i rancher rancher-latest/rancher --namespace cattle-system --create-namespace --set hostname=rancher.${vminfo:node1:public_ip}.sslip.io --set bootstrapPassword=Pa22word --set replicas=1
+helm upgrade -i rancher rancher-latest/rancher --namespace cattle-system --create-namespace --set hostname=rancher.${vminfo:rocky:public_ip}.sslip.io --set bootstrapPassword=Pa22word --set replicas=1
 ```
 
 ####
 We should wait a few seconds for the pods to deploy.
 
-```ctr:node1
+```ctr:rocky
 kubectl get pod -n cattle-system
 ```
 
 ####
 Once the pod is running we can now navigate to:
 
-**https://rancher.${vminfo:node1:public_ip}.sslip.io**  
+**https://rancher.${vminfo:rocky:public_ip}.sslip.io**  
 **The bootstrap is "Pa22word".**
 
 ####
-Uncheck "Allow collection..."
-and 
+Uncheck "Allow collection..."  
+and  
 Check the EULA box.
 
 ### On to Longhorn
@@ -242,18 +261,21 @@ Check the EULA box.
 
 Before we install longhorn we need to add a few packages to the Rocky vm.
 
-```ctr:node1
+```ctr:rocky
+# for rocky
 yum install -y nfs-utils cryptsetup iscsi-initiator-utils; systemctl enable --now iscsid.service
 ```
 
-```ctr:node2
+```ctr:ubuntu
+# for ubuntu
 systemctl disable ufw --now
 export DEBIAN_FRONTEND=noninteractive; apt update; apt install nfs-common -y
 ```
 
-```ctr:node3
-systemctl disable ufw --now
-export DEBIAN_FRONTEND=noninteractive; apt update; apt install nfs-common -y
+```ctr:sles
+# for sles
+zypper install -y open-iscsi
+zypper install -y nfs-client
 ```
 
 Cool now onto helm.
@@ -262,7 +284,7 @@ Cool now onto helm.
 
 We need to add the helm repo and then we can install.
 
-```ctr:node1
+```ctr:rocky
 # helm repo add
 helm repo add longhorn https://charts.longhorn.io --force-update
 
@@ -273,7 +295,7 @@ helm upgrade -i longhorn longhorn/longhorn --namespace longhorn-system --create-
 ####
 We should wait a few seconds for the pods to deploy.
 
-```ctr:node1
+```ctr:rocky
 # check for the pods
 kubectl  get pod -n longhorn-system  -o wide
 
@@ -285,7 +307,7 @@ kubectl get sc
 
 Longhorn has the ability for encryption at rest. We need to enable it.
 
-```ctr:node1
+```ctr:rocky
 kubectl apply -f https://raw.githubusercontent.com/clemenko/k8s_yaml/master/longhorn_encryption.yml
 
 # verify the new storageclass
@@ -295,54 +317,54 @@ kubectl get sc
 ####
 Now we can use the Rancher proxy to get to the dashboard.
 
-**https://rancher.${vminfo:node1:public_ip}.sslip.io/k8s/clusters/local/api/v1/namespaces/longhorn-system/services/http:longhorn-frontend:80/proxy/#/dashboard**
+**https://rancher.${vminfo:rocky:public_ip}.sslip.io/k8s/clusters/local/api/v1/namespaces/longhorn-system/services/http:longhorn-frontend:80/proxy/#/dashboard**
 
-### On to Neuvector
+### On to NeuVector
 
 ---
 
-## Neuvector - Install
+## NeuVector - Install
 
 We can continue to use helm.
 
 #### use helm
 
-We need to add the helm repo for Neuvector.
+We need to add the helm repo for NeuVector.
 
-```ctr:node1
+```ctr:rocky
 # helm repo add
 helm repo add neuvector https://neuvector.github.io/neuvector-helm/ --force-update
 
 # helm install 
-helm upgrade -i neuvector --namespace cattle-neuvector-system neuvector/core --create-namespace --set imagePullSecrets=regsecret --set k3s.enabled=true --set manager.svc.type=ClusterIP --set controller.pvc.enabled=true --set controller.pvc.capacity=500Mi --set internal.certmanager.enabled=true --set controller.ranchersso.enabled=true --set global.cattle.url=https://rancher.${vminfo:node1:public_ip}.sslip.io
+helm upgrade -i neuvector --namespace cattle-neuvector-system neuvector/core --create-namespace --set imagePullSecrets=regsecret --set k3s.enabled=true --set manager.svc.type=ClusterIP --set controller.pvc.enabled=true --set controller.pvc.capacity=500Mi --set internal.certmanager.enabled=true --set controller.ranchersso.enabled=true --set global.cattle.url=https://rancher.${vminfo:rocky:public_ip}.sslip.io
 ```
 
 ####
 We should wait a few seconds for the pods to deploy.
 
-```ctr:node1
+```ctr:rocky
 kubectl get pod -n cattle-neuvector-system
 ```
 
 ####
 Now we can use the Rancher proxy to get to the dashboard.
 
-**https://rancher.${vminfo:node1:public_ip}.sslip.io/api/v1/namespaces/cattle-neuvector-system/services/https:neuvector-service-webui:8443/proxy/#/login**
+**https://rancher.${vminfo:rocky:public_ip}.sslip.io/api/v1/namespaces/cattle-neuvector-system/services/https:neuvector-service-webui:8443/proxy/#/login**
 
-### On to production
+### On to GitOPs
 
 ---
 
-## GitOPS - Gitea - Install
+## GitOPs - Gitea - Install
 
 We can continue to use helm to install Gitea. https://gitea.com
 
 #### use helm
 
-```ctr:node1
+```ctr:rocky
 helm repo add gitea-charts https://dl.gitea.io/charts/ --force-update
 
-helm upgrade -i gitea gitea-charts/gitea --namespace gitea --create-namespace --set gitea.admin.password=Pa22word --set gitea.admin.username=gitea --set persistence.size=500Mi --set gitea.config.server.ROOT_URL=http://git.${vminfo:node1:public_ip}.sslip.io --set gitea.config.server.DOMAIN=git.${vminfo:node1:public_ip}.sslip.io --set ingress.enabled=true --set ingress.hosts[0].host=git.${vminfo:node1:public_ip}.sslip.io --set ingress.hosts[0].paths[0].path=/ --set ingress.hosts[0].paths[0].pathType=Prefix --set postgresql-ha.enabled=false --set redis-cluster.enabled=false --set gitea.config.database.DB_TYPE=sqlite3 --set gitea.config.session.PROVIDER=memory  --set gitea.config.cache.ADAPTER=memory --set gitea.config.queue.TYPE=level
+helm upgrade -i gitea gitea-charts/gitea --namespace gitea --create-namespace --set gitea.admin.password=Pa22word --set gitea.admin.username=gitea --set persistence.size=500Mi --set gitea.config.server.ROOT_URL=http://git.${vminfo:rocky:public_ip}.sslip.io --set gitea.config.server.DOMAIN=git.${vminfo:rocky:public_ip}.sslip.io --set ingress.enabled=true --set ingress.hosts[0].host=git.${vminfo:rocky:public_ip}.sslip.io --set ingress.hosts[0].paths[0].path=/ --set ingress.hosts[0].paths[0].pathType=Prefix --set postgresql-ha.enabled=false --set redis-cluster.enabled=false --set gitea.config.database.DB_TYPE=sqlite3 --set gitea.config.session.PROVIDER=memory  --set gitea.config.cache.ADAPTER=memory --set gitea.config.queue.TYPE=level
 
 # wait for it to complete
 watch kubectl get pod -n gitea
@@ -351,32 +373,32 @@ watch kubectl get pod -n gitea
 #### running?
 Once everything is up. We can mirror a demo repo.
 
-```ctr:node1
+```ctr:rocky
 # now lets mirror
-curl -X POST 'http://git.${vminfo:node1:public_ip}.sslip.io/api/v1/repos/migrate' -H 'accept: application/json' -H 'authorization: Basic Z2l0ZWE6UGEyMndvcmQ=' -H 'Content-Type: application/json' -d '{ "clone_addr": "https://github.com/clemenko/hobbyfarm", "repo_name": "workshop","repo_owner": "gitea"}'
+curl -X POST 'http://git.${vminfo:rocky:public_ip}.sslip.io/api/v1/repos/migrate' -H 'accept: application/json' -H 'authorization: Basic Z2l0ZWE6UGEyMndvcmQ=' -H 'Content-Type: application/json' -d '{ "clone_addr": "https://github.com/clemenko/hobbyfarm", "repo_name": "workshop","repo_owner": "gitea"}'
 ```
    
 #### navigate
 
-Navigate to **http://git.${vminfo:node1:public_ip}.sslip.io**  
+Navigate to **http://git.${vminfo:rocky:public_ip}.sslip.io**  
 The username is `gitea`.  
 The password is `Pa22word`.
 
 ####
-We need to edit flask yaml : http://git.${vminfo:node1:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml
+We need to edit flask yaml : http://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml
 
-**CHANGE X.X.X.X to the ${vminfo:node1:public_ip} in Gitea!**
+**CHANGE X.X.X.X to the ${vminfo:rocky:public_ip} in Gitea!**
 
 ### On to Fleet
 
 ---
 
-## GitOPS - Fleet - Setup
+## GitOPs - Fleet - Setup
 
 Fleet is already installed within Rancher.  
 We need to create a `GitRepo` file to tell Fleet where the repo is.
 
-```file:yaml:/root/gitea.yaml:node1
+```file:yaml:/root/gitea.yaml:rocky
 kind: GitRepo
 apiVersion: fleet.cattle.io/v1alpha1
 metadata:
@@ -385,7 +407,7 @@ metadata:
 spec:
   branch: main
   insecureSkipTLSVerify: true
-  repo: https://git.${vminfo:node1:public_ip}.sslip.io/gitea/workshop
+  repo: https://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop
   targetNamespace: flask
   paths:
   - fleet/flask
@@ -393,17 +415,17 @@ spec:
 
 We can now deploy the file to add to Fleet.
 
-```ctr:node1
+```ctr:rocky
 kubectl apply -f /root/gitea.yaml
 ```
 
-Now we can Navigate to https://rancher.${vminfo:node1:public_ip}.sslip.io/dashboard/c/local/fleet/fleet.cattle.io.gitrepo  
+Now we can Navigate to https://rancher.${vminfo:rocky:public_ip}.sslip.io/dashboard/c/local/fleet/fleet.cattle.io.gitrepo  
 Change "fleet-default" to "fleet-local" in the top right corner.  
 We can see everything come up.
 
 #### navigate
 
-to: **http://flask.${vminfo:node1:public_ip}.sslip.io**  
+to: **http://flask.${vminfo:rocky:public_ip}.sslip.io**  
 
 ### On to Profit
 
