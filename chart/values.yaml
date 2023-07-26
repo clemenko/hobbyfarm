@@ -1,0 +1,106 @@
+
+admin: # defaults for admin service
+  image: hobbyfarm/admin-ui:v3.0.0
+  configMapName: admin-config
+  config:
+    title: HobbyFarm Learn
+    login:
+      background: assets/default/vault.jpg
+
+ui: # defaults for UI service
+  image: hobbyfarm/ui:v3.0.0
+  configMapName: ui-config
+  config:
+    title: HobbyFarm Learn
+    favicon: /assets/default/favicon.png
+    login:
+      # for custom logo it has to be an SVG - also applies to admin ui
+      # example - kubectl create configmap rgs-logo -n hobbyfarm --from-file=rancher-labs-stacked-color.svg=rfed-logo-stacked.svg
+      customlogo: # secret that contains svg as file 
+      logo: /assets/default/rancher-labs-stacked-color.svg
+      background: /assets/default/login_container_farm.svg
+    logo: /assets/default/logo.svg
+    about:
+      title: About HobbyFarm
+      body: HobbyFarm is a browser-based technology training tool developed at github.com/hobbyfarm
+      # buttons:
+        # - title: Example Title
+        #   url: https://github.com/hobbyfarm
+        # - title: Example Title 2
+        #   url: https://github.com/hobbyfarm/hobbyfarm
+  # custom: |
+    # .custom-css {
+      # /* Some custom css */
+    # }
+
+gargantua:
+  image: hobbyfarm/gargantua:v3.0.0
+  logLevel: "0"
+  dynamicBaseNamePrefix: "dynamic"
+  scheduledBaseNamePrefix: "scheduled"
+  serviceAccountName: "hobbyfarm-gargantua"
+  apiPort: 80
+  webhook:
+    containerPort: 444
+    # needs to remain 443, see https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/#deploy-the-conversion-webhook-servicev2
+    servicePort: 443
+
+# Use guacamole to provision windows VMs (optional)
+# guac:
+#   image: ***to be published***
+
+shell:
+  replicas: 1
+
+# use insecure protocols (e.g., for local development)
+insecure: false
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  tls:
+    enabled: true
+    # secrets:
+    #   backend: backend-tls-secret # api/controller server
+    #   admin: admin-tls-secret # admin ui
+    #   ui: ui-tls-secret # user frontend "learn" ui
+    #   shell: shell-tls-secret # shell proxy
+  hostnames:
+    # ui: example.com
+    # admin: admin.example.com
+    # backend: hf.example.com
+    # shell: shell.example.com
+    ranchervm: {}
+      # frontend: vm.example.com
+      # backend: vmapi.example.com
+
+users:
+  admin:
+    enabled: false
+    # default value to Sup3r@dmin
+    password: $2a$10$9ToKMT37Z7K70xbCVnW9KOzEuPq0JyW/rA06gsukD4U9YfKFjMXTe
+
+# https://github.com/rancher/terraform-controller
+# You will need a module in order for terraform to work. See /docs/README.md for examples
+terraform:
+  enabled: false
+  executor:
+    image: rancher/terraform-controller-executor
+    tag: "v0.0.13-alpha1"
+  controller:
+    image: rancher/terraform-controller
+    tag: "v0.0.13-alpha1"
+    threads: 2
+
+# https://github.com/hobbyfarm/vm
+ranchervm:
+  enabled: false
+  nic: "eth0"
+  bridge: "en0"
+  # bridge: "docker0"
+  image:
+    vm: rancher/vm:v0.2.0
+    frontend: rancher/vm-frontend:v0.2.0
+    novnc: rancher/vm-novnc:v0.2.0
+    tools: rancher/vm-tools:v0.2.0

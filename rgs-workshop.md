@@ -1,26 +1,15 @@
+## Introduction
+**Welcome.**
 
-# HF - Content
+![products](https://raw.githubusercontent.com/clemenko/rke_workshop/main/images/rgs-banner-rounded.png)
 
-# STIG Background
-## RKE2 - STIG
+####
+This training platform is open-source. And can be found at https://github.com/hobbyfarm/hobbyfarm.
 
-There is a nice article about it from [Businesswire](https://www.businesswire.com/news/home/20221101005546/en/DISA-Validates-Rancher-Government-Solutions%E2%80%99-Kubernetes-Distribution-RKE2-Security-Technical-Implementation-Guide).
-
-You can download the STIG itself from [https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_RGS_RKE2_V1R1_STIG.zip](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_RGS_RKE2_V1R1_STIG.zip). 
-The SITG viewer can be found on DISA's site at [https://public.cyber.mil/stigs/srg-stig-tools/](https://public.cyber.mil/stigs/srg-stig-tools/). 
-For this guide I have simplified the controls and provided simple steps to ensure compliance. Hope this helps a little.
-
-We even have a tl:dr for Rancher https://github.com/clemenko/rancher_stig.
-
-Bottom Line
-
-* Enable SElinux
-* Update the config for the Control Plane and Worker nodes.
-
-Enough STIG. Let's start deploying.
+####
+The good news is that all the fields are clickable and do not require copying and pasting. This will create great success.
 
 ---
-
 ## RKE2 - Install - node1
 
 If you are bored you can read the [docs](https://docs.rke2.io/). For speed, we are completing an online installation.
@@ -80,6 +69,7 @@ Great. We have all the files setup. We can now install rke2 and start it.
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.25 sh - 
 systemctl enable --now rke2-server.service
 ```
+
 ```hidden:More info about settings
 server install options https://docs.rke2.io/install/configuration#configuring-the-linux-installation-script
 ```
@@ -194,7 +184,7 @@ kubectl get node -o wide -w
 
 ### We now have a 3 node cluster!
 
-Shall we install some applications?
+We should talk about the STIG next.
 
 ---
 
@@ -221,21 +211,23 @@ helm repo add jetstack https://charts.jetstack.io --force-update
 helm upgrade -i cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --set installCRDs=true
 
 # helm install rancher
-helm upgrade -i rancher rancher-latest/rancher --namespace cattle-system --create-namespace --set hostname=${vminfo:node1:hostname} --set bootstrapPassword=Pa22word --set replicas=1
+helm upgrade -i rancher rancher-latest/rancher --namespace cattle-system --create-namespace --set hostname=rancher.${vminfo:node1:public_ip}.sslip.io --set bootstrapPassword=Pa22word --set replicas=1
 ```
 
+####
 We should wait a few seconds for the pods to deploy.
 
 ```ctr:node1
 kubectl get pod -n cattle-system
 ```
 
+####
 Once the pod is running we can now navigate to:
 
-https://${vminfo:node1:hostname}
+**https://rancher.${vminfo:node1:public_ip}.sslip.io**  
+**The bootstrap is "Pa22word".**
 
-The bootstrap is "Pa22word".
-
+####
 Uncheck "Allow collection..."
 and 
 Check the EULA box.
@@ -268,6 +260,7 @@ helm repo add longhorn https://charts.longhorn.io --force-update
 helm upgrade -i longhorn longhorn/longhorn --namespace longhorn-system --create-namespace
 ```
 
+####
 We should wait a few seconds for the pods to deploy.
 
 ```ctr:node1
@@ -278,9 +271,10 @@ kubectl  get pod -n longhorn-system  -o wide
 kubectl get sc
 ```
 
+####
 Now we can use the Rancher proxy to get to the dashboard.
 
-https://${vminfo:node1:hostname}/k8s/clusters/local/api/v1/namespaces/longhorn-system/services/http:longhorn-frontend:80/proxy/#/dashboard
+**https://rancher.${vminfo:node1:public_ip}.sslip.io/k8s/clusters/local/api/v1/namespaces/longhorn-system/services/http:longhorn-frontend:80/proxy/#/dashboard**
 
 ### On to Neuvector
 
@@ -299,39 +293,71 @@ We need to add the helm repo for Neuvector.
 helm repo add neuvector https://neuvector.github.io/neuvector-helm/ --force-update
 
 # helm install 
-helm upgrade -i neuvector --namespace cattle-neuvector-system neuvector/core --create-namespace --set imagePullSecrets=regsecret --set k3s.enabled=true --set manager.svc.type=ClusterIP --set controller.pvc.enabled=true --set controller.pvc.capacity=500Mi --set internal.certmanager.enabled=true --set controller.ranchersso.enabled=true --set global.cattle.url=https://${vminfo:node1:hostname}
-
+helm upgrade -i neuvector --namespace cattle-neuvector-system neuvector/core --create-namespace --set imagePullSecrets=regsecret --set k3s.enabled=true --set manager.svc.type=ClusterIP --set controller.pvc.enabled=true --set controller.pvc.capacity=500Mi --set internal.certmanager.enabled=true --set controller.ranchersso.enabled=true --set global.cattle.url=https://rancher.${vminfo:node1:public_ip}.sslip.io
 ```
 
+####
 We should wait a few seconds for the pods to deploy.
 
 ```ctr:node1
 kubectl get pod -n cattle-neuvector-system
 ```
 
+####
 Now we can use the Rancher proxy to get to the dashboard.
 
-https://${vminfo:node1:hostname}/api/v1/namespaces/cattle-neuvector-system/services/https:neuvector-service-webui:8443/proxy/#/login
+**https://rancher.${vminfo:node1:public_ip}.sslip.io/api/v1/namespaces/cattle-neuvector-system/services/https:neuvector-service-webui:8443/proxy/#/login**
 
 ### On to production
 
+---
 
+## Gitea and Fleet - Install
 
+We can continue to use helm.
 
+#### use helm
 
 ```ctr:node1
-# test 
-echo ${vminfo:node1:public_ip}
+helm repo add gitea-charts https://dl.gitea.io/charts/ --force-update
+
+helm upgrade -i gitea gitea-charts/gitea --namespace gitea --create-namespace --set gitea.admin.password=Pa22word --set gitea.admin.username=gitea --set persistence.size=500Mi --set postgresql.persistence.size=500Mi --set gitea.config.server.ROOT_URL=http://git.${vminfo:node1:public_ip}.sslip.io --set gitea.config.server.DOMAIN=git.${vminfo:node1:public_ip}.sslip.io --set ingress.enabled=true --set ingress.hosts[0].host=git.${vminfo:node1:public_ip}.sslip.io --set ingress.hosts[0].paths[0].path=/ --set ingress.hosts[0].paths[0].pathType=Prefix
+
+# wait for it to complete
+watch kubectl get pod -n gitea
 ```
 
-```note:task
-Check the nodes.
-~~~ctr:node1
-kubectl get nodes
-~~~
+#### running?
+Once everything is up. We can mirror a demo repo.
+
+```ctr:node1
+# now lets mirror
+curl -X POST 'http://git.${vminfo:node1:public_ip}.sslip.io/api/v1/repos/migrate' -H 'accept: application/json' -H 'authorization: Basic Z2l0ZWE6UGEyMndvcmQ=' -H 'Content-Type: application/json' -d '{ "clone_addr": "https://github.com/clemenko/rke_workshop", "repo_name": "workshop","repo_owner": "gitea"}'
+```
+   
+#### navigate
+
+Navigate to **http://git.${vminfo:node1:public_ip}.sslip.io**  
+The username is `gitea`.  
+The password is `Pa22word`.
+
+####
+We need to edit fleet yaml : http://git.${vminfo:node1:public_ip}.sslip.io/gitea/workshop/src/branch/main/fleet/gitea.yaml  
+
+Once edited we can add to fleet with:
+
+```ctr:node1
+kubectl apply -f http://git.${vminfo:node1:public_ip}.sslip.io/gitea/workshop/raw/branch/main/fleet/gitea.yaml
 ```
 
+### On to Profit!
 
-curl -s https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+---
 
-yum install -y nfs-utils cryptsetup iscsi-initiator-utils; systemctl enable --now iscsid.service
+## Stop when you get here.
+
+We will walk through all the interfaces together.
+
+![success](https://raw.githubusercontent.com/clemenko/rke_workshop/main/images/success.jpg)
+
+Thanks for playing!

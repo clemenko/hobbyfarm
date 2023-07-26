@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui
+spec:
+  selector:
+    matchLabels:
+      component: ui
+  template:
+    metadata:
+      labels:
+        component: ui
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/ui/configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: ui
+          image: {{ $.Values.ui.image }}
+          {{- if $.Values.insecure }}
+          args:
+            - --insecure
+          {{- end }}
+          env:
+            - name: HF_SERVER
+              {{- if $.Values.ingress.enabled }}
+              value: {{ $.Values.ingress.hostnames.backend | quote }}
+              {{- else }}
+              value: gargantua
+              {{- end }}
+          volumeMounts:
+            {{- if $.Values.ui.configMapName }}
+            - name: config
+              mountPath: /usr/share/nginx/html/config.json
+              subPath: config.json
+            {{- end }}
+            {{- if $.Values.ui.config.login.customlogo }}
+            - name: customlogo
+              mountPath: /usr/share/nginx/html/assets/default/rancher-labs-stacked-color.svg
+              subPath: rancher-labs-stacked-color.svg
+            {{- end }}
+            {{- if $.Values.ui.custom }}
+            - name: config
+              mountPath: /usr/share/nginx/html/custom.css
+              subPath: custom.css
+            {{- end }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ $.Values.ui.configMapName }}
+        {{- if $.Values.ui.config.login.customlogo }}
+        - name: customlogo
+          configMap:
+            name: {{ $.Values.ui.config.login.customlogo }}
+        {{- end }}
+

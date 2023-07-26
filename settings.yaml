@@ -8,6 +8,7 @@ spec:
     rocky-9.2: 100
     ubuntu-22.04: 100
     sles-15-sp4: 100
+    al2023: 100
   display_name: aws-env
   environment_specifics:
     cred_secret: aws-creds
@@ -31,6 +32,11 @@ spec:
     sles-15-sp4:
       disk: "80"
       image: ami-021b67c90e3e68a8f
+      instance_type: m5.xlarge
+      ssh_username: ec2-user
+    al2023:
+      disk: "80"
+      image: ami-05548f9cecf47b442
       instance_type: m5.xlarge
       ssh_username: ec2-user
   ws_endpoint: hobby-shell.rfed.io
@@ -132,6 +138,101 @@ spec:
     webinterfaces: '[]'
   image: sles-15-sp4
   name: sles-15-sp4
+---
+apiVersion: hobbyfarm.io/v1
+kind: VirtualMachineTemplate
+metadata:
+  name: al2023
+  namespace: hobbyfarm
+spec:
+  config_map:
+    cloud-config: ""
+    webinterfaces: '[]'
+  image: al2023
+  name: al2023
+---
+apiVersion: hobbyfarm.io/v1
+dataType: boolean
+displayName: Registration Disabled
+kind: Setting
+metadata:
+  labels:
+    hobbyfarm.io/setting-scope: public
+  name: registration-disabled
+  namespace: hobbyfarm
+value: "true"
+valueType: scalar
+
+---
+apiVersion: hobbyfarm.io/v1
+kind: Scenario
+metadata:
+  name: rgs-workshop
+  namespace: hobbyfarm
+spec:
+  categories: []
+  description: UkdTIFdvcmtzaG9wIFJLRTIvTG9uZ2hvcm4vUmFuY2hlci9OZXV2ZWN0b3I=
+  keepalive_duration: 60m
+  name: V29ya3Nob3A=
+  pause_duration: 2h
+  pauseable: false
+  steps:
+  - content: IyMgSW50cm9kdWN0aW9uCioqV2VsY29tZS4qKgoKIVtwcm9kdWN0c10oaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2NsZW1lbmtvL3JrZV93b3Jrc2hvcC9tYWluL2ltYWdlcy9yZ3MtYmFubmVyLXJvdW5kZWQucG5nKQoKIyMKVGhpcyB0cmFpbmluZyBwbGF0Zm9ybSBpcyBvcGVuLXNvdXJjZS4gQW5kIGNhbiBiZSBmb3VuZCBhdCBodHRwczovL2dpdGh1Yi5jb20vaG9iYnlmYXJtL2hvYmJ5ZmFybS4KCiMjClRoZSBnb29kIG5ld3MgaXMgdGhhdCBhbGwgdGhlIGZpZWxkcyBhcmUgY2xpY2thYmxlIGFuZCBkbyBub3QgcmVxdWlyZSBjb3B5aW5nIGFuZCBwYXN0aW5nLiBUaGlzIHdpbGwgY3JlYXRlIGdyZWF0IHN1Y2Nlc3MuIAoKCgoK
+    title: SW50cm9kdWN0aW9u
+  - content: IyMgUktFMiAtIEluc3RhbGwgLSBub2RlMQoKSWYgeW91IGFyZSBib3JlZCB5b3UgY2FuIHJlYWQgdGhlIFtkb2NzXShodHRwczovL2RvY3MucmtlMi5pby8pLiBGb3Igc3BlZWQsIHdlIGFyZSBjb21wbGV0aW5nIGFuIG9ubGluZSBpbnN0YWxsYXRpb24uCgpUaGVyZSBpcyBhbm90aGVyIGdpdCByZXBvc2l0b3J5IHdpdGggYWxsIHRoZSBhaXItZ2FwcGluZyBpbnN0cnVjdGlvbnMgW2h0dHBzOi8vZ2l0aHViLmNvbS9jbGVtZW5rby9ya2VfYWlyZ2FwX2luc3RhbGxdKGh0dHBzOi8vZ2l0aHViLmNvbS9jbGVtZW5rby9ya2VfYWlyZ2FwX2luc3RhbGwpLgoKSGVjayBbd2F0Y2ggdGhlIHZpZGVvXShodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlrUUpjNS1fZHVvKS4KCiMjIyBub2RlMQoKIyMjIyBzdWRvCgpXZSBuZWVkIHRvIHN1ZG8gYW5kIGNyZWF0ZSBhbiBhY2NvdW50IGFuZCBkaXJlY3RvcnkuCgpgYGBjdHI6bm9kZTEKc3VkbyAtaQp1c2VyYWRkIC1yIC1jICJldGNkIHVzZXIiIC1zIC9zYmluL25vbG9naW4gLU0gZXRjZCAtVQpta2RpciAtcCAvZXRjL3JhbmNoZXIvcmtlMi8gL3Zhci9saWIvcmFuY2hlci9ya2UyL3NlcnZlci9tYW5pZmVzdHMvCmBgYAoKIyMjIyB5YW1sCgpOZXh0IHdlIGNyZWF0ZSBhIGNvbmZpZyB5YW1sIG9uIG5vZGUxLgoKYGBgZmlsZTp5YW1sOi9ldGMvcmFuY2hlci9ya2UyL2NvbmZpZy55YW1sOm5vZGUxCiNwcm9maWxlOiBjaXMtMS42CnRva2VuOiBib290U3RyYXBBbGxUaGVUaGluZ3MKc2VsaW51eDogdHJ1ZQpzZWNyZXRzLWVuY3J5cHRpb246IHRydWUKd3JpdGUta3ViZWNvbmZpZy1tb2RlOiAwNjAwCmBgYAoKIyMjIyB0bHMgcGFzc3Rocm91Z2gKCkFuZCBlbmFibGUgU1NML1RMUyBwYXNzdGhyb3VnaCBmb3IgbmdpbnguCgpgYGBmaWxlOnlhbWw6L3Zhci9saWIvcmFuY2hlci9ya2UyL3NlcnZlci9tYW5pZmVzdHMvcmtlMi1pbmdyZXNzLW5naW54LWNvbmZpZy55YW1sOm5vZGUxCmFwaVZlcnNpb246IGhlbG0uY2F0dGxlLmlvL3YxCmtpbmQ6IEhlbG1DaGFydENvbmZpZwptZXRhZGF0YToKICBuYW1lOiBya2UyLWluZ3Jlc3MtbmdpbngKICBuYW1lc3BhY2U6IGt1YmUtc3lzdGVtCnNwZWM6CiAgdmFsdWVzQ29udGVudDogfC0KICAgIGNvbnRyb2xsZXI6CiAgICAgIGNvbmZpZzoKICAgICAgICB1c2UtZm9yd2FyZGVkLWhlYWRlcnM6IHRydWUKICAgICAgZXh0cmFBcmdzOgogICAgICAgIGVuYWJsZS1zc2wtcGFzc3Rocm91Z2g6IHRydWUKYGBgCgpHcmVhdC4gV2UgaGF2ZSBhbGwgdGhlIGZpbGVzIHNldHVwLiBXZSBjYW4gbm93IGluc3RhbGwgcmtlMiBhbmQgc3RhcnQgaXQuCgojIyMjIHJrZTIgaW5zdGFsbAoKYGBgY3RyOm5vZGUxCmN1cmwgLXNmTCBodHRwczovL2dldC5ya2UyLmlvIHwgSU5TVEFMTF9SS0UyX0NIQU5ORUw9djEuMjUgc2ggLSAKc3lzdGVtY3RsIGVuYWJsZSAtLW5vdyBya2UyLXNlcnZlci5zZXJ2aWNlCmBgYAoKYGBgaGlkZGVuOk1vcmUgaW5mbyBhYm91dCBzZXR0aW5ncwpzZXJ2ZXIgaW5zdGFsbCBvcHRpb25zIGh0dHBzOi8vZG9jcy5ya2UyLmlvL2luc3RhbGwvY29uZmlndXJhdGlvbiNjb25maWd1cmluZy10aGUtbGludXgtaW5zdGFsbGF0aW9uLXNjcmlwdApgYGAKCldlIHNob3VsZCBlbmFibGUga3ViZWN0bCBvbiBub2RlMS4KCiMjIyMga3ViZWNvbmZpZwoKV2UgbmVlZCB0byBzZXQgc29tZSBlbnZpcm9ubWVudCB2YXJpYWJsZXMuCgpgYGBjdHI6bm9kZTEKZWNobyAiZXhwb3J0IFBBVEg9JFBBVEg6L3Vzci9sb2NhbC9iaW4vIiA+PiB+Ly5iYXNocmMKZWNobyAiZXhwb3J0IEtVQkVDT05GSUc9L2V0Yy9yYW5jaGVyL3JrZTIvcmtlMi55YW1sICIgPj4gfi8uYmFzaHJjCnNvdXJjZSB+Ly5iYXNocmMKCiMgYW5kIGEgc3ltIGxpbmsKbG4gLXMgL3Zhci9saWIvcmFuY2hlci9ya2UyL2RhdGEvdjEqL2Jpbi9rdWJlY3RsICAvdXNyL2xvY2FsL2Jpbi9rdWJlY3RsCgojIGxldHMgdGVzdAprdWJlY3RsIGdldCBub2RlCmBgYAoKIyMjIG9uIHRvIG5vZGUyCg==
+    title: UktFMiAtIEluc3RhbGwgLSBub2RlMQ==
+  - content: IyMgUktFMiAtIEluc3RhbGwgLSBub2RlMgoKIyMjIyBzdWRvCgpXZSBuZWVkIHRvIHN1ZG8gYW5kIGNyZWF0ZSBhbiBhY2NvdW50IGFuZCBkaXJlY3RvcnkuCgpgYGBjdHI6bm9kZTIKc3VkbyAtaQpta2RpciAtcCAvZXRjL3JhbmNoZXIvcmtlMi8KYGBgCgojIyMjIHlhbWwKCk5leHQgd2UgY3JlYXRlIGEgY29uZmlnIHlhbWwgb24gbm9kZTIuCgpgYGBmaWxlOnlhbWw6L2V0Yy9yYW5jaGVyL3JrZTIvY29uZmlnLnlhbWw6bm9kZTIKI3Byb2ZpbGU6IGNpcy0xLjYKdG9rZW46IGJvb3RTdHJhcEFsbFRoZVRoaW5ncwpzZXJ2ZXI6IGh0dHBzOi8vJHt2bWluZm86bm9kZTE6cHVibGljX2lwfTo5MzQ1CnNlbGludXg6IHRydWUKc2VjcmV0cy1lbmNyeXB0aW9uOiB0cnVlCndyaXRlLWt1YmVjb25maWctbW9kZTogMDYwMApgYGAKCiMjIyMgcmtlMiBpbnN0YWxsCgpHcmVhdC4gV2UgaGF2ZSBhbGwgdGhlIGZpbGVzIHNldHVwLiBXZSBjYW4gbm93IGluc3RhbGwgcmtlMiBhbmQgc3RhcnQgaXQuCgpgYGBjdHI6bm9kZTIKY3VybCAtc2ZMIGh0dHBzOi8vZ2V0LnJrZTIuaW8gfCBJTlNUQUxMX1JLRTJfQ0hBTk5FTD12MS4yNSBJTlNUQUxMX1JLRTJfVFlQRT1hZ2VudCBzaCAtIApzeXN0ZW1jdGwgZW5hYmxlIC0tbm93IHJrZTItYWdlbnQuc2VydmljZQpgYGAKCiMjIyMgd2F0Y2ggLSBub2RlMQoKV2hpbGUgdGhpcyBpcyBzdGFydGluZyB3ZSBjYW4gd2F0Y2ggZnJvbSB0aGUgbm9kZTEuCgpgYGBjdHI6bm9kZTEKa3ViZWN0bCBnZXQgbm9kZSAtbyB3aWRlIC13CmBgYAoKIyMjIE9uIHRvIG5vZGUzCg==
+    title: UktFMiAtIEluc3RhbGwgLSBub2RlMg==
+  - content: IyMgUktFMiAtIEluc3RhbGwgLSBub2RlMwoKIyMjIyBzdWRvCgpXZSBuZWVkIHRvIHN1ZG8gYW5kIGNyZWF0ZSBhbiBhY2NvdW50IGFuZCBkaXJlY3RvcnkuCgpgYGBjdHI6bm9kZTMKc3VkbyAtaQpta2RpciAtcCAvZXRjL3JhbmNoZXIvcmtlMi8KYGBgCgojIyMjIHlhbWwKCk5leHQgd2UgY3JlYXRlIGEgY29uZmlnIHlhbWwgb24gbm9kZTMuCgpgYGBmaWxlOnlhbWw6L2V0Yy9yYW5jaGVyL3JrZTIvY29uZmlnLnlhbWw6bm9kZTMKI3Byb2ZpbGU6IGNpcy0xLjYKdG9rZW46IGJvb3RTdHJhcEFsbFRoZVRoaW5ncwpzZXJ2ZXI6IGh0dHBzOi8vJHt2bWluZm86bm9kZTE6cHVibGljX2lwfTo5MzQ1CnNlbGludXg6IHRydWUKc2VjcmV0cy1lbmNyeXB0aW9uOiB0cnVlCndyaXRlLWt1YmVjb25maWctbW9kZTogMDYwMApgYGAKCiMjIyMgcmtlMiBpbnN0YWxsCgpHcmVhdC4gV2UgaGF2ZSBhbGwgdGhlIGZpbGVzIHNldHVwLiBXZSBjYW4gbm93IGluc3RhbGwgcmtlMiBhbmQgc3RhcnQgaXQuCgpgYGBjdHI6bm9kZTMKY3VybCAtc2ZMIGh0dHBzOi8vZ2V0LnJrZTIuaW8gfCBJTlNUQUxMX1JLRTJfQ0hBTk5FTD12MS4yNSBJTlNUQUxMX1JLRTJfVFlQRT1hZ2VudCBzaCAtIApzeXN0ZW1jdGwgZW5hYmxlIC0tbm93IHJrZTItYWdlbnQuc2VydmljZQpgYGAKCiMjIyMgd2F0Y2ggLSBub2RlMQoKV2hpbGUgdGhpcyBpcyBzdGFydGluZyB3ZSBjYW4gd2F0Y2ggZnJvbSB0aGUgbm9kZTEuCgpgYGBjdHI6bm9kZTEKa3ViZWN0bCBnZXQgbm9kZSAtbyB3aWRlIC13CmBgYAoKIyMjIFdlIG5vdyBoYXZlIGEgMyBub2RlIGNsdXN0ZXIhCgpXZSBzaG91bGQgdGFsayBhYm91dCB0aGUgU1RJRyBuZXh0Lgo=
+    title: UktFMiAtIEluc3RhbGwgLSBub2RlMw==
+  - content: CiMjIFJLRTIgLSBTVElHCgpUaGVyZSBpcyBhIG5pY2UgYXJ0aWNsZSBhYm91dCBpdCBmcm9tIFtCdXNpbmVzc3dpcmVdKGh0dHBzOi8vd3d3LmJ1c2luZXNzd2lyZS5jb20vbmV3cy9ob21lLzIwMjIxMTAxMDA1NTQ2L2VuL0RJU0EtVmFsaWRhdGVzLVJhbmNoZXItR292ZXJubWVudC1Tb2x1dGlvbnMlRTIlODAlOTktS3ViZXJuZXRlcy1EaXN0cmlidXRpb24tUktFMi1TZWN1cml0eS1UZWNobmljYWwtSW1wbGVtZW50YXRpb24tR3VpZGUpLgoKWW91IGNhbiBkb3dubG9hZCB0aGUgU1RJRyBpdHNlbGYgZnJvbSBbaHR0cHM6Ly9kbC5kb2QuY3liZXIubWlsL3dwLWNvbnRlbnQvdXBsb2Fkcy9zdGlncy96aXAvVV9SR1NfUktFMl9WMVIxX1NUSUcuemlwXShodHRwczovL2RsLmRvZC5jeWJlci5taWwvd3AtY29udGVudC91cGxvYWRzL3N0aWdzL3ppcC9VX1JHU19SS0UyX1YxUjFfU1RJRy56aXApLiAgIApUaGUgU0lURyB2aWV3ZXIgY2FuIGJlIGZvdW5kIG9uIERJU0EncyBzaXRlIGF0IFtodHRwczovL3B1YmxpYy5jeWJlci5taWwvc3RpZ3Mvc3JnLXN0aWctdG9vbHMvXShodHRwczovL3B1YmxpYy5jeWJlci5taWwvc3RpZ3Mvc3JnLXN0aWctdG9vbHMvKS4gRm9yIHRoaXMgZ3VpZGUgSSBoYXZlIHNpbXBsaWZpZWQgdGhlIGNvbnRyb2xzIGFuZCBwcm92aWRlZCBzaW1wbGUgc3RlcHMgdG8gZW5zdXJlIGNvbXBsaWFuY2UuIEhvcGUgdGhpcyBoZWxwcyBhIGxpdHRsZS4KCldlIGV2ZW4gaGF2ZSBhIHRsOmRyIGZvciBSYW5jaGVyIGh0dHBzOi8vZ2l0aHViLmNvbS9jbGVtZW5rby9yYW5jaGVyX3N0aWcuCgpCb3R0b20gTGluZQoKKiBFbmFibGUgU0VsaW51eAoqIFVwZGF0ZSB0aGUgY29uZmlnIGZvciB0aGUgQ29udHJvbCBQbGFuZSBhbmQgV29ya2VyIG5vZGVzLgoKRW5vdWdoIFNUSUcuIExldCdzIHN0YXJ0IGRlcGxveWluZyBhcHBsaWNhdGlvbnMuCgo=
+    title: U1RJRyBCYWNrZ3JvdW5k
+  - content: CiMjIFJhbmNoZXIgLSBJbnN0YWxsCgojIyMjIGluc3RhbGwgaGVsbQoKV2Ugd2lsbCBuZWVkIGhlbG0gb24gbm9kZTEKCmBgYGN0cjpub2RlMQpjdXJsIC1zIGh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9oZWxtL2hlbG0vbWFpbi9zY3JpcHRzL2dldC1oZWxtLTMgfCBiYXNoCmBgYAoKIyMjIyB1c2UgaGVsbQoKV2UgbmVlZCB0byBhZGQgdGhlIGhlbG0gcmVwb3MgZm9yIENlcnRNYW5hZ2VyIGFuZCBSYW5jaGVyLiBUaGVuIHdlIGluc3RhbGwuCgpgYGBjdHI6bm9kZTEKIyBoZWxtIHJlcG8gYWRkCmhlbG0gcmVwbyBhZGQgcmFuY2hlci1sYXRlc3QgaHR0cHM6Ly9yZWxlYXNlcy5yYW5jaGVyLmNvbS9zZXJ2ZXItY2hhcnRzL2xhdGVzdCAtLWZvcmNlLXVwZGF0ZQpoZWxtIHJlcG8gYWRkIGpldHN0YWNrIGh0dHBzOi8vY2hhcnRzLmpldHN0YWNrLmlvIC0tZm9yY2UtdXBkYXRlCgojIGhlbG0gaW5zdGFsbCBjZXJ0LW1hbmFnZXIKaGVsbSB1cGdyYWRlIC1pIGNlcnQtbWFuYWdlciBqZXRzdGFjay9jZXJ0LW1hbmFnZXIgLS1uYW1lc3BhY2UgY2VydC1tYW5hZ2VyIC0tY3JlYXRlLW5hbWVzcGFjZSAtLXNldCBpbnN0YWxsQ1JEcz10cnVlCgojIGhlbG0gaW5zdGFsbCByYW5jaGVyCmhlbG0gdXBncmFkZSAtaSByYW5jaGVyIHJhbmNoZXItbGF0ZXN0L3JhbmNoZXIgLS1uYW1lc3BhY2UgY2F0dGxlLXN5c3RlbSAtLWNyZWF0ZS1uYW1lc3BhY2UgLS1zZXQgaG9zdG5hbWU9cmFuY2hlci4ke3ZtaW5mbzpub2RlMTpwdWJsaWNfaXB9LnNzbGlwLmlvIC0tc2V0IGJvb3RzdHJhcFBhc3N3b3JkPVBhMjJ3b3JkIC0tc2V0IHJlcGxpY2FzPTEKYGBgCgojIwpXZSBzaG91bGQgd2FpdCBhIGZldyBzZWNvbmRzIGZvciB0aGUgcG9kcyB0byBkZXBsb3kuCgpgYGBjdHI6bm9kZTEKa3ViZWN0bCBnZXQgcG9kIC1uIGNhdHRsZS1zeXN0ZW0KYGBgCgojIwpPbmNlIHRoZSBwb2QgaXMgcnVubmluZyB3ZSBjYW4gbm93IG5hdmlnYXRlIHRvOgoKKipodHRwczovL3JhbmNoZXIuJHt2bWluZm86bm9kZTE6cHVibGljX2lwfS5zc2xpcC5pbyoqICAKKipUaGUgYm9vdHN0cmFwIGlzICJQYTIyd29yZCIuKioKCiMjClVuY2hlY2sgIkFsbG93IGNvbGxlY3Rpb24uLi4iCmFuZCAKQ2hlY2sgdGhlIEVVTEEgYm94LgoKIyMjIE9uIHRvIExvbmdob3JuCg==
+    title: UmFuY2hlciAtIEluc3RhbGw=
+  - content: IyMgTG9uZ2hvcm4gLSBJbnN0YWxsCgojIyMjIHBhY2thZ2VzCgpCZWZvcmUgd2UgaW5zdGFsbCBsb25naG9ybiB3ZSBuZWVkIHRvIGFkZCBhIGZldyBwYWNrYWdlcyB0byB0aGUgUm9ja3kgdm0uCgpgYGBjdHI6bm9kZTEKeXVtIGluc3RhbGwgLXkgbmZzLXV0aWxzIGNyeXB0c2V0dXAgaXNjc2ktaW5pdGlhdG9yLXV0aWxzOyBzeXN0ZW1jdGwgZW5hYmxlIC0tbm93IGlzY3NpZC5zZXJ2aWNlCmBgYAoKQ29vbCBub3cgb250byBoZWxtLgoKIyMjIyB1c2UgaGVsbQoKV2UgbmVlZCB0byBhZGQgdGhlIGhlbG0gcmVwbyBhbmQgdGhlbiB3ZSBjYW4gaW5zdGFsbC4KCmBgYGN0cjpub2RlMQojIGhlbG0gcmVwbyBhZGQKaGVsbSByZXBvIGFkZCBsb25naG9ybiBodHRwczovL2NoYXJ0cy5sb25naG9ybi5pbyAtLWZvcmNlLXVwZGF0ZQoKIyBoZWxtIGluc3RhbGwKaGVsbSB1cGdyYWRlIC1pIGxvbmdob3JuIGxvbmdob3JuL2xvbmdob3JuIC0tbmFtZXNwYWNlIGxvbmdob3JuLXN5c3RlbSAtLWNyZWF0ZS1uYW1lc3BhY2UKYGBgCgojCldlIHNob3VsZCB3YWl0IGEgZmV3IHNlY29uZHMgZm9yIHRoZSBwb2RzIHRvIGRlcGxveS4KCmBgYGN0cjpub2RlMQojIGNoZWNrIGZvciB0aGUgcG9kcwprdWJlY3RsICBnZXQgcG9kIC1uIGxvbmdob3JuLXN5c3RlbSAgLW8gd2lkZQoKIyB0byB2ZXJpZnkgdGhhdCBsb25naG9ybiBpcyB0aGUgZGVmYXVsdCBzdG9yYWdlIGNsYXNzCmt1YmVjdGwgZ2V0IHNjCmBgYAoKIyMKTm93IHdlIGNhbiB1c2UgdGhlIFJhbmNoZXIgcHJveHkgdG8gZ2V0IHRvIHRoZSBkYXNoYm9hcmQuCgoKKipodHRwczovL3JhbmNoZXIuJHt2bWluZm86bm9kZTE6cHVibGljX2lwfS5zc2xpcC5pby9rOHMvY2x1c3RlcnMvbG9jYWwvYXBpL3YxL25hbWVzcGFjZXMvbG9uZ2hvcm4tc3lzdGVtL3NlcnZpY2VzL2h0dHA6bG9uZ2hvcm4tZnJvbnRlbmQ6ODAvcHJveHkvIy9kYXNoYm9hcmQqKgoKCiMjIyBPbiB0byBOZXV2ZWN0b3IK
+    title: TG9uZ2hvcm4gLSBJbnN0YWxs
+  - content: IyMgTmV1dmVjdG9yIC0gSW5zdGFsbAoKV2UgY2FuIGNvbnRpbnVlIHRvIHVzZSBoZWxtLgoKIyMjIyB1c2UgaGVsbQoKV2UgbmVlZCB0byBhZGQgdGhlIGhlbG0gcmVwbyBmb3IgTmV1dmVjdG9yLgoKYGBgY3RyOm5vZGUxCiMgaGVsbSByZXBvIGFkZApoZWxtIHJlcG8gYWRkIG5ldXZlY3RvciBodHRwczovL25ldXZlY3Rvci5naXRodWIuaW8vbmV1dmVjdG9yLWhlbG0vIC0tZm9yY2UtdXBkYXRlCgojIGhlbG0gaW5zdGFsbCAKaGVsbSB1cGdyYWRlIC1pIG5ldXZlY3RvciAtLW5hbWVzcGFjZSBjYXR0bGUtbmV1dmVjdG9yLXN5c3RlbSBuZXV2ZWN0b3IvY29yZSAtLWNyZWF0ZS1uYW1lc3BhY2UgLS1zZXQgaW1hZ2VQdWxsU2VjcmV0cz1yZWdzZWNyZXQgLS1zZXQgazNzLmVuYWJsZWQ9dHJ1ZSAtLXNldCBtYW5hZ2VyLnN2Yy50eXBlPUNsdXN0ZXJJUCAtLXNldCBjb250cm9sbGVyLnB2Yy5lbmFibGVkPXRydWUgLS1zZXQgY29udHJvbGxlci5wdmMuY2FwYWNpdHk9NTAwTWkgLS1zZXQgaW50ZXJuYWwuY2VydG1hbmFnZXIuZW5hYmxlZD10cnVlIC0tc2V0IGNvbnRyb2xsZXIucmFuY2hlcnNzby5lbmFibGVkPXRydWUgLS1zZXQgZ2xvYmFsLmNhdHRsZS51cmw9aHR0cHM6Ly9yYW5jaGVyLiR7dm1pbmZvOm5vZGUxOnB1YmxpY19pcH0uc3NsaXAuaW8KYGBgCgojIyMjCldlIHNob3VsZCB3YWl0IGEgZmV3IHNlY29uZHMgZm9yIHRoZSBwb2RzIHRvIGRlcGxveS4KCmBgYGN0cjpub2RlMQprdWJlY3RsIGdldCBwb2QgLW4gY2F0dGxlLW5ldXZlY3Rvci1zeXN0ZW0KYGBgCgojIyMjCk5vdyB3ZSBjYW4gdXNlIHRoZSBSYW5jaGVyIHByb3h5IHRvIGdldCB0byB0aGUgZGFzaGJvYXJkLgoKKipodHRwczovL3JhbmNoZXIuJHt2bWluZm86bm9kZTE6cHVibGljX2lwfS5zc2xpcC5pby9hcGkvdjEvbmFtZXNwYWNlcy9jYXR0bGUtbmV1dmVjdG9yLXN5c3RlbS9zZXJ2aWNlcy9odHRwczpuZXV2ZWN0b3Itc2VydmljZS13ZWJ1aTo4NDQzL3Byb3h5LyMvbG9naW4qKgoKIyMjIE9uIHRvIHByb2R1Y3Rpb24K
+    title: TmV1dmVjdG9yIC0gSW5zdGFsbA==
+  - content: CiMjIEdpdGVhIGFuZCBGbGVldCAtIEluc3RhbGwKCldlIGNhbiBjb250aW51ZSB0byB1c2UgaGVsbS4KCiMjIyMgdXNlIGhlbG0KCmBgYGN0cjpub2RlMQpoZWxtIHJlcG8gYWRkIGdpdGVhLWNoYXJ0cyBodHRwczovL2RsLmdpdGVhLmlvL2NoYXJ0cy8gLS1mb3JjZS11cGRhdGUKCmhlbG0gdXBncmFkZSAtaSBnaXRlYSBnaXRlYS1jaGFydHMvZ2l0ZWEgLS1uYW1lc3BhY2UgZ2l0ZWEgLS1jcmVhdGUtbmFtZXNwYWNlIC0tc2V0IGdpdGVhLmFkbWluLnBhc3N3b3JkPVBhMjJ3b3JkIC0tc2V0IGdpdGVhLmFkbWluLnVzZXJuYW1lPWdpdGVhIC0tc2V0IHBlcnNpc3RlbmNlLnNpemU9NTAwTWkgLS1zZXQgcG9zdGdyZXNxbC5wZXJzaXN0ZW5jZS5zaXplPTUwME1pIC0tc2V0IGdpdGVhLmNvbmZpZy5zZXJ2ZXIuUk9PVF9VUkw9aHR0cDovL2dpdC4ke3ZtaW5mbzpub2RlMTpwdWJsaWNfaXB9LnNzbGlwLmlvIC0tc2V0IGdpdGVhLmNvbmZpZy5zZXJ2ZXIuRE9NQUlOPWdpdC4ke3ZtaW5mbzpub2RlMTpwdWJsaWNfaXB9LnNzbGlwLmlvIC0tc2V0IGluZ3Jlc3MuZW5hYmxlZD10cnVlIC0tc2V0IGluZ3Jlc3MuaG9zdHNbMF0uaG9zdD1naXQuJHt2bWluZm86bm9kZTE6cHVibGljX2lwfS5zc2xpcC5pbyAtLXNldCBpbmdyZXNzLmhvc3RzWzBdLnBhdGhzWzBdLnBhdGg9LyAtLXNldCBpbmdyZXNzLmhvc3RzWzBdLnBhdGhzWzBdLnBhdGhUeXBlPVByZWZpeAoKIyB3YWl0IGZvciBpdCB0byBjb21wbGV0ZQp3YXRjaCBrdWJlY3RsIGdldCBwb2QgLW4gZ2l0ZWEKYGBgCgojIyMjIHJ1bm5pbmc/Ck9uY2UgZXZlcnl0aGluZyBpcyB1cC4gV2UgY2FuIG1pcnJvciBhIGRlbW8gcmVwby4KCmBgYGN0cjpub2RlMQojIG5vdyBsZXRzIG1pcnJvcgpjdXJsIC1YIFBPU1QgJ2h0dHA6Ly9naXQuJHt2bWluZm86bm9kZTE6cHVibGljX2lwfS5zc2xpcC5pby9hcGkvdjEvcmVwb3MvbWlncmF0ZScgLUggJ2FjY2VwdDogYXBwbGljYXRpb24vanNvbicgLUggJ2F1dGhvcml6YXRpb246IEJhc2ljIFoybDBaV0U2VUdFeU1uZHZjbVE9JyAtSCAnQ29udGVudC1UeXBlOiBhcHBsaWNhdGlvbi9qc29uJyAtZCAneyAiY2xvbmVfYWRkciI6ICJodHRwczovL2dpdGh1Yi5jb20vY2xlbWVua28vcmtlX3dvcmtzaG9wIiwgInJlcG9fbmFtZSI6ICJ3b3Jrc2hvcCIsInJlcG9fb3duZXIiOiAiZ2l0ZWEifScKYGBgCiAgIAojIyMjIG5hdmlnYXRlCgpOYXZpZ2F0ZSB0byAqKmh0dHA6Ly9naXQuJHt2bWluZm86bm9kZTE6cHVibGljX2lwfS5zc2xpcC5pbyoqICAKVGhlIHVzZXJuYW1lIGlzIGBnaXRlYWAuICAKVGhlIHBhc3N3b3JkIGlzIGBQYTIyd29yZGAuCgojIyMjCldlIG5lZWQgdG8gZWRpdCBmbGVldCB5YW1sIDogaHR0cDovL2dpdC4ke3ZtaW5mbzpub2RlMTpwdWJsaWNfaXB9LnNzbGlwLmlvL2dpdGVhL3dvcmtzaG9wL3NyYy9icmFuY2gvbWFpbi9mbGVldC9naXRlYS55YW1sICAKCk9uY2UgZWRpdGVkIHdlIGNhbiBhZGQgdG8gZmxlZXQgd2l0aDoKCmBgYGN0cjpub2RlMQprdWJlY3RsIGFwcGx5IC1mIGh0dHA6Ly9naXQuJHt2bWluZm86bm9kZTE6cHVibGljX2lwfS5zc2xpcC5pby9naXRlYS93b3Jrc2hvcC9yYXcvYnJhbmNoL21haW4vZmxlZXQvZ2l0ZWEueWFtbApgYGAKCiMjIyBPbiB0byBQcm9maXQh
+    title: R2l0b3BzIHdpdGggR2l0ZWEgJiBGbGVldA==
+  - content: IyMgU3RvcCB3aGVuIHlvdSBnZXQgaGVyZS4gCgpXZSB3aWxsIHdhbGsgdGhyb3VnaCBhbGwgdGhlIGludGVyZmFjZXMgdG9nZXRoZXIuIAoKIVtzdWNjZXNzXShodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vY2xlbWVua28vcmtlX3dvcmtzaG9wL21haW4vaW1hZ2VzL3N1Y2Nlc3MuanBnKQoKVGhhbmtzIGZvciBwbGF5aW5nIQ==
+    title: VGFrZSBhIGxvb2sgQXJvdW5k
+  tags: []
+  virtualmachines:
+#  - node1: do-rocky-9.2
+#    node2: do-ubuntu-22.04
+#    node3: do-ubuntu-22.04
+  - node1: rocky-9.2
+    node2: ubuntu-22.04
+    node3: ubuntu-22.04
+---
+#apiVersion: hobbyfarm.io/v1
+#kind: ScheduledEvent
+#metadata:
+#  name: workshop2
+#  namespace: hobbyfarm
+#spec:
+#  access_code: workshop2
+#  creator: admin
+#  description: workshop2
+#  start_time: Fri Jul 07 14:04:51 UTC 2023
+#  end_time: Fri Jul 08 14:04:52 UTC 2023
+#  event_name: workshop2
+#  on_demand: true
+#  printable: false
+#  required_vms:
+#    aws-env:
+#      rocky-9.2: 20
+#  restricted_bind: true
+#  restricted_bind_value: workshop2
+#  scenarios:
+#  - workshop
+#status:
+#  active: true
+
+
+## USER / RBAC
+
 ---
 apiVersion: hobbyfarm.io/v2
 kind: User
@@ -244,75 +345,633 @@ spec:
       terminal_fontSize: "14"
       terminal_theme: GitHub
       theme: light
-
 ---
-
-apiVersion: hobbyfarm.io/v1
-dataType: boolean
-displayName: Registration Disabled
-kind: Setting
-metadata:
-  labels:
-    hobbyfarm.io/setting-scope: public
-  name: registration-disabled
-  namespace: hobbyfarm
-value: "true"
-valueType: scalar
-
 ---
-apiVersion: hobbyfarm.io/v1
-kind: Scenario
+apiVersion: hobbyfarm.io/v2
+kind: User
 metadata:
-  name: workshop
-  namespace: hobbyfarm
+    name: user5
+    namespace: hobbyfarm
 spec:
-  categories: []
-  description: UkdTIFdvcmtzaG9wIFJLRTIvTG9uZ2hvcm4vUmFuY2hlci9OZXV2ZWN0b3I=
-  keepalive_duration: 60m
-  name: V29ya3Nob3A=
-  pause_duration: 2h
-  pauseable: false
-  steps:
-  - content: CiMjIFJLRTIgLSBTVElHCgpUaGVyZSBpcyBhIG5pY2UgYXJ0aWNsZSBhYm91dCBpdCBmcm9tIFtCdXNpbmVzc3dpcmVdKGh0dHBzOi8vd3d3LmJ1c2luZXNzd2lyZS5jb20vbmV3cy9ob21lLzIwMjIxMTAxMDA1NTQ2L2VuL0RJU0EtVmFsaWRhdGVzLVJhbmNoZXItR292ZXJubWVudC1Tb2x1dGlvbnMlRTIlODAlOTktS3ViZXJuZXRlcy1EaXN0cmlidXRpb24tUktFMi1TZWN1cml0eS1UZWNobmljYWwtSW1wbGVtZW50YXRpb24tR3VpZGUpLgoKWW91IGNhbiBkb3dubG9hZCB0aGUgU1RJRyBpdHNlbGYgZnJvbSBbaHR0cHM6Ly9kbC5kb2QuY3liZXIubWlsL3dwLWNvbnRlbnQvdXBsb2Fkcy9zdGlncy96aXAvVV9SR1NfUktFMl9WMVIxX1NUSUcuemlwXShodHRwczovL2RsLmRvZC5jeWJlci5taWwvd3AtY29udGVudC91cGxvYWRzL3N0aWdzL3ppcC9VX1JHU19SS0UyX1YxUjFfU1RJRy56aXApLiBUaGUgU0lURyB2aWV3ZXIgY2FuIGJlIGZvdW5kIG9uIERJU0EncyBzaXRlIGF0IFtodHRwczovL3B1YmxpYy5jeWJlci5taWwvc3RpZ3Mvc3JnLXN0aWctdG9vbHMvXShodHRwczovL3B1YmxpYy5jeWJlci5taWwvc3RpZ3Mvc3JnLXN0aWctdG9vbHMvKS4gRm9yIHRoaXMgZ3VpZGUgSSBoYXZlIHNpbXBsaWZpZWQgdGhlIGNvbnRyb2xzIGFuZCBwcm92aWRlZCBzaW1wbGUgc3RlcHMgdG8gZW5zdXJlIGNvbXBsaWFuY2UuIEhvcGUgdGhpcyBoZWxwcyBhIGxpdHRsZS4KCldlIGV2ZW4gaGF2ZSBhIHRsOmRyIGZvciBSYW5jaGVyIGh0dHBzOi8vZ2l0aHViLmNvbS9jbGVtZW5rby9yYW5jaGVyX3N0aWcuCgpCb3R0b20gTGluZQoKKiBFbmFibGUgU0VsaW51eAoqIFVwZGF0ZSB0aGUgY29uZmlnIGZvciB0aGUgQ29udHJvbCBQbGFuZSBhbmQgV29ya2VyIG5vZGVzLgoKRW5vdWdoIFNUSUcuIExldCdzIHN0YXJ0IGRlcGxveWluZy4KCg==
-    title: U1RJRyBCYWNrZ3JvdW5k
-  - content: CiMjIFJLRTIgLSBJbnN0YWxsIC0gbm9kZTEKCklmIHlvdSBhcmUgYm9yZWQgeW91IGNhbiByZWFkIHRoZSBbZG9jc10oaHR0cHM6Ly9kb2NzLnJrZTIuaW8vKS4gRm9yIHNwZWVkLCB3ZSBhcmUgY29tcGxldGluZyBhbiBvbmxpbmUgaW5zdGFsbGF0aW9uLgoKVGhlcmUgaXMgYW5vdGhlciBnaXQgcmVwb3NpdG9yeSB3aXRoIGFsbCB0aGUgYWlyLWdhcHBpbmcgaW5zdHJ1Y3Rpb25zIFtodHRwczovL2dpdGh1Yi5jb20vY2xlbWVua28vcmtlX2FpcmdhcF9pbnN0YWxsXShodHRwczovL2dpdGh1Yi5jb20vY2xlbWVua28vcmtlX2FpcmdhcF9pbnN0YWxsKS4KCkhlY2sgW3dhdGNoIHRoZSB2aWRlb10oaHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1Ja1FKYzUtX2R1bykuCgojIyMgbm9kZTEKCiMjIyMgc3VkbwoKV2UgbmVlZCB0byBzdWRvIGFuZCBjcmVhdGUgYW4gYWNjb3VudCBhbmQgZGlyZWN0b3J5LgoKYGBgY3RyOm5vZGUxCnN1ZG8gLWkKdXNlcmFkZCAtciAtYyAiZXRjZCB1c2VyIiAtcyAvc2Jpbi9ub2xvZ2luIC1NIGV0Y2QgLVUKbWtkaXIgLXAgL2V0Yy9yYW5jaGVyL3JrZTIvIC92YXIvbGliL3JhbmNoZXIvcmtlMi9zZXJ2ZXIvbWFuaWZlc3RzLwpgYGAKCiMjIyMgeWFtbAoKTmV4dCB3ZSBjcmVhdGUgYSBjb25maWcgeWFtbCBvbiBub2RlMS4KCmBgYGZpbGU6eWFtbDovZXRjL3JhbmNoZXIvcmtlMi9jb25maWcueWFtbDpub2RlMQojcHJvZmlsZTogY2lzLTEuNgp0b2tlbjogYm9vdFN0cmFwQWxsVGhlVGhpbmdzCnNlbGludXg6IHRydWUKc2VjcmV0cy1lbmNyeXB0aW9uOiB0cnVlCndyaXRlLWt1YmVjb25maWctbW9kZTogMDYwMApgYGAKCiMjIyMgdGxzIHBhc3N0aHJvdWdoCgpBbmQgZW5hYmxlIFNTTC9UTFMgcGFzc3Rocm91Z2ggZm9yIG5naW54LgoKYGBgZmlsZTp5YW1sOi92YXIvbGliL3JhbmNoZXIvcmtlMi9zZXJ2ZXIvbWFuaWZlc3RzL3JrZTItaW5ncmVzcy1uZ2lueC1jb25maWcueWFtbDpub2RlMQphcGlWZXJzaW9uOiBoZWxtLmNhdHRsZS5pby92MQpraW5kOiBIZWxtQ2hhcnRDb25maWcKbWV0YWRhdGE6CiAgbmFtZTogcmtlMi1pbmdyZXNzLW5naW54CiAgbmFtZXNwYWNlOiBrdWJlLXN5c3RlbQpzcGVjOgogIHZhbHVlc0NvbnRlbnQ6IHwtCiAgICBjb250cm9sbGVyOgogICAgICBjb25maWc6CiAgICAgICAgdXNlLWZvcndhcmRlZC1oZWFkZXJzOiB0cnVlCiAgICAgIGV4dHJhQXJnczoKICAgICAgICBlbmFibGUtc3NsLXBhc3N0aHJvdWdoOiB0cnVlCmBgYAoKR3JlYXQuIFdlIGhhdmUgYWxsIHRoZSBmaWxlcyBzZXR1cC4gV2UgY2FuIG5vdyBpbnN0YWxsIHJrZTIgYW5kIHN0YXJ0IGl0LgoKIyMjIyBya2UyIGluc3RhbGwKCmBgYGN0cjpub2RlMQpjdXJsIC1zZkwgaHR0cHM6Ly9nZXQucmtlMi5pbyB8IElOU1RBTExfUktFMl9DSEFOTkVMPXYxLjI1IHNoIC0gCnN5c3RlbWN0bCBlbmFibGUgLS1ub3cgcmtlMi1zZXJ2ZXIuc2VydmljZQpgYGAKYGBgaGlkZGVuOk1vcmUgaW5mbyBhYm91dCBzZXR0aW5ncwpzZXJ2ZXIgaW5zdGFsbCBvcHRpb25zIGh0dHBzOi8vZG9jcy5ya2UyLmlvL2luc3RhbGwvY29uZmlndXJhdGlvbiNjb25maWd1cmluZy10aGUtbGludXgtaW5zdGFsbGF0aW9uLXNjcmlwdApgYGAKCldlIHNob3VsZCBlbmFibGUga3ViZWN0bCBvbiBub2RlMS4KCiMjIyMga3ViZWNvbmZpZwoKV2UgbmVlZCB0byBzZXQgc29tZSBlbnZpcm9ubWVudCB2YXJpYWJsZXMuCgpgYGBjdHI6bm9kZTEKZWNobyAiZXhwb3J0IFBBVEg9JFBBVEg6L3Vzci9sb2NhbC9iaW4vIiA+PiB+Ly5iYXNocmMKZWNobyAiZXhwb3J0IEtVQkVDT05GSUc9L2V0Yy9yYW5jaGVyL3JrZTIvcmtlMi55YW1sICIgPj4gfi8uYmFzaHJjCnNvdXJjZSB+Ly5iYXNocmMKCiMgYW5kIGEgc3ltIGxpbmsKbG4gLXMgL3Zhci9saWIvcmFuY2hlci9ya2UyL2RhdGEvdjEqL2Jpbi9rdWJlY3RsICAvdXNyL2xvY2FsL2Jpbi9rdWJlY3RsCgojIGxldHMgdGVzdAprdWJlY3RsIGdldCBub2RlCmBgYAoKIyMjIG9uIHRvIG5vZGUy
-    title: UktFMiAtIEluc3RhbGwgLSBub2RlMQ==
-  - content: IyMgUktFMiAtIEluc3RhbGwgLSBub2RlMgoKIyMjIyBzdWRvCgpXZSBuZWVkIHRvIHN1ZG8gYW5kIGNyZWF0ZSBhbiBhY2NvdW50IGFuZCBkaXJlY3RvcnkuCgpgYGBjdHI6bm9kZTIKc3VkbyAtaQpta2RpciAtcCAvZXRjL3JhbmNoZXIvcmtlMi8KYGBgCgojIyMjIHlhbWwKCk5leHQgd2UgY3JlYXRlIGEgY29uZmlnIHlhbWwgb24gbm9kZTIuCgpgYGBmaWxlOnlhbWw6L2V0Yy9yYW5jaGVyL3JrZTIvY29uZmlnLnlhbWw6bm9kZTIKI3Byb2ZpbGU6IGNpcy0xLjYKdG9rZW46IGJvb3RTdHJhcEFsbFRoZVRoaW5ncwpzZXJ2ZXI6IGh0dHBzOi8vJHt2bWluZm86bm9kZTE6cHVibGljX2lwfTo5MzQ1CnNlbGludXg6IHRydWUKc2VjcmV0cy1lbmNyeXB0aW9uOiB0cnVlCndyaXRlLWt1YmVjb25maWctbW9kZTogMDYwMApgYGAKCiMjIyMgcmtlMiBpbnN0YWxsCgpHcmVhdC4gV2UgaGF2ZSBhbGwgdGhlIGZpbGVzIHNldHVwLiBXZSBjYW4gbm93IGluc3RhbGwgcmtlMiBhbmQgc3RhcnQgaXQuCgpgYGBjdHI6bm9kZTIKY3VybCAtc2ZMIGh0dHBzOi8vZ2V0LnJrZTIuaW8gfCBJTlNUQUxMX1JLRTJfQ0hBTk5FTD12MS4yNSBJTlNUQUxMX1JLRTJfVFlQRT1hZ2VudCBzaCAtIApzeXN0ZW1jdGwgZW5hYmxlIC0tbm93IHJrZTItYWdlbnQuc2VydmljZQpgYGAKCiMjIyMgd2F0Y2ggLSBub2RlMQoKV2hpbGUgdGhpcyBpcyBzdGFydGluZyB3ZSBjYW4gd2F0Y2ggZnJvbSB0aGUgbm9kZTEuCgpgYGBjdHI6bm9kZTEKa3ViZWN0bCBnZXQgbm9kZSAtbyB3aWRlIC13CmBgYAoKIyMjIE9uIHRvIG5vZGUz
-    title: UktFMiAtIEluc3RhbGwgLSBub2RlMg==
-  - content: IyMgUktFMiAtIEluc3RhbGwgLSBub2RlMwoKIyMjIyBzdWRvCgpXZSBuZWVkIHRvIHN1ZG8gYW5kIGNyZWF0ZSBhbiBhY2NvdW50IGFuZCBkaXJlY3RvcnkuCgpgYGBjdHI6bm9kZTMKc3VkbyAtaQpta2RpciAtcCAvZXRjL3JhbmNoZXIvcmtlMi8KYGBgCgojIyMjIHlhbWwKCk5leHQgd2UgY3JlYXRlIGEgY29uZmlnIHlhbWwgb24gbm9kZTMuCgpgYGBmaWxlOnlhbWw6L2V0Yy9yYW5jaGVyL3JrZTIvY29uZmlnLnlhbWw6bm9kZTMKI3Byb2ZpbGU6IGNpcy0xLjYKdG9rZW46IGJvb3RTdHJhcEFsbFRoZVRoaW5ncwpzZXJ2ZXI6IGh0dHBzOi8vJHt2bWluZm86bm9kZTE6cHVibGljX2lwfTo5MzQ1CnNlbGludXg6IHRydWUKc2VjcmV0cy1lbmNyeXB0aW9uOiB0cnVlCndyaXRlLWt1YmVjb25maWctbW9kZTogMDYwMApgYGAKCiMjIyMgcmtlMiBpbnN0YWxsCgpHcmVhdC4gV2UgaGF2ZSBhbGwgdGhlIGZpbGVzIHNldHVwLiBXZSBjYW4gbm93IGluc3RhbGwgcmtlMiBhbmQgc3RhcnQgaXQuCgpgYGBjdHI6bm9kZTMKY3VybCAtc2ZMIGh0dHBzOi8vZ2V0LnJrZTIuaW8gfCBJTlNUQUxMX1JLRTJfQ0hBTk5FTD12MS4yNSBJTlNUQUxMX1JLRTJfVFlQRT1hZ2VudCBzaCAtIApzeXN0ZW1jdGwgZW5hYmxlIC0tbm93IHJrZTItYWdlbnQuc2VydmljZQpgYGAKCiMjIyMgd2F0Y2ggLSBub2RlMQoKV2hpbGUgdGhpcyBpcyBzdGFydGluZyB3ZSBjYW4gd2F0Y2ggZnJvbSB0aGUgbm9kZTEuCgpgYGBjdHI6bm9kZTEKa3ViZWN0bCBnZXQgbm9kZSAtbyB3aWRlIC13CmBgYAoKIyMjIFdlIG5vdyBoYXZlIGEgMyBub2RlIGNsdXN0ZXIhCgpTaGFsbCB3ZSBpbnN0YWxsIHNvbWUgYXBwbGljYXRpb25zPwo=
-    title: UktFMiAtIEluc3RhbGwgLSBub2RlMw==
-  - content: CiMjIFJhbmNoZXIgLSBJbnN0YWxsCgojIyMjIGluc3RhbGwgaGVsbQoKV2Ugd2lsbCBuZWVkIGhlbG0gb24gbm9kZTEKCmBgYGN0cjpub2RlMQpjdXJsIC1zIGh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9oZWxtL2hlbG0vbWFpbi9zY3JpcHRzL2dldC1oZWxtLTMgfCBiYXNoCmBgYAoKIyMjIyB1c2UgaGVsbQoKV2UgbmVlZCB0byBhZGQgdGhlIGhlbG0gcmVwb3MgZm9yIENlcnRNYW5hZ2VyIGFuZCBSYW5jaGVyLiBUaGVuIHdlIGluc3RhbGwuCgpgYGBjdHI6bm9kZTEKIyBoZWxtIHJlcG8gYWRkCmhlbG0gcmVwbyBhZGQgcmFuY2hlci1sYXRlc3QgaHR0cHM6Ly9yZWxlYXNlcy5yYW5jaGVyLmNvbS9zZXJ2ZXItY2hhcnRzL2xhdGVzdCAtLWZvcmNlLXVwZGF0ZQpoZWxtIHJlcG8gYWRkIGpldHN0YWNrIGh0dHBzOi8vY2hhcnRzLmpldHN0YWNrLmlvIC0tZm9yY2UtdXBkYXRlCgojIGhlbG0gaW5zdGFsbCBjZXJ0LW1hbmFnZXIKaGVsbSB1cGdyYWRlIC1pIGNlcnQtbWFuYWdlciBqZXRzdGFjay9jZXJ0LW1hbmFnZXIgLS1uYW1lc3BhY2UgY2VydC1tYW5hZ2VyIC0tY3JlYXRlLW5hbWVzcGFjZSAtLXNldCBpbnN0YWxsQ1JEcz10cnVlCgojIGhlbG0gaW5zdGFsbCByYW5jaGVyCmhlbG0gdXBncmFkZSAtaSByYW5jaGVyIHJhbmNoZXItbGF0ZXN0L3JhbmNoZXIgLS1uYW1lc3BhY2UgY2F0dGxlLXN5c3RlbSAtLWNyZWF0ZS1uYW1lc3BhY2UgLS1zZXQgaG9zdG5hbWU9JHt2bWluZm86bm9kZTE6aG9zdG5hbWV9IC0tc2V0IGJvb3RzdHJhcFBhc3N3b3JkPVBhMjJ3b3JkIC0tc2V0IHJlcGxpY2FzPTEKYGBgCgpXZSBzaG91bGQgd2FpdCBhIGZldyBzZWNvbmRzIGZvciB0aGUgcG9kcyB0byBkZXBsb3kuCgpgYGBjdHI6bm9kZTEKa3ViZWN0bCBnZXQgcG9kIC1uIGNhdHRsZS1zeXN0ZW0KYGBgCgpPbmNlIHRoZSBwb2QgaXMgcnVubmluZyB3ZSBjYW4gbm93IG5hdmlnYXRlIHRvOgoKKipodHRwczovLyR7dm1pbmZvOm5vZGUxOmhvc3RuYW1lfSoqCgoqKlRoZSBib290c3RyYXAgaXMgIlBhMjJ3b3JkIi4qKgoKVW5jaGVjayAiQWxsb3cgY29sbGVjdGlvbi4uLiIKYW5kIApDaGVjayB0aGUgRVVMQSBib3guCgojIyMgT24gdG8gTG9uZ2hvcm4=
-    title: UmFuY2hlciAtIEluc3RhbGw=
-  - content: IyMgTG9uZ2hvcm4gLSBJbnN0YWxsCgojIyMjIHBhY2thZ2VzCgpCZWZvcmUgd2UgaW5zdGFsbCBsb25naG9ybiB3ZSBuZWVkIHRvIGFkZCBhIGZldyBwYWNrYWdlcyB0byB0aGUgUm9ja3kgdm0uCgpgYGBjdHI6bm9kZTEKeXVtIGluc3RhbGwgLXkgbmZzLXV0aWxzIGNyeXB0c2V0dXAgaXNjc2ktaW5pdGlhdG9yLXV0aWxzOyBzeXN0ZW1jdGwgZW5hYmxlIC0tbm93IGlzY3NpZC5zZXJ2aWNlCmBgYAoKQ29vbCBub3cgb250byBoZWxtLgoKIyMjIyB1c2UgaGVsbQoKV2UgbmVlZCB0byBhZGQgdGhlIGhlbG0gcmVwbyBhbmQgdGhlbiB3ZSBjYW4gaW5zdGFsbC4KCmBgYGN0cjpub2RlMQojIGhlbG0gcmVwbyBhZGQKaGVsbSByZXBvIGFkZCBsb25naG9ybiBodHRwczovL2NoYXJ0cy5sb25naG9ybi5pbyAtLWZvcmNlLXVwZGF0ZQoKIyBoZWxtIGluc3RhbGwKaGVsbSB1cGdyYWRlIC1pIGxvbmdob3JuIGxvbmdob3JuL2xvbmdob3JuIC0tbmFtZXNwYWNlIGxvbmdob3JuLXN5c3RlbSAtLWNyZWF0ZS1uYW1lc3BhY2UKYGBgCgpXZSBzaG91bGQgd2FpdCBhIGZldyBzZWNvbmRzIGZvciB0aGUgcG9kcyB0byBkZXBsb3kuCgpgYGBjdHI6bm9kZTEKIyBjaGVjayBmb3IgdGhlIHBvZHMKa3ViZWN0bCAgZ2V0IHBvZCAtbiBsb25naG9ybi1zeXN0ZW0gIC1vIHdpZGUKCiMgdG8gdmVyaWZ5IHRoYXQgbG9uZ2hvcm4gaXMgdGhlIGRlZmF1bHQgc3RvcmFnZSBjbGFzcwprdWJlY3RsIGdldCBzYwpgYGAKTm93IHdlIGNhbiB1c2UgdGhlIFJhbmNoZXIgcHJveHkgdG8gZ2V0IHRvIHRoZSBkYXNoYm9hcmQuCgpodHRwczovLyR7dm1pbmZvOm5vZGUxOmhvc3RuYW1lfS9rOHMvY2x1c3RlcnMvbG9jYWwvYXBpL3YxL25hbWVzcGFjZXMvbG9uZ2hvcm4tc3lzdGVtL3NlcnZpY2VzL2h0dHA6bG9uZ2hvcm4tZnJvbnRlbmQ6ODAvcHJveHkvIy9kYXNoYm9hcmQKCgojIyMgT24gdG8gTmV1dmVjdG9y
-    title: TG9uZ2hvcm4gLSBJbnN0YWxs
-  - content: IyMgTmV1dmVjdG9yIC0gSW5zdGFsbAoKV2UgY2FuIGNvbnRpbnVlIHRvIHVzZSBoZWxtLgoKIyMjIyB1c2UgaGVsbQoKV2UgbmVlZCB0byBhZGQgdGhlIGhlbG0gcmVwbyBmb3IgTmV1dmVjdG9yLgoKYGBgY3RyOm5vZGUxCiMgaGVsbSByZXBvIGFkZApoZWxtIHJlcG8gYWRkIG5ldXZlY3RvciBodHRwczovL25ldXZlY3Rvci5naXRodWIuaW8vbmV1dmVjdG9yLWhlbG0vIC0tZm9yY2UtdXBkYXRlCgojIGhlbG0gaW5zdGFsbCAKaGVsbSB1cGdyYWRlIC1pIG5ldXZlY3RvciAtLW5hbWVzcGFjZSBjYXR0bGUtbmV1dmVjdG9yLXN5c3RlbSBuZXV2ZWN0b3IvY29yZSAtLWNyZWF0ZS1uYW1lc3BhY2UgLS1zZXQgaW1hZ2VQdWxsU2VjcmV0cz1yZWdzZWNyZXQgLS1zZXQgazNzLmVuYWJsZWQ9dHJ1ZSAtLXNldCBtYW5hZ2VyLnN2Yy50eXBlPUNsdXN0ZXJJUCAtLXNldCBjb250cm9sbGVyLnB2Yy5lbmFibGVkPXRydWUgLS1zZXQgY29udHJvbGxlci5wdmMuY2FwYWNpdHk9NTAwTWkgLS1zZXQgaW50ZXJuYWwuY2VydG1hbmFnZXIuZW5hYmxlZD10cnVlIC0tc2V0IGNvbnRyb2xsZXIucmFuY2hlcnNzby5lbmFibGVkPXRydWUgLS1zZXQgZ2xvYmFsLmNhdHRsZS51cmw9aHR0cHM6Ly8ke3ZtaW5mbzpub2RlMTpob3N0bmFtZX0KYGBgCgpXZSBzaG91bGQgd2FpdCBhIGZldyBzZWNvbmRzIGZvciB0aGUgcG9kcyB0byBkZXBsb3kuCgpgYGBjdHI6bm9kZTEKa3ViZWN0bCBnZXQgcG9kIC1uIGNhdHRsZS1uZXV2ZWN0b3Itc3lzdGVtCmBgYAoKTm93IHdlIGNhbiB1c2UgdGhlIFJhbmNoZXIgcHJveHkgdG8gZ2V0IHRvIHRoZSBkYXNoYm9hcmQuCgpodHRwczovLyR7dm1pbmZvOm5vZGUxOmhvc3RuYW1lfS9hcGkvdjEvbmFtZXNwYWNlcy9jYXR0bGUtbmV1dmVjdG9yLXN5c3RlbS9zZXJ2aWNlcy9odHRwczpuZXV2ZWN0b3Itc2VydmljZS13ZWJ1aTo4NDQzL3Byb3h5LyMvbG9naW4KCiMjIyBPbiB0byBwcm9kdWN0aW9u
-    title: TmV1dmVjdG9yIC0gSW5zdGFsbA==
-  tags: []
-  virtualmachines:
-  - node1: do-rocky-9.2
-    node2: do-ubuntu-22.04
-    node3: do-ubuntu-22.04
+    email: user5
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
 ---
-#apiVersion: hobbyfarm.io/v1
-#kind: ScheduledEvent
-#metadata:
-#  name: workshop2
-#  namespace: hobbyfarm
-#spec:
-#  access_code: workshop2
-#  creator: admin
-#  description: workshop2
-#  start_time: Fri Jul 07 14:04:51 UTC 2023
-#  end_time: Fri Jul 08 14:04:52 UTC 2023
-#  event_name: workshop2
-#  on_demand: true
-#  printable: false
-#  required_vms:
-#    aws-env:
-#      rocky-9.2: 20
-#  restricted_bind: true
-#  restricted_bind_value: workshop2
-#  scenarios:
-#  - workshop
-#status:
-#  active: true
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user6
+    namespace: hobbyfarm
+spec:
+    email: user6
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user7
+    namespace: hobbyfarm
+spec:
+    email: user7
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user8
+    namespace: hobbyfarm
+spec:
+    email: user8
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user9
+    namespace: hobbyfarm
+spec:
+    email: user9
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user10
+    namespace: hobbyfarm
+spec:
+    email: user10
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user11
+    namespace: hobbyfarm
+spec:
+    email: user11
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user12
+    namespace: hobbyfarm
+spec:
+    email: user12
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user13
+    namespace: hobbyfarm
+spec:
+    email: user13
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user14
+    namespace: hobbyfarm
+spec:
+    email: user14
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user15
+    namespace: hobbyfarm
+spec:
+    email: user15
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user16
+    namespace: hobbyfarm
+spec:
+    email: user16
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user17
+    namespace: hobbyfarm
+spec:
+    email: user17
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user18
+    namespace: hobbyfarm
+spec:
+    email: user18
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user19
+    namespace: hobbyfarm
+spec:
+    email: user19
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user20
+    namespace: hobbyfarm
+spec:
+    email: user20
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user21
+    namespace: hobbyfarm
+spec:
+    email: user21
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user22
+    namespace: hobbyfarm
+spec:
+    email: user22
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user23
+    namespace: hobbyfarm
+spec:
+    email: user23
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user24
+    namespace: hobbyfarm
+spec:
+    email: user24
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user25
+    namespace: hobbyfarm
+spec:
+    email: user25
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user26
+    namespace: hobbyfarm
+spec:
+    email: user26
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user27
+    namespace: hobbyfarm
+spec:
+    email: user27
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user28
+    namespace: hobbyfarm
+spec:
+    email: user28
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user29
+    namespace: hobbyfarm
+spec:
+    email: user29
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user30
+    namespace: hobbyfarm
+spec:
+    email: user30
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user31
+    namespace: hobbyfarm
+spec:
+    email: user31
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user32
+    namespace: hobbyfarm
+spec:
+    email: user32
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user33
+    namespace: hobbyfarm
+spec:
+    email: user33
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user34
+    namespace: hobbyfarm
+spec:
+    email: user34
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user35
+    namespace: hobbyfarm
+spec:
+    email: user35
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user36
+    namespace: hobbyfarm
+spec:
+    email: user36
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user37
+    namespace: hobbyfarm
+spec:
+    email: user37
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user38
+    namespace: hobbyfarm
+spec:
+    email: user38
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user39
+    namespace: hobbyfarm
+spec:
+    email: user39
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user40
+    namespace: hobbyfarm
+spec:
+    email: user40
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user41
+    namespace: hobbyfarm
+spec:
+    email: user41
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
