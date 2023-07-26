@@ -53,44 +53,20 @@ spec:
     region: nyc1 # any valid digitalocean region slug
     token-secret: do-token # a secret with key of 'token' and value
   count_capacity:
-    do-rocky-9.2: 100
-    do-ubuntu-22.04: 100
+    rocky-9.2: 100
+    ubuntu-22.04: 100
   display_name: do-env
   provider: digitalocean
   template_mapping:
-    do-rocky-9.2:
+    rocky-9.2:
       image: rockylinux-9-x64
       size: s-4vcpu-8gb-amd
       ssh_username: root
-    do-ubuntu-22.04:
+    ubuntu-22.04:
       image: ubuntu-22-04-x64
       size: s-4vcpu-8gb-amd
       ssh_username: root
   ws_endpoint: hobby-shell.rfed.io
----
-apiVersion: hobbyfarm.io/v1
-kind: VirtualMachineTemplate
-metadata:
-  name: do-rocky-9.2
-  namespace: hobbyfarm
-spec:
-  config_map:
-    cloud-config: ""
-    webinterfaces: '[]'
-  image: do-rocky-9.2
-  name: do-rocky-9.2
----
-apiVersion: hobbyfarm.io/v1
-kind: VirtualMachineTemplate
-metadata:
-  name: do-ubuntu-22.04
-  namespace: hobbyfarm
-spec:
-  config_map:
-    cloud-config: ""
-    webinterfaces: '[]'
-  image: do-ubuntu-22.04
-  name: do-ubuntu-22.04
 ---
 apiVersion: terraformcontroller.cattle.io/v1
 kind: Module
@@ -201,9 +177,6 @@ spec:
     title: VGFrZSBhIGxvb2sgQXJvdW5k
   tags: []
   virtualmachines:
-#  - node1: do-rocky-9.2
-#    node2: do-ubuntu-22.04
-#    node3: do-ubuntu-22.04
   - node1: rocky-9.2
     node2: ubuntu-22.04
     node3: sles-15-sp4
