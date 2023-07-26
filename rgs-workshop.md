@@ -246,6 +246,16 @@ Before we install longhorn we need to add a few packages to the Rocky vm.
 yum install -y nfs-utils cryptsetup iscsi-initiator-utils; systemctl enable --now iscsid.service
 ```
 
+```ctr:node2
+systemctl disable ufw --now
+export DEBIAN_FRONTEND=noninteractive; apt update; apt install nfs-common -y
+```
+
+```ctr:node3
+systemctl disable ufw --now
+export DEBIAN_FRONTEND=noninteractive; apt update; apt install nfs-common -y
+```
+
 Cool now onto helm.
 
 #### use helm
@@ -388,7 +398,12 @@ kubectl apply -f /root/gitea.yaml
 ```
 
 Now we can Navigate to https://rancher.${vminfo:node1:public_ip}.sslip.io/dashboard/c/local/fleet/fleet.cattle.io.gitrepo  
-Change "fleet-default" to "fleet-local" in the top right corner.
+Change "fleet-default" to "fleet-local" in the top right corner.  
+We can see everything come up.
+
+#### navigate
+
+to: **http://flask.${vminfo:node1:public_ip}.sslip.io**  
 
 ### On to Profit
 
