@@ -3,8 +3,8 @@
 # script to build a single vm with k3s and hobby-farm
 
 password=Pa22word
-#size=s-8vcpu-16gb-amd
-size=s-4vcpu-8gb-amd 
+size=s-8vcpu-16gb-amd
+#size=s-4vcpu-8gb-amd 
 key=30:98:4f:c5:47:c2:88:28:fe:3c:23:cd:52:49:51:01
 domain=rfed.io
 image=rockylinux-9-x64
