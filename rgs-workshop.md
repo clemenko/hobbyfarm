@@ -407,7 +407,7 @@ metadata:
 spec:
   branch: main
   insecureSkipTLSVerify: true
-  repo: https://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop
+  repo: http://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop
   targetNamespace: flask
   paths:
   - fleet/flask
