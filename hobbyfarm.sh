@@ -64,7 +64,7 @@ kubectl -n hobbyfarm create secret generic tls-ca --from-file=/Users/clemenko/Dr
 kubectl -n hobbyfarm create secret tls tls-hobbyfarm-certs  --cert=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.cert --key=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.key > /dev/null 2>&1
 
 ### adding logos
-kubectl create configmap rgs-logo -n hobbyfarm --from-file=rancher-labs-stacked-color.svg=rfed-logo-stacked.svg > /dev/null 2>&1
+kubectl create configmap rgs-logo -n hobbyfarm --from-file=rancher-labs-stacked-color.svg=RGS_Vertical.svg > /dev/null 2>&1
 
 ### add creds - set the variables on the shell
 # set export ACCESS_KEY=...
@@ -80,7 +80,7 @@ helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled
 
 # https://github.com/hobbyfarm/hf-provisioner-digitalocean
 # --set gargantua.image=ebauman/gargantua:pr-154-3
-# helm install hf-provisioner-digitalocean hf-provisioner-digitalocean/chart/hf-provisioner-digitalocean --namespace hobbyfarm > /dev/null 2>&1
+# helm install hf-provisioner-digitalocean provisioner-digitalocean/chart/hf-provisioner-digitalocean --namespace hobbyfarm > /dev/null 2>&1
 
 sleep 30
 
