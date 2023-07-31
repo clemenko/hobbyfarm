@@ -56,6 +56,7 @@ until [ $(kubectl get node|grep NotReady|wc -l) = 0 ]; do echo -e -n "."; sleep 
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
 
+############   hobbyfarm install   ############
 ### Add Helm Repo
 echo -e -n " - deploying hobbyfarm "
 helm repo add hobbyfarm https://hobbyfarm.github.io/hobbyfarm --force-update > /dev/null 2>&1
@@ -93,6 +94,8 @@ echo -e "$GREEN" "ok" "$NO_COLOR"
 echo -e -n " - adding settings "
 ### add users
 kubectl apply -f settings.yaml > /dev/null 2>&1
+
+############  end hobbyfarm install  ############
 
 echo -e "$GREEN" "ok" "$NO_COLOR"
 }
