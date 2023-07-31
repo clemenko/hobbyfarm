@@ -3,11 +3,7 @@
 # script to build a single vm with k3s and hobby-farm
 
 password=Pa22word
-size=s-8vcpu-16gb-amd
-#size=s-4vcpu-8gb-amd 
-key=30:98:4f:c5:47:c2:88:28:fe:3c:23:cd:52:49:51:01
 domain=rfed.io
-image=rockylinux-9-x64
 
 ######  NO MOAR EDITS #######
 export RED='\x1b[0;31m'
@@ -15,22 +11,30 @@ export GREEN='\x1b[32m'
 export BLUE='\x1b[34m'
 export YELLOW='\x1b[33m'
 export NO_COLOR='\x1b[0m'
-export PDSH_RCMD_TYPE=ssh
 
 # builds a vm list
-function dolist () { doctl compute droplet list --no-header|grep hobbyfarm |sort -k 2; }
+#function dolist () { doctl compute droplet list --no-header|grep hobbyfarm |sort -k 2; }
+function awslist () { aws ec2 describe-instances --filters Name=tag:Name,Values=clemenko_hobbyfarm --query 'Reservations[*].Instances[*].PublicIpAddress' --output text; }
 
 ################################# up ################################
 function up () {
 
-echo -e -n " building hobbyfarm vm"
-doctl compute droplet create hobbyfarm --region nyc3 --image $image --size $size --ssh-keys $key --wait --droplet-agent=false > /dev/null 2>&1
+echo -e -n " building hobbyfarm vm "
+# do
+#doctl compute droplet create hobbyfarm --region nyc3 --image rockylinux-9-x64 --size s-8vcpu-16gb-amd --ssh-keys 30:98:4f:c5:47:c2:88:28:fe:3c:23:cd:52:49:51:01 --wait --droplet-agent=false > /dev/null 2>&1
+
+#aws
+aws ec2 run-instances --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=clemenko_hobbyfarm}]' --image-id ami-09c77dc92e45bc3ea --count 1 --instance-type m6a.large --key-name clemenko --security-group-ids sg-0c87eb1835fdbb24f --subnet-id subnet-0ca6bea3c0d18b6f3 --user-data $'#!/bin/bash\necho "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA26evmemRbhTtjV9szD9SwcFW9VOD38jDuJmyYYdqoqIltDkpUqDa/V1jxLSyrizhOHrlJtUOj790cxrvInaBNP7nHIO+GwC9VH8wFi4KG/TFj3K8SfNZ24QoUY12rLiHR6hRxcT4aUGnqFHGv2WTqsW2sxz03z+W1qeMqWYJOUfkqKKs2jiz42U+0Kp9BxsFBlai/WAXrQsYC8CcpQSRKdggOMQf04CqqhXzt5Q4Cmago+Fr7HcvEnPDAaNcVtfS5DYLERcX2OVgWT3RBWhDIjD8vYCMBBCy2QUrc4ZhKZfkF9aemjnKLfLcbdpMfb+r7NwJsVQSPKcjYAJOckE8RQ== clemenko@clemenko.local" > /root/.ssh/authorized_keys' > /dev/null 2>&1
+
+aws ec2 wait instance-running --filters Name=tag:Name,Values=clemenko_hobbyfarm
+
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
 #check for SSH
 echo -e -n " checking for ssh "
 
-server=$(dolist | awk '{print $3}')
+server=$(awslist)
+
 until [ $(ssh -o ConnectTimeout=1 root@$server 'exit' 2>&1 | grep 'timed out\|refused' | wc -l) = 0 ]; do echo -e -n "." ; sleep 5; done
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
@@ -74,7 +78,7 @@ kubectl create secret -n hobbyfarm generic aws-creds --from-literal=access_key=$
 kubectl create secret -n hobbyfarm generic do-token --from-literal=token=$DO_TOKEN > /dev/null 2>&1
 
 ### Install Hobbyfarm
-helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain  --set ui.config.title="RGS - Workshop"  --set ui.config.login.customlogo=rgs-logo --set terraform.enabled=true --set shell.replicas=3  --set admin.config.title="RGS - Workshop"  --set admin.config.login.customlogo=rgs-logo  > /dev/null 2>&1
+helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=backend.$domain --set ingress.hostnames.admin=admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain  --set ui.config.title="RGS - Workshop"  --set ui.config.login.customlogo=rgs-logo --set terraform.enabled=true --set shell.replicas=3  --set admin.config.title="RGS - Workshop"  --set admin.config.login.customlogo=rgs-logo  > /dev/null 2>&1
 
 #--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
 
@@ -97,12 +101,21 @@ echo -e "$GREEN" "ok" "$NO_COLOR"
 #remove the vms
 function kill () {
 
-if [ ! -z $(dolist | awk '{printf $3","}' | sed 's/,$//') ]; then
-  echo -e -n " killing it all "
-  for i in $(dolist | awk '{print $2}'); do doctl compute droplet delete --force $i; done
-  for i in $(dolist | awk '{print $3}'); do ssh-keygen -q -R $i > /dev/null 2>&1; done
+# for do
+#if [ ! -z $(dolist | awk '{printf $3","}' | sed 's/,$//') ]; then
+#  echo -e -n " killing it all "
+#  for i in $(dolist | awk '{print $2}'); do doctl compute droplet delete --force $i; done
+#  for i in $(dolist | awk '{print $3}'); do ssh-keygen -q -R $i > /dev/null 2>&1; done
+#  for i in $(doctl compute domain records list $domain|grep hobbyfarm |awk '{print $1}'); do doctl compute domain records delete -f $domain $i; done
+#  until [ $(dolist | wc -l | sed 's/ //g') == 0 ]; do echo -e -n "."; sleep 2; done
+
+# for aws
+if [ $(awslist | wc -l) = 1 ]; then
+  echo -e -n " killing hobbyfarm"
+#  for i in $(dolist | awk '{print $2}'); do doctl compute droplet delete --force $i; done
+  aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters Name=tag:Name,Values=clemenko_hobbyfarm --query 'Reservations[*].Instances[*].InstanceId' --output text) > /dev/null 2>&1
+  for i in $(awslist); do ssh-keygen -q -R $i > /dev/null 2>&1; done
   for i in $(doctl compute domain records list $domain|grep hobbyfarm |awk '{print $1}'); do doctl compute domain records delete -f $domain $i; done
-  until [ $(dolist | wc -l | sed 's/ //g') == 0 ]; do echo -e -n "."; sleep 2; done
 
   rm -rf ~/.kube/config 
 
