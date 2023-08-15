@@ -16,6 +16,13 @@ We are building 3 vms:
 * **sles** ( SLES 15 - SP4 ) - Worker
 
 ####
+Deploying:
+* **RKE2** ( STIG'd ) - Kubernetes
+* **Rancher** - Multi Cluster Manager
+* **Longhorn** - Stateful Storage
+* **NeuVector** - Container Security
+
+####
 Hope we have some fun.
 
 ---
@@ -23,8 +30,6 @@ Hope we have some fun.
 ## RKE2 - Install - rocky
 
 If you are bored you can read the [docs](https://docs.rke2.io/). For speed, we are completing an online installation.
-
-There is another git repository with all the air-gapping instructions [https://github.com/clemenko/rke_airgap_install](https://github.com/clemenko/rke_airgap_install).
 
 #### sudo
 
@@ -37,6 +42,7 @@ mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
 
 #### kernel tuning - /etc/sysctl.conf
 
+A little kernel tuning.
 ```file:yaml:/etc/sysctl.conf:rocky
 # SWAP settings
 vm.swappiness=0
@@ -170,7 +176,7 @@ We should enable kubectl on rocky.
 We need to set some environment variables.
 
 ```ctr:rocky
-echo "export PATH=$PATH:/usr/local/bin/:/var/lib/rancher/rke2/data/v1*/bin/kubectl" >> ~/.bashrc
+echo 'export PATH=$PATH:/usr/local/bin/:/var/lib/rancher/rke2/bin/' >> ~/.bashrc
 echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml " >> ~/.bashrc
 source ~/.bashrc
 
@@ -399,24 +405,6 @@ systemctl enable --now rke2-agent.service
 While this is starting we can click on the rocky tab to watch.
 
 ### We now have a 3 node cluster!
-
----
-
-## RKE2 - STIG
-
-There is a nice article about it from [Businesswire](https://www.businesswire.com/news/home/20221101005546/en/DISA-Validates-Rancher-Government-Solutions%E2%80%99-Kubernetes-Distribution-RKE2-Security-Technical-Implementation-Guide).
-
-You can download the STIG itself from [https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_RGS_RKE2_V1R1_STIG.zip](https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_RGS_RKE2_V1R1_STIG.zip).   
-The SITG viewer can be found on DISA's site at [https://public.cyber.mil/stigs/srg-stig-tools/](https://public.cyber.mil/stigs/srg-stig-tools/). For this guide I have simplified the controls and provided simple steps to ensure compliance. Hope this helps a little.
-
-We even have a tl:dr for Rancher https://github.com/clemenko/rancher_stig.
-
-Bottom Line
-
-* Enable SElinux
-* Update the config for the Control Plane and Worker nodes.
-
-Enough STIG. Let's start deploying applications like Rancher
 
 ---
 
