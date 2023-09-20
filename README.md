@@ -71,7 +71,7 @@ The URLS are in the `helm` command. Pay attention that you have DNS and certs in
 
 Updating the settings is as easy as `kubectl apply -f settings.yaml`.
 
-Here is the human read-able [rgs-workshop.md](rgs-workshop.md) for the basic scenario.
+Here is the human read-able [ic-workshop.md](ic-workshop.md) for the basic scenario.
 
 ### notes
 
