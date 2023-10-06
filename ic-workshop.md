@@ -161,7 +161,7 @@ Great. We have all the files setup. We can now install rke2 and start it.
 #### rke2 install
 
 ```ctr:rocky
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.25 sh - 
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 sh - 
 systemctl enable --now rke2-server.service
 ```
 
@@ -284,7 +284,7 @@ kubelet-arg:
 Great. We have all the files setup. We can now install rke2 and start it.
 
 ```ctr:ubuntu
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.25 INSTALL_RKE2_TYPE=agent sh - 
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 INSTALL_RKE2_TYPE=agent sh - 
 systemctl enable --now rke2-agent.service
 ```
 
@@ -396,7 +396,7 @@ kubelet-arg:
 Great. We have all the files setup. We can now install rke2 and start it.
 
 ```ctr:sles
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.25 INSTALL_RKE2_TYPE=agent sh - 
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 INSTALL_RKE2_TYPE=agent sh - 
 systemctl enable --now rke2-agent.service
 ```
 
