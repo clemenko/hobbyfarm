@@ -41,7 +41,9 @@ echo -e "$GREEN" "ok" "$NO_COLOR"
 #update DNS
 echo -e -n " updating dns"
 doctl compute domain records create $domain --record-type A --record-name hobbyfarm --record-ttl 60 --record-data $server > /dev/null 2>&1
-doctl compute domain records create $domain --record-type CNAME --record-name "*" --record-ttl 60 --record-data hobbyfarm.$domain. > /dev/null 2>&1
+doctl compute domain records create $domain --record-type CNAME --record-name hobby-admin --record-ttl 60 --record-data hobbyfarm.$domain. > /dev/null 2>&1
+doctl compute domain records create $domain --record-type CNAME --record-name hobby-backend --record-ttl 60 --record-data hobbyfarm.$domain. > /dev/null 2>&1
+doctl compute domain records create $domain --record-type CNAME --record-name hobby-shell --record-ttl 60 --record-data hobbyfarm.$domain. > /dev/null 2>&1
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
 sleep 10
@@ -79,7 +81,7 @@ kubectl create secret -n hobbyfarm generic aws-creds --from-literal=access_key=$
 kubectl create secret -n hobbyfarm generic do-token --from-literal=token=$DO_TOKEN > /dev/null 2>&1
 
 ### Install Hobbyfarm
-helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=backend.$domain --set ingress.hostnames.admin=admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain  --set ui.config.title="RGS - Workshop"  --set ui.config.login.customlogo=rgs-logo --set terraform.enabled=true --set shell.replicas=3  --set admin.config.title="RGS - Workshop"  --set admin.config.login.customlogo=rgs-logo  > /dev/null 2>&1
+helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain  --set ui.config.title="RGS - Workshop"  --set ui.config.login.customlogo=rgs-logo --set terraform.enabled=true --set shell.replicas=3  --set admin.config.title="RGS - Workshop"  --set admin.config.login.customlogo=rgs-logo  > /dev/null 2>&1
 
 #--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
 
@@ -118,7 +120,7 @@ if [ $(awslist | wc -l) = 1 ]; then
 #  for i in $(dolist | awk '{print $2}'); do doctl compute droplet delete --force $i; done
   aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters Name=tag:Name,Values=clemenko_hobbyfarm --query 'Reservations[*].Instances[*].InstanceId' --output text) > /dev/null 2>&1
   for i in $(awslist); do ssh-keygen -q -R $i > /dev/null 2>&1; done
-  for i in $(doctl compute domain records list $domain|grep hobbyfarm |awk '{print $1}'); do doctl compute domain records delete -f $domain $i; done
+  for i in $(doctl compute domain records list $domain|grep hobby |awk '{print $1}'); do doctl compute domain records delete -f $domain $i; done
 
   rm -rf ~/.kube/config 
 
