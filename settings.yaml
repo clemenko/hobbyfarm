@@ -6,7 +6,7 @@ metadata:
 spec:
   count_capacity:
     rocky-9.2: 41
-    ubuntu-22.04: 41
+    ubuntu-22.04: 82
     sles-15-sp4: 41
   display_name: aws-env
   environment_specifics:
@@ -171,6 +171,7 @@ spec:
   virtualmachines:
   - rocky: rocky-9.2
     ubuntu: ubuntu-22.04
+    z_downstream: ubuntu-22.04
     sles: sles-15-sp4
 ---
 #apiVersion: hobbyfarm.io/v1
