@@ -89,7 +89,7 @@ helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled
 # --set gargantua.image=ebauman/gargantua:pr-154-3
 # helm install hf-provisioner-digitalocean provisioner-digitalocean/chart/hf-provisioner-digitalocean --namespace hobbyfarm > /dev/null 2>&1
 
-sleep 40
+sleep 60
 
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
