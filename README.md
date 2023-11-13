@@ -93,6 +93,20 @@ kubectl get nodes
 ~~~
 ```
 
+## hfcli
+
+There is now a working cli for creating/retreiving scenarios. https://github.com/hobbyfarm/hfcli/
+
+notes:
+
+```
+# get scneario 
+hfcli -k ~/.kube/config -n hobbyfarm get scenario ic-workshop ic-workshop
+
+# apply
+hfcli -k ~/.kube/config -n hobbyfarm apply scenario ic-workshop ic-workshop/
+```
+
 ## Help
 
 Please feel free to reach out to me.

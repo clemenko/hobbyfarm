@@ -1,0 +1,14 @@
+categories: []
+description: RGS Workshop RKE2/Longhorn/Rancher/Neuvector
+id: ""
+keepalive_duration: 60m
+name: Workshop
+pause_duration: 2h
+pauseable: false
+steps: null
+tags: []
+virtualmachines:
+- rocky: rocky-9.2
+  sles: sles-15-sp4
+  ubuntu: ubuntu-22.04
+  z_downstream: ubuntu-22.04
