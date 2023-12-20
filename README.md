@@ -71,7 +71,7 @@ The URLS are in the `helm` command. Pay attention that you have DNS and certs in
 
 Updating the settings is as easy as `kubectl apply -f settings.yaml`.
 
-Here is the human read-able [ic-workshop.md](ic-workshop.md) for the basic scenario.
+Here is the human read-able [nsg-workshop.md](nsg-workshop.md) for the basic scenario.
 
 ### notes
 
@@ -101,10 +101,10 @@ notes:
 
 ```
 # get scneario 
-hfcli -k ~/.kube/config -n hobbyfarm get scenario ic-workshop ic-workshop
+hfcli -k ~/.kube/config -n hobbyfarm get scenario nsg-workshop nsg-workshop
 
 # apply
-hfcli -k ~/.kube/config -n hobbyfarm apply scenario ic-workshop ic-workshop/
+hfcli -k ~/.kube/config -n hobbyfarm apply scenario nsg-workshop nsg-workshop/
 ```
 
 ## Help

@@ -1,6 +1,6 @@
 +++
 title = "Take a look Around"
-weight = 10
+weight = 12
 +++
 
 ## Stop when you get here. 

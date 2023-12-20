@@ -1,22 +1,22 @@
 +++
-title = "RKE2 - Install - ubuntu"
-weight = 3
+title = "RKE2 - Install - sles"
+weight = 4
 +++
 
-## RKE2 - Install - ubuntu
+## RKE2 - Install - sles
 
 #### sudo
 
 We need to sudo and create an account and directory.
 
-```ctr:ubuntu
+```ctr:sles
 sudo -i
 mkdir -p /etc/rancher/rke2/
 ```
 
 #### kernel tuning - /etc/sysctl.conf
 
-```file:yaml:/etc/sysctl.conf:ubuntu
+```file:yaml:/etc/sysctl.conf:sles
 # SWAP settings
 vm.swappiness=0
 vm.panic_on_oom=0
@@ -72,7 +72,7 @@ net.ipv6.conf.default.disable_ipv6 = 1
 
 apply the settings
 
-```ctr:ubuntu
+```ctr:sles
 sysctl -p
 ```
 
@@ -80,7 +80,7 @@ sysctl -p
 
 Next we create a config yaml on ubuntu.
 
-```file:yaml:/etc/rancher/rke2/config.yaml:ubuntu
+```file:yaml:/etc/rancher/rke2/config.yaml:sles
 #profile: cis-1.23
 selinux: true
 token: bootStrapAllTheThings
@@ -98,17 +98,13 @@ kubelet-arg:
 
 Great. We have all the files setup. We can now install rke2 and start it.
 
-```ctr:ubuntu
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.25 INSTALL_RKE2_TYPE=agent sh - 
+```ctr:sles
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 INSTALL_RKE2_TYPE=agent sh - 
 systemctl enable --now rke2-agent.service
 ```
 
 #### watch - rocky
 
-While this is starting we can watch from the rocky.
+While this is starting we can click on the rocky tab to watch.
 
-```ctr:rocky
-watch -n 5 kubectl get node -o wide
-```
-
-### On to sles
+### We now have a 3 node cluster!
