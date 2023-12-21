@@ -18,13 +18,6 @@ The good news is that all the fields are clickable and do not require copying an
 Rancher Government Workshop is designed to walk attendees through how to install Rancher’s stack manor. The workshop includes several methods for deploying and managing applications.
 
 ####
-We are building 4 vms:
-* **rocky** ( Rocky 9.2 ) - Control Plane/etcd/Worker
-* **ubuntu** ( Ubuntu 22.04 ) - Worker
-* **sles** ( SLES 15 - SP4 ) - Worker
-* **ubuntu** ( Ubuntu 22.04 ) - Downstream
-
-####
 Deploying:
 * **RKE2** ( STIG'd ) - Kubernetes
 * **Rancher** - Multi Cluster Manager
@@ -32,7 +25,7 @@ Deploying:
 * **NeuVector** - Container Security
 
 ####
-We are building 3 vms:
+We are building 4 vms:
 * **rocky** ( Rocky 9.2 ) - Control Plane/etcd/Worker
 * **ubuntu** ( Ubuntu 22.04 ) - Worker
 * **sles** ( SLES 15 - SP4 ) - Worker
