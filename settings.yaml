@@ -5,8 +5,8 @@ metadata:
   namespace: hobbyfarm
 spec:
   count_capacity:
-    rocky-9.3: 41
-    ubuntu-22.04: 82
+    rocky-9.3: 82
+    ubuntu-22.04: 41
     sles-15-sp4: 41
   display_name: aws-env
   environment_specifics:
@@ -80,8 +80,14 @@ metadata:
   namespace: hobbyfarm
 spec:
   config_map:
-    cloud-config: ""
-    webinterfaces: '[]'
+    cloud-config: | 
+      #cloud-config
+      packages:
+      - nfs-utils
+      - cryptsetup
+      - iscsi-initiator-utils
+      runcmd:
+        - echo hello
   image: rocky-9.3
   name: rocky-9.3
 ---
@@ -92,7 +98,9 @@ metadata:
   namespace: hobbyfarm
 spec:
   config_map:
-    cloud-config: ""
+    cloud-config: |
+      runcmd:
+        - sudo systemctl disable ufw --now && export DEBIAN_FRONTEND=noninteractive; sudo apt update; apt install nfs-common -y
     webinterfaces: '[]'
   image: ubuntu-22.04
   name: ubuntu-22.04
@@ -104,7 +112,9 @@ metadata:
   namespace: hobbyfarm
 spec:
   config_map:
-    cloud-config: ""
+    cloud-config: |
+      runcmd:
+        - zypper install -y open-iscsi nfs-client
     webinterfaces: '[]'
   image: sles-15-sp4
   name: sles-15-sp4

@@ -125,14 +125,6 @@ rules:
 - level: RequestResponse
 ```
 
-And the last one for Flannel the CNI.  
-canal conf - /etc/NetworkManager/conf.d/rke2-canal.conf
-
-```file:yaml:/etc/NetworkManager/conf.d/rke2-canal.conf:rocky
-[keyfile]
-unmanaged-devices=interface-name:cali*;interface-name:flannel*
-```
-
 Great. We have all the files setup. We can now install rke2 and start it.
 
 #### rke2 install
