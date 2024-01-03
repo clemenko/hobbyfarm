@@ -4,7 +4,7 @@ weight = 2
 +++
 
 
-## RKE2 - Install - rocky
+## RKE2 - Install - Control Plane - rocky
 
 If you are bored you can read the [docs](https://docs.rke2.io/). For speed, we are completing an online installation.
 

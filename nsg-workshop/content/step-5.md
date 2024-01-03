@@ -21,7 +21,9 @@ We need to add the helm repos for CertManager and Rancher. Then we install.
 # helm repo add
 helm repo add rancher-latest https://releases.rancher.com/server-charts/latest --force-update
 helm repo add jetstack https://charts.jetstack.io --force-update
+```
 
+```ctr:rocky
 # helm install cert-manager
 helm upgrade -i cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --set installCRDs=true
 

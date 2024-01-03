@@ -23,6 +23,14 @@ spec:
       image: ami-08f362c39d03a4eb5
       instance_type: c6a.2xlarge
       ssh_username: rocky
+      cloud-config: |
+        #cloud-config
+        packages:
+        - nfs-utils
+        - cryptsetup
+        - iscsi-initiator-utils
+        runcmd:
+          - echo "no works" > /tmp/stupid.txt
     ubuntu-22.04:
       disk: "80"
       image: ami-053b0d53c279acc90
@@ -69,9 +77,9 @@ metadata:
   namespace: hobbyfarm
 spec:
   git:
-    branch: master
-    intervalSeconds: 1800
-    url: https://github.com/clemenko/tf-module-aws/tree/patch-1 # https://github.com/hobbyfarm/tf-module-aws # https://github.com/zackbradys/tf-module-aws 
+    branch: patch-1
+    intervalSeconds: 150
+    url: https://github.com/clemenko/tf-module-aws # https://github.com/hobbyfarm/tf-module-aws 
 ---
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
@@ -87,7 +95,6 @@ spec:
       - iscsi-initiator-utils
       runcmd:
         - echo hello
-    webinterfaces: '[]'
   image: rocky-9.3
   name: rocky-9.3
 ---
@@ -99,9 +106,10 @@ metadata:
 spec:
   config_map:
     cloud-config: |
+      #cloud-config
       runcmd:
+        - echo "no works" > /tmp/stupid.txt
         - sudo systemctl disable ufw --now && export DEBIAN_FRONTEND=noninteractive; sudo apt update; apt install nfs-common -y
-    webinterfaces: '[]'
   image: ubuntu-22.04
   name: ubuntu-22.04
 ---
@@ -115,7 +123,6 @@ spec:
     cloud-config: |
       runcmd:
         - zypper install -y open-iscsi nfs-client
-    webinterfaces: '[]'
   image: sles-15-sp4
   name: sles-15-sp4
 ---

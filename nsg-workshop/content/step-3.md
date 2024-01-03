@@ -3,7 +3,7 @@ title = "RKE2 - Install - ubuntu"
 weight = 3
 +++
 
-## RKE2 - Install - ubuntu
+## RKE2 - Install - Worker #1 - ubuntu
 
 #### sudo
 
