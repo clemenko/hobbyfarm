@@ -5,7 +5,7 @@ metadata:
   namespace: hobbyfarm
 spec:
   count_capacity:
-    rocky-9.2: 41
+    rocky-9.3: 41
     ubuntu-22.04: 82
     sles-15-sp4: 41
   display_name: aws-env
@@ -18,9 +18,9 @@ spec:
     vpc_security_group_id: sg-0c87eb1835fdbb24f
   provider: aws
   template_mapping:
-    rocky-9.2:
+    rocky-9.3:
       disk: "80"
-      image: ami-09c77dc92e45bc3ea
+      image: ami-08f362c39d03a4eb5
       instance_type: c6a.2xlarge
       ssh_username: rocky
     ubuntu-22.04:
@@ -47,12 +47,12 @@ spec:
 #    region: nyc1 # any valid digitalocean region slug
 #    token-secret: do-token # a secret with key of 'token' and value
 #  count_capacity:
-#    rocky-9.2: 41
+#    rocky-9.3: 41
 #    ubuntu-22.04: 41
 #  display_name: do-env
 #  provider: digitalocean
 #  template_mapping:
-#    rocky-9.2:
+#    rocky-9.3:
 #      image: rockylinux-9-x64
 #      size: s-4vcpu-8gb-amd
 #      ssh_username: root
@@ -76,14 +76,14 @@ spec:
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
 metadata:
-  name: rocky-9.2
+  name: rocky-9.3
   namespace: hobbyfarm
 spec:
   config_map:
     cloud-config: ""
     webinterfaces: '[]'
-  image: rocky-9.2
-  name: rocky-9.2
+  image: rocky-9.3
+  name: rocky-9.3
 ---
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
@@ -138,7 +138,7 @@ valueType: scalar
 #  printable: false
 #  required_vms:
 #    aws-env:
-#      rocky-9.2: 20
+#      rocky-9.3: 20
 #  restricted_bind: true
 #  restricted_bind_value: workshop2
 #  scenarios:
