@@ -71,7 +71,7 @@ spec:
   git:
     branch: master
     intervalSeconds: 1800
-    url: https://github.com/hobbyfarm/tf-module-aws # https://github.com/zackbradys/tf-module-aws 
+    url: https://github.com/clemenko/tf-module-aws/tree/patch-1 # https://github.com/hobbyfarm/tf-module-aws # https://github.com/zackbradys/tf-module-aws 
 ---
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
@@ -80,14 +80,14 @@ metadata:
   namespace: hobbyfarm
 spec:
   config_map:
-    cloud-config: | 
-      #cloud-config
+    cloud-config: |
       packages:
       - nfs-utils
       - cryptsetup
       - iscsi-initiator-utils
       runcmd:
         - echo hello
+    webinterfaces: '[]'
   image: rocky-9.3
   name: rocky-9.3
 ---

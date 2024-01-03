@@ -121,8 +121,17 @@ audit - /etc/rancher/rke2/audit-policy.yaml
 ```file:yaml:/etc/rancher/rke2/audit-policy.yaml:rocky
 apiVersion: audit.k8s.io/v1
 kind: Policy
+metadata:
+  name: rke2-audit-policy
 rules:
-- level: RequestResponse
+  - level: Metadata
+    resources:
+    - group: ""
+      resources: ["secrets"]
+  - level: RequestResponse
+    resources:
+    - group: ""
+      resources: ["*"]
 ```
 
 Great. We have all the files setup. We can now install rke2 and start it.
