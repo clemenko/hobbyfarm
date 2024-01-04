@@ -97,7 +97,7 @@ spec:
   git:
     branch: master
     intervalSeconds: 150
-    url: https://github.com/clemenko/tf-module-aws # https://github.com/hobbyfarm/tf-module-aws 
+    url: https://github.com/hobbyfarm/tf-module-aws 
 ---
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate

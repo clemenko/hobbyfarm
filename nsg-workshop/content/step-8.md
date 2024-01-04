@@ -34,8 +34,9 @@ The username is `gitea`.
 The password is `Pa22word`.
 
 ####
-We need to edit flask yaml : http://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml
 
 **CHANGE X.X.X.X to the ${vminfo:rocky:public_ip} in Gitea!**
+
+We need to edit flask yaml : http://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml
 
 ### On to Fleet
