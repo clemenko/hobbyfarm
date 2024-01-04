@@ -95,7 +95,7 @@ metadata:
   namespace: hobbyfarm
 spec:
   git:
-    branch: patch-1
+    branch: master
     intervalSeconds: 150
     url: https://github.com/clemenko/tf-module-aws # https://github.com/hobbyfarm/tf-module-aws 
 ---
