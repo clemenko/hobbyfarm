@@ -105,6 +105,11 @@ metadata:
   name: rocky-9.3
   namespace: hobbyfarm
 spec:
+  config_map:
+    cloud-config: |
+      #cloud-config
+      runcmd:
+        - echo " vmtemplate "  > /tmp/template.txt
   image: rocky-9.3
   name: rocky-9.3
 ---
