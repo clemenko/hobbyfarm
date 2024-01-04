@@ -23,24 +23,38 @@ spec:
       image: ami-08f362c39d03a4eb5
       instance_type: c6a.2xlarge
       ssh_username: rocky
-      cloudInit: |
+      cloud-config: |
         #cloud-config
         packages:
         - nfs-utils
         - cryptsetup
         - iscsi-initiator-utils
         runcmd:
-          - echo "no works" > /tmp/stupid.txt
+          - systemctl enable --now iscsid.service
+          - curl 
+          - sysctl -p
     ubuntu-22.04:
       disk: "80"
       image: ami-053b0d53c279acc90
       instance_type: c6a.2xlarge
       ssh_username: ubuntu
+      cloud-config: |
+        #cloud-config
+        packages:
+        - nfs-common
+        runcmd:
+          - systemctl disable ufw --now
     sles-15-sp4:
       disk: "80"
       image: ami-021b67c90e3e68a8f
       instance_type: c6a.2xlarge
       ssh_username: ec2-user
+      cloud-config: |
+        #cloud-config
+        packages:
+        - nfs-client
+        - open-iscsi
+        runcmd:
   ws_endpoint: hobby-shell.rfed.io
 ---
 #apiVersion: hobbyfarm.io/v1
@@ -87,14 +101,6 @@ metadata:
   name: rocky-9.3
   namespace: hobbyfarm
 spec:
-  config_map:
-    cloud-config: |
-      packages:
-      - nfs-utils
-      - cryptsetup
-      - iscsi-initiator-utils
-      runcmd:
-        - echo hello
   image: rocky-9.3
   name: rocky-9.3
 ---
@@ -104,12 +110,6 @@ metadata:
   name: ubuntu-22.04
   namespace: hobbyfarm
 spec:
-  config_map:
-    cloud-config: |
-      #cloud-config
-      runcmd:
-        - echo "no works" > /tmp/stupid.txt
-        - sudo systemctl disable ufw --now && export DEBIAN_FRONTEND=noninteractive; sudo apt update; apt install nfs-common -y
   image: ubuntu-22.04
   name: ubuntu-22.04
 ---
@@ -119,10 +119,6 @@ metadata:
   name: sles-15-sp4
   namespace: hobbyfarm
 spec:
-  config_map:
-    cloud-config: |
-      runcmd:
-        - zypper install -y open-iscsi nfs-client
   image: sles-15-sp4
   name: sles-15-sp4
 ---
@@ -131,8 +127,6 @@ dataType: boolean
 displayName: Registration Disabled
 kind: Setting
 metadata:
-  labels:
-    hobbyfarm.io/setting-scope: public
   name: registration-disabled
   namespace: hobbyfarm
 value: "true"

@@ -6,30 +6,7 @@ weight = 6
 
 ## Longhorn - Install
 
-#### packages
-
-Before we install longhorn we need to add a few packages to the Rocky vm.
-
-```ctr:rocky
-# for rocky
-yum install -y nfs-utils cryptsetup iscsi-initiator-utils; systemctl enable --now iscsid.service
-```
-
-```ctr:ubuntu
-# for ubuntu
-systemctl disable ufw --now
-export DEBIAN_FRONTEND=noninteractive; apt update; apt install nfs-common -y
-```
-
-```ctr:sles
-# for sles
-zypper install -y open-iscsi
-zypper install -y nfs-client
-```
-
-Cool now onto helm.
-
-#### use helm
+#### with helm
 
 We need to add the helm repo and then we can install.
 
