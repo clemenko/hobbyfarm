@@ -31,7 +31,7 @@ spec:
         - iscsi-initiator-utils
         runcmd:
           - systemctl enable --now iscsid.service
-          - curl 
+          - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
           - sysctl -p
     ubuntu-22.04:
       disk: "80"
@@ -44,6 +44,8 @@ spec:
         - nfs-common
         runcmd:
           - systemctl disable ufw --now
+          - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
+          - sysctl -p
     sles-15-sp4:
       disk: "80"
       image: ami-021b67c90e3e68a8f
@@ -55,6 +57,8 @@ spec:
         - nfs-client
         - open-iscsi
         runcmd:
+          - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
+          - sysctl -p
   ws_endpoint: hobby-shell.rfed.io
 ---
 #apiVersion: hobbyfarm.io/v1
