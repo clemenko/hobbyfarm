@@ -33,6 +33,10 @@ Check out [step-1.md](https://github.com/clemenko/hobbyfarm/blob/main/nsg-worksh
 
 Hope you enjoy.
 
+## More Resources
+
+https://rfed.io/links
+
 ## Help
 
 Please feel free to reach out at clemenko@gmail.com
