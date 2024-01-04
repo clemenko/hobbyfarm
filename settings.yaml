@@ -23,7 +23,7 @@ spec:
       image: ami-08f362c39d03a4eb5
       instance_type: c6a.2xlarge
       ssh_username: rocky
-      cloud-config: |
+      cloudInit: |
         #cloud-config
         packages:
         - nfs-utils
