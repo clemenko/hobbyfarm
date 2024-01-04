@@ -41,12 +41,4 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 INSTALL_RKE2_TYPE=age
 systemctl enable --now rke2-agent.service
 ```
 
-#### watch - rocky
-
-While this is starting we can watch from the rocky.
-
-```ctr:rocky
-watch -n 5 kubectl get node -o wide
-```
-
 ### On to sles
