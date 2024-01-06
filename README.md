@@ -8,7 +8,9 @@ Welcome, This is an workshop for RKE2/Rancher/Longhorn/NeuVector/Gitea based on 
 
 Overview slide deck : [clemenko_master.pdf](https://github.com/clemenko/hobbyfarm/blob/main/clemenko_master.pdf)
 
-## **hobbyfarm.rfed.io**
+## User Interface
+
+**https://hobbyfarm.rfed.io**
 
 default password **Pa22word**
 
@@ -39,7 +41,7 @@ Hope you enjoy.
 
 ## More Resources
 
-https://rfed.io/links
+**https://rfed.io/links**
 
 ## Help
 
