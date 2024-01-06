@@ -1,9 +1,7 @@
 +++
-title = "Monitoring - Challenge"
+title = "Application Challenge - Monitoring"
 weight = 11
 +++
-
-## Monitoring - Challenge
 
 Let's try and add the **Monitoring** app from the catalog.
 

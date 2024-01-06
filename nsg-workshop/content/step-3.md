@@ -1,11 +1,9 @@
 +++
-title = "RKE2 - Install - ubuntu"
+title = "RKE2 - Install - worker #1 - ubuntu"
 weight = 3
 +++
 
-## RKE2 - Install - Worker #1 - ubuntu
-
-#### sudo
+### **A. sudo**
 
 We need to sudo and create an account and directory.
 
@@ -14,7 +12,7 @@ sudo -i
 mkdir -p /etc/rancher/rke2/
 ```
 
-#### config - /etc/rancher/rke2/config.yaml
+### **B. config - /etc/rancher/rke2/config.yaml**
 
 Next we create a config yaml on ubuntu.
 
@@ -32,7 +30,7 @@ kubelet-arg:
 - authorization-mode=Webhook
 ```
 
-#### rke2 install
+### **C. rke2 agent install**
 
 Great. We have all the files setup. We can now install rke2 and start it.
 
@@ -41,4 +39,4 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 INSTALL_RKE2_TYPE=age
 systemctl enable --now rke2-agent.service
 ```
 
-### On to sles
+## **next sles worker**

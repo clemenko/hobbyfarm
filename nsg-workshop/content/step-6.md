@@ -1,12 +1,12 @@
 +++
-title = "Longhorn"
+title = "Longhorn Install"
 weight = 6
 +++
 
 
-## Longhorn - Install
+## **Longhorn - Install**
 
-#### with helm
+### **A. add helm repo and install**
 
 We need to add the helm repo and then we can install.
 
@@ -18,7 +18,8 @@ helm repo add longhorn https://charts.longhorn.io --force-update
 helm upgrade -i longhorn longhorn/longhorn --namespace longhorn-system --create-namespace
 ```
 
-####
+### **B. Wait and watch the pods deploy**
+
 We should wait a few seconds for the pods to deploy.
 
 ```ctr:rocky
@@ -29,7 +30,7 @@ kubectl  get pod -n longhorn-system  -o wide
 kubectl get sc
 ```
 
-#### encryption?
+### **C. Add encryption StorageClass**
 
 Longhorn has the ability for encryption at rest. We need to enable it.
 
@@ -40,9 +41,10 @@ kubectl apply -f https://raw.githubusercontent.com/clemenko/k8s_yaml/master/long
 kubectl get sc
 ```
 
-####
+### **E. navigate to site**
+
 Now we can use the Rancher proxy to get to the dashboard.
 
 **https://rancher.${vminfo:rocky:public_ip}.sslip.io/k8s/clusters/local/api/v1/namespaces/longhorn-system/services/http:longhorn-frontend:80/proxy/#/dashboard**
 
-### On to NeuVector
+### **On to NeuVector**

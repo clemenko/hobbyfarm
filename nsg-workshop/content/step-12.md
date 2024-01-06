@@ -1,15 +1,14 @@
 +++
-title = "Take a look Around"
+title = "Congrats - Completion"
 weight = 12
 +++
 
-## Stop when you get here. 
+## **Congrats**
 
-We will walk through all the interfaces together. 
+For more resources check out **https://rfed.io/links**
 
 ####
-To review the content please check out:  
-**[https://github.com/clemenko/hobbyfarm](https://github.com/clemenko/hobbyfarm/blob/main/rgs-workshop.md)**
+To review the content check out: **https://github.com/clemenko/hobbyfarm**
 
 ####
 ![success](https://raw.githubusercontent.com/clemenko/rke_workshop/main/images/success.jpg)

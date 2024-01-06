@@ -3,7 +3,6 @@ title = "Introduction"
 weight = 1
 +++
 
-## Introduction
 **Welcome.**
 
 ![products](https://raw.githubusercontent.com/clemenko/rke_workshop/main/images/rgs-banner-rounded.png)

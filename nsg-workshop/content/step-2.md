@@ -1,14 +1,11 @@
 +++
-title = "RKE2 - Install - rocky"
+title = "RKE2 - Install - Control Plane - rocky"
 weight = 2
 +++
 
+Let's start with the control plane node. If you are bored you can read the [docs](https://docs.rke2.io/). For speed, we are completing an online installation.
 
-## RKE2 - Install - Control Plane - rocky
-
-If you are bored you can read the [docs](https://docs.rke2.io/). For speed, we are completing an online installation.
-
-#### sudo
+### **A. sudo**
 
 We need to sudo and create an account and directory.
 
@@ -19,7 +16,7 @@ mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
 
 on to the config yaml
 
-#### config - /etc/rancher/rke2/config.yaml
+### **B. config - /etc/rancher/rke2/config.yaml**
 
 Next we create a STIG config yaml on rocky.
 
@@ -52,6 +49,8 @@ kubelet-arg:
 - streaming-connection-idle-timeout=5m
 ```
 
+### **C. Audit Policy - /etc/rancher/rke2/audit-policy.yaml**
+
 We need to add one more file for the STIG  
 audit - /etc/rancher/rke2/audit-policy.yaml
 
@@ -73,20 +72,22 @@ rules:
 
 Great. We have all the files setup. We can now install rke2 and start it.
 
-#### rke2 install
+### **D. rke2 server install**
+
+Since we are online we can `curl|bash`. See the docs for the airgap install.
 
 ```ctr:rocky
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 sh - 
 systemctl enable --now rke2-server.service
 ```
 
-```hidden:More info about settings
+```type:More info about settings
 server install options https://docs.rke2.io/install/configuration#configuring-the-linux-installation-script
 ```
 
 We should enable kubectl on rocky.
 
-#### kubeconfig
+### **E. kubeconfig**
 
 We need to set some environment variables.
 
@@ -99,4 +100,4 @@ source ~/.bashrc
 kubectl get node
 ```
 
-### on to ubuntu
+## **next ubuntu worker**

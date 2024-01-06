@@ -3,12 +3,9 @@ title = "GitOPS - Gitea - Install"
 weight = 8
 +++
 
-
-## GitOPs - Gitea - Install
-
 We can continue to use helm to install Gitea. https://gitea.com
 
-#### use helm
+### **A. add helm repo and install**
 
 ```ctr:rocky
 helm repo add gitea-charts https://dl.gitea.io/charts/ --force-update
@@ -19,24 +16,24 @@ helm upgrade -i gitea gitea-charts/gitea --namespace gitea --create-namespace --
 watch kubectl get pod -n gitea
 ```
 
-#### running?
+### **B. Mirror upstream git repo**
+
 Once everything is up. We can mirror a demo repo.
 
 ```ctr:rocky
 # now lets mirror
 curl -X POST 'http://git.${vminfo:rocky:public_ip}.sslip.io/api/v1/repos/migrate' -H 'accept: application/json' -H 'authorization: Basic Z2l0ZWE6UGEyMndvcmQ=' -H 'Content-Type: application/json' -d '{ "clone_addr": "https://github.com/clemenko/hobbyfarm", "repo_name": "workshop","repo_owner": "gitea"}'
 ```
-   
-#### navigate
+
+### **E. navigate to site**
 
 Navigate to **http://git.${vminfo:rocky:public_ip}.sslip.io**  
 The username is `gitea`.  
 The password is `Pa22word`.
 
 ####
-
 **CHANGE X.X.X.X to the ${vminfo:rocky:public_ip} in Gitea!**
 
 We need to edit flask yaml : http://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml
 
-### On to Fleet
+### **On to Fleet**

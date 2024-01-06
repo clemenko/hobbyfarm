@@ -1,9 +1,7 @@
 +++
-title = "Downstream Cluster - Challenge"
+title = "Downstream Cluster - Challenge A"
 weight = 10
 +++
-
-## Downstream Cluster - Challenge
 
 Let's create a downstream cluster on the `z_downstream` vm.
 
@@ -12,4 +10,4 @@ Let's create a downstream cluster on the `z_downstream` vm.
 * Copy the script to the `z_downstream` node
 * Wait...
 
-### Let's deploy more
+### **On to Application Challenge**

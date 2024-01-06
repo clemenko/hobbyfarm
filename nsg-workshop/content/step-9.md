@@ -3,11 +3,12 @@ title = "GitOPS - Fleet - Setup"
 weight = 9
 +++
 
-
-## GitOPs - Fleet - Setup
-
 Fleet is already installed within Rancher.  
 We need to create a `GitRepo` file to tell Fleet where the repo is.
+
+### **A. create gitrepo file**
+
+The gitrepo object is used by fleet to describe where the git repo to be used.
 
 ```file:yaml:/root/gitea.yaml:rocky
 kind: GitRepo
@@ -24,18 +25,20 @@ spec:
   - fleet/flask
 ```
 
+### **B. deploy gitrepo file**
+
 We can now deploy the file to add to Fleet.
 
 ```ctr:rocky
 kubectl apply -f /root/gitea.yaml
 ```
 
+### **C. navigate to site**
+
 Now we can Navigate to https://rancher.${vminfo:rocky:public_ip}.sslip.io/dashboard/c/local/fleet/fleet.cattle.io.gitrepo  
 Change "fleet-default" to "fleet-local" in the top right corner.  
 We can see everything come up.
 
-#### navigate
-
 to: **http://flask.${vminfo:rocky:public_ip}.sslip.io**  
 
-### On to Profit
+### **On to Challenge A**
