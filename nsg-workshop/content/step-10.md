@@ -1,5 +1,5 @@
 +++
-title = "Downstream Cluster - Challenge A"
+title = "Cluster Challenge - Downstream"
 weight = 10
 +++
 
