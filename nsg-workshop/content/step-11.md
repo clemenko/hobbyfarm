@@ -9,5 +9,4 @@ Let's try and add the **Monitoring** app from the catalog.
 * Use the Application catalog and deploy the **Monitoring** app
 * Wait...
 
-
-### Did it work?
+### **Did it work?**
