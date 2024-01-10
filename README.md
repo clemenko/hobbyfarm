@@ -4,9 +4,11 @@
 
 Welcome, This is an workshop for RKE2/Rancher/Longhorn/NeuVector/Gitea based on an opensource framework [HobbyFarm](https://github.com/hobbyfarm/hobbyfarm).
 
-### Slide deck
+### Resources
 
 Overview slide deck : [clemenko_master.pdf](https://github.com/clemenko/hobbyfarm/blob/main/clemenko_master.pdf)
+
+Feel free to watch the video https://youtu.be/jU_w2GWQwxI.
 
 ## User Interface
 
