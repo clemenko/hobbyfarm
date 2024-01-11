@@ -70,9 +70,6 @@ kubectl create namespace hobbyfarm > /dev/null 2>&1
 kubectl -n hobbyfarm create secret generic tls-ca --from-file=/Users/clemenko/Dropbox/work/rfed.me/io/cacerts.pem  > /dev/null 2>&1
 kubectl -n hobbyfarm create secret tls tls-hobbyfarm-certs  --cert=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.cert --key=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.key > /dev/null 2>&1
 
-### adding logos
-kubectl create configmap rgs-logo -n hobbyfarm --from-file=rancher-labs-stacked-color.svg=RGS_Vertical.svg > /dev/null 2>&1
-
 ### add creds - set the variables on the shell
 # set export ACCESS_KEY=...
 # set export SECRET_KEY=...
@@ -81,7 +78,7 @@ kubectl create secret -n hobbyfarm generic aws-creds --from-literal=access_key=$
 kubectl create secret -n hobbyfarm generic do-token --from-literal=token=$DO_TOKEN > /dev/null 2>&1
 
 ### Install Hobbyfarm
-helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain  --set ui.config.title="RGS - Workshop"  --set ui.config.login.customlogo=rgs-logo --set terraform.enabled=true --set shell.replicas=16 --set gargantua.dynamicBaseNamePrefix="clem-student" --set admin.config.title="RGS - Workshop" --set admin.config.login.customlogo=rgs-logo  > /dev/null 2>&1
+helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain  --set ui.config.title="RGS - Workshop"  --set ui.config.login.logo=https://raw.githubusercontent.com/clemenko/hobbyfarm/main/images/RGS_Vertical.svg --set terraform.enabled=true --set shell.replicas=16 --set gargantua.dynamicBaseNamePrefix="clem-student" --set gargantua.scheduledBaseNamePrefix="clem-student" --set admin.config.title="RGS - Workshop" --set admin.config.login.customlogo=rgs-logo  > /dev/null 2>&1
 
 #--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
 
