@@ -25,7 +25,7 @@ Once everything is up. We can mirror a demo repo.
 curl -X POST 'http://git.${vminfo:rocky:public_ip}.sslip.io/api/v1/repos/migrate' -H 'accept: application/json' -H 'authorization: Basic Z2l0ZWE6UGEyMndvcmQ=' -H 'Content-Type: application/json' -d '{ "clone_addr": "https://github.com/clemenko/hobbyfarm", "repo_name": "workshop","repo_owner": "gitea"}'
 ```
 
-### **E. navigate to site**
+### **C. navigate to site**
 
 Navigate to **http://git.${vminfo:rocky:public_ip}.sslip.io**  
 The username is `gitea`.  
