@@ -5,7 +5,7 @@ weight = 1
 
 **Welcome.**
 
-![products](https://raw.githubusercontent.com/clemenko/rke_workshop/main/images/rgs-banner-rounded.png)
+![products](https://raw.githubusercontent.com/clemenko/hobbyfarm/main/images/banner-rounded.png)
 
 ####
 This training platform is open-source. And can be found at https://github.com/hobbyfarm/hobbyfarm.

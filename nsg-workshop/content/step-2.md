@@ -3,7 +3,7 @@ title = "RKE2 - Install - Control Plane - rocky"
 weight = 2
 +++
 
-Let's start with the control plane node. If you are bored you can read the [docs](https://docs.rke2.io/). For speed, we are completing an online installation.
+Let's start with the control plane node.
 
 ### **A. sudo**
 
