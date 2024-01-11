@@ -80,13 +80,7 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 sh -
 systemctl enable --now rke2-server.service
 ```
 
-```type:More info about settings
-server install options https://docs.rke2.io/install/configuration#configuring-the-linux-installation-script
-```
-
-We should enable kubectl on rocky.
-
-### **E. kubeconfig**
+### **E. enable kubectl**
 
 We need to set some environment variables.
 
