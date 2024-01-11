@@ -9,7 +9,6 @@ We need to sudo and create an account and directory.
 
 ```ctr:ubuntu
 sudo -i
-mkdir -p /etc/rancher/rke2/
 ```
 
 ### **B. config - /etc/rancher/rke2/config.yaml**

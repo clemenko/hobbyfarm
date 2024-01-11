@@ -87,6 +87,7 @@ spec:
       - cryptsetup
       - iscsi-initiator-utils
       runcmd:
+        - mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
         - systemctl enable --now iscsid.service
         - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
         - sysctl -p
@@ -105,6 +106,7 @@ spec:
       packages:
       - nfs-common
       runcmd:
+        - mkdir -p /etc/rancher/rke2/
         - systemctl disable ufw --now
         - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
         - sysctl -p
@@ -124,6 +126,7 @@ spec:
       - nfs-client
       - open-iscsi
       runcmd:
+        - mkdir -p /etc/rancher/rke2/
         - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
         - sysctl -p
   image: sles-15-sp4

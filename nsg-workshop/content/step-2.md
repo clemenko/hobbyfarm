@@ -11,7 +11,6 @@ We need to sudo and create an account and directory.
 
 ```ctr:rocky
 sudo -i
-mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
 ```
 
 on to the config yaml
