@@ -25,7 +25,7 @@ We should wait a few seconds for the pods to deploy.
 kubectl get pod -n cattle-neuvector-system
 ```
 
-### **E. navigate to site**
+### **C. navigate to site**
 
 Now we can use the Rancher proxy to get to the dashboard.
 

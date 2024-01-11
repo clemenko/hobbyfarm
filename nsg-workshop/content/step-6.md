@@ -41,7 +41,7 @@ kubectl apply -f https://raw.githubusercontent.com/clemenko/k8s_yaml/master/long
 kubectl get sc
 ```
 
-### **E. navigate to site**
+### **D. navigate to site**
 
 Now we can use the Rancher proxy to get to the dashboard.
 
