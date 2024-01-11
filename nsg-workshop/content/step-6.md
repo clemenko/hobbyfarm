@@ -24,7 +24,7 @@ We should wait a few seconds for the pods to deploy.
 
 ```ctr:rocky
 # check for the pods
-kubectl  get pod -n longhorn-system  -o wide
+kubectl  get pod -n longhorn-system
 
 # to verify that longhorn is the default storage class
 kubectl get sc
