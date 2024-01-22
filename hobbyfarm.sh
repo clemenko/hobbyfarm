@@ -4,6 +4,7 @@
 
 password=Pa22word
 domain=rfed.io
+k8s_version=v1.26
 
 ######  NO MOAR EDITS #######
 export RED='\x1b[0;31m'
@@ -24,7 +25,7 @@ echo -e -n " building hobbyfarm vm "
 #doctl compute droplet create hobbyfarm --region nyc3 --image rockylinux-9-x64 --size s-8vcpu-16gb-amd --ssh-keys 30:98:4f:c5:47:c2:88:28:fe:3c:23:cd:52:49:51:01 --wait --droplet-agent=false > /dev/null 2>&1
 
 #aws
-aws ec2 run-instances --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=clemenko_hobbyfarm},{Key=KeepRunning,Value=true}]' --image-id ami-08f362c39d03a4eb5 --count 1 --instance-type m7a.4xlarge --key-name clemenko --security-group-ids sg-0c87eb1835fdbb24f --subnet-id subnet-0ca6bea3c0d18b6f3 --user-data $'#!/bin/bash\necho "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA26evmemRbhTtjV9szD9SwcFW9VOD38jDuJmyYYdqoqIltDkpUqDa/V1jxLSyrizhOHrlJtUOj790cxrvInaBNP7nHIO+GwC9VH8wFi4KG/TFj3K8SfNZ24QoUY12rLiHR6hRxcT4aUGnqFHGv2WTqsW2sxz03z+W1qeMqWYJOUfkqKKs2jiz42U+0Kp9BxsFBlai/WAXrQsYC8CcpQSRKdggOMQf04CqqhXzt5Q4Cmago+Fr7HcvEnPDAaNcVtfS5DYLERcX2OVgWT3RBWhDIjD8vYCMBBCy2QUrc4ZhKZfkF9aemjnKLfLcbdpMfb+r7NwJsVQSPKcjYAJOckE8RQ== clemenko@clemenko.local" > /root/.ssh/authorized_keys\nyum install epel-release -y; yum install htop -y' > /dev/null 2>&1
+aws ec2 run-instances --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=clemenko_hobbyfarm},{Key=KeepRunning,Value=true}]' --image-id ami-08f362c39d03a4eb5 --count 1 --instance-type m7a.4xlarge --key-name clemenko --security-group-ids sg-0c87eb1835fdbb24f --subnet-id subnet-0ca6bea3c0d18b6f3 --ebs-optimized --block-device-mapping "[ { \"DeviceName\": \"/dev/sda1\", \"Ebs\": { \"VolumeSize\": 100 } } ]" --user-data $'#!/bin/bash\necho "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA26evmemRbhTtjV9szD9SwcFW9VOD38jDuJmyYYdqoqIltDkpUqDa/V1jxLSyrizhOHrlJtUOj790cxrvInaBNP7nHIO+GwC9VH8wFi4KG/TFj3K8SfNZ24QoUY12rLiHR6hRxcT4aUGnqFHGv2WTqsW2sxz03z+W1qeMqWYJOUfkqKKs2jiz42U+0Kp9BxsFBlai/WAXrQsYC8CcpQSRKdggOMQf04CqqhXzt5Q4Cmago+Fr7HcvEnPDAaNcVtfS5DYLERcX2OVgWT3RBWhDIjD8vYCMBBCy2QUrc4ZhKZfkF9aemjnKLfLcbdpMfb+r7NwJsVQSPKcjYAJOckE8RQ== clemenko@clemenko.local" > /root/.ssh/authorized_keys\nyum install epel-release -y; yum install htop -y; curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt ; sysctl -p' > /dev/null 2>&1
 
 aws ec2 wait instance-running --filters Name=tag:Name,Values=clemenko_hobbyfarm
 
@@ -48,11 +49,16 @@ echo -e "$GREEN" "ok" "$NO_COLOR"
 
 sleep 10
 
-echo -e -n " installing k3s"
-k3sup install --ip $server --user root --cluster --k3s-extra-args '' --local-path ~/.kube/config > /dev/null 2>&1
+echo -e -n " installing rke2"
+
+ssh root@$server 'mkdir -p /etc/rancher/rke2/; useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U; echo -e "\ntls-san:\n- "'$server'"\nkube-controller-manager-arg:\n- bind-address=127.0.0.1\n- use-service-account-credentials=true\n- tls-min-version=VersionTLS12\n- tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384\nkube-scheduler-arg:\n- tls-min-version=VersionTLS12\n- tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384\nkube-apiserver-arg:\n- tls-min-version=VersionTLS12\n- tls-cipher-suites=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384\n- authorization-mode=RBAC,Node\n- anonymous-auth=false\nkubelet-arg:\n- max-pods=400" > /etc/rancher/rke2/config.yaml; curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL='$k8s_version' sh - ; systemctl enable --now rke2-server.service' > /dev/null 2>&1
+
+ssh root@$server cat /etc/rancher/rke2/rke2.yaml | sed  -e "s/127.0.0.1/$server/g" > ~/.kube/config 
+chmod 0600 ~/.kube/config
+
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
-echo -e -n " - k3s active "
+echo -e -n " - rke2 active "
 sleep 5
 until [ $(kubectl get node|grep NotReady|wc -l) = 0 ]; do echo -e -n "."; sleep 2; done
 echo -e "$GREEN" "ok" "$NO_COLOR"
@@ -69,6 +75,9 @@ kubectl create namespace hobbyfarm > /dev/null 2>&1
 ### Create Certificates
 kubectl -n hobbyfarm create secret generic tls-ca --from-file=/Users/clemenko/Dropbox/work/rfed.me/io/cacerts.pem  > /dev/null 2>&1
 kubectl -n hobbyfarm create secret tls tls-hobbyfarm-certs  --cert=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.cert --key=/Users/clemenko/Dropbox/work/rfed.me/io/star.rfed.io.key > /dev/null 2>&1
+
+### adding logos
+kubectl create configmap rgs-logo -n hobbyfarm --from-file=rancher-labs-stacked-color.svg=images/RGS_Vertical.svg > /dev/null 2>&1
 
 ### add creds - set the variables on the shell
 # set export ACCESS_KEY=...
