@@ -15,7 +15,7 @@ export NO_COLOR='\x1b[0m'
 
 # builds a vm list
 #function dolist () { doctl compute droplet list --no-header|grep hobbyfarm |sort -k 2; }
-function awslist () { aws ec2 describe-instances --filters Name=tag:Name,Values=clemenko_hobbyfarm --query 'Reservations[*].Instances[*].PublicIpAddress' --output text; }
+function awslist () { aws ec2 describe-instances --filters Name=tag:Name,Values=clem_hobbyfarm --query 'Reservations[*].Instances[*].PublicIpAddress' --output text; }
 
 ################################# up ################################
 function up () {
@@ -27,7 +27,7 @@ echo -e -n " building hobbyfarm vm "
 #aws
 aws ec2 run-instances --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=clem_hobbyfarm},{Key=KeepRunning,Value=true}]' --image-id ami-08f362c39d03a4eb5 --count 1 --instance-type m7a.4xlarge --key-name clemenko --security-group-ids sg-0c87eb1835fdbb24f --subnet-id subnet-0ca6bea3c0d18b6f3 --ebs-optimized --block-device-mapping "[ { \"DeviceName\": \"/dev/sda1\", \"Ebs\": { \"VolumeSize\": 100 } } ]" --user-data $'#!/bin/bash\necho "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA26evmemRbhTtjV9szD9SwcFW9VOD38jDuJmyYYdqoqIltDkpUqDa/V1jxLSyrizhOHrlJtUOj790cxrvInaBNP7nHIO+GwC9VH8wFi4KG/TFj3K8SfNZ24QoUY12rLiHR6hRxcT4aUGnqFHGv2WTqsW2sxz03z+W1qeMqWYJOUfkqKKs2jiz42U+0Kp9BxsFBlai/WAXrQsYC8CcpQSRKdggOMQf04CqqhXzt5Q4Cmago+Fr7HcvEnPDAaNcVtfS5DYLERcX2OVgWT3RBWhDIjD8vYCMBBCy2QUrc4ZhKZfkF9aemjnKLfLcbdpMfb+r7NwJsVQSPKcjYAJOckE8RQ== clemenko@clemenko.local" > /root/.ssh/authorized_keys\nyum install epel-release -y; yum install htop -y; curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt ; sysctl -p' > /dev/null 2>&1
 
-aws ec2 wait instance-running --filters Name=tag:Name,Values=clemenko_hobbyfarm
+aws ec2 wait instance-running --filters Name=tag:Name,Values=clem_hobbyfarm
 
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
@@ -127,7 +127,7 @@ function kill () {
 if [ $(awslist | wc -l) = 1 ]; then
   echo -e -n " killing hobbyfarm"
 #  for i in $(dolist | awk '{print $2}'); do doctl compute droplet delete --force $i; done
-  aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters Name=tag:Name,Values=clemenko_hobbyfarm --query 'Reservations[*].Instances[*].InstanceId' --output text) > /dev/null 2>&1
+  aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters Name=tag:Name,Values=clem_hobbyfarm --query 'Reservations[*].Instances[*].InstanceId' --output text) > /dev/null 2>&1
   for i in $(awslist); do ssh-keygen -q -R $i > /dev/null 2>&1; done
   for i in $(doctl compute domain records list $domain|grep hobby |awk '{print $1}'); do doctl compute domain records delete -f $domain $i; done
 
