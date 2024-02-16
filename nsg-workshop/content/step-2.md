@@ -24,7 +24,7 @@ Next we create a STIG config yaml on rocky.
 token: bootStrapAllTheThings
 selinux: true
 secrets-encryption: true
-write-kubeconfig-mode: 0640
+write-kubeconfig-mode: 0600
 kube-controller-manager-arg:
 - bind-address=127.0.0.1
 - use-service-account-credentials=true
@@ -76,7 +76,7 @@ Great. We have all the files setup. We can now install rke2 and start it.
 Since we are online we can `curl|bash`. See the docs for the airgap install.
 
 ```ctr:rocky
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.26 sh - 
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.27 sh - 
 systemctl enable --now rke2-server.service
 ```
 
