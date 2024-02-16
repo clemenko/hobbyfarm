@@ -4,7 +4,7 @@
 
 password=Pa22word
 domain=rfed.io
-k8s_version=v1.26
+k8s_version=v1.27
 
 ######  NO MOAR EDITS #######
 export RED='\x1b[0;31m'
