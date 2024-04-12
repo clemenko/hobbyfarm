@@ -1,0 +1,1703 @@
+
+# prebuilt users
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user1
+    namespace: hobbyfarm
+spec:
+    email: user1
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user2
+    namespace: hobbyfarm
+spec:
+    email: user2
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user3
+    namespace: hobbyfarm
+spec:
+    email: user3
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user4
+    namespace: hobbyfarm
+spec:
+    email: user4
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user5
+    namespace: hobbyfarm
+spec:
+    email: user5
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user6
+    namespace: hobbyfarm
+spec:
+    email: user6
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user7
+    namespace: hobbyfarm
+spec:
+    email: user7
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user8
+    namespace: hobbyfarm
+spec:
+    email: user8
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user9
+    namespace: hobbyfarm
+spec:
+    email: user9
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user10
+    namespace: hobbyfarm
+spec:
+    email: user10
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user11
+    namespace: hobbyfarm
+spec:
+    email: user11
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user12
+    namespace: hobbyfarm
+spec:
+    email: user12
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user13
+    namespace: hobbyfarm
+spec:
+    email: user13
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user14
+    namespace: hobbyfarm
+spec:
+    email: user14
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user15
+    namespace: hobbyfarm
+spec:
+    email: user15
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user16
+    namespace: hobbyfarm
+spec:
+    email: user16
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user17
+    namespace: hobbyfarm
+spec:
+    email: user17
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user18
+    namespace: hobbyfarm
+spec:
+    email: user18
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user19
+    namespace: hobbyfarm
+spec:
+    email: user19
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user20
+    namespace: hobbyfarm
+spec:
+    email: user20
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user21
+    namespace: hobbyfarm
+spec:
+    email: user21
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user22
+    namespace: hobbyfarm
+spec:
+    email: user22
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user23
+    namespace: hobbyfarm
+spec:
+    email: user23
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user24
+    namespace: hobbyfarm
+spec:
+    email: user24
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user25
+    namespace: hobbyfarm
+spec:
+    email: user25
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user26
+    namespace: hobbyfarm
+spec:
+    email: user26
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user27
+    namespace: hobbyfarm
+spec:
+    email: user27
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user28
+    namespace: hobbyfarm
+spec:
+    email: user28
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user29
+    namespace: hobbyfarm
+spec:
+    email: user29
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user30
+    namespace: hobbyfarm
+spec:
+    email: user30
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user31
+    namespace: hobbyfarm
+spec:
+    email: user31
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user32
+    namespace: hobbyfarm
+spec:
+    email: user32
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user33
+    namespace: hobbyfarm
+spec:
+    email: user33
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user34
+    namespace: hobbyfarm
+spec:
+    email: user34
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user35
+    namespace: hobbyfarm
+spec:
+    email: user35
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user36
+    namespace: hobbyfarm
+spec:
+    email: user36
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user37
+    namespace: hobbyfarm
+spec:
+    email: user37
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user38
+    namespace: hobbyfarm
+spec:
+    email: user38
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user39
+    namespace: hobbyfarm
+spec:
+    email: user39
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user40
+    namespace: hobbyfarm
+spec:
+    email: user40
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user41
+    namespace: hobbyfarm
+spec:
+    email: user41
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user42
+    namespace: hobbyfarm
+spec:
+    email: user42
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user43
+    namespace: hobbyfarm
+spec:
+    email: user43
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user44
+    namespace: hobbyfarm
+spec:
+    email: user44
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user45
+    namespace: hobbyfarm
+spec:
+    email: user45
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user46
+    namespace: hobbyfarm
+spec:
+    email: user46
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user47
+    namespace: hobbyfarm
+spec:
+    email: user47
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user48
+    namespace: hobbyfarm
+spec:
+    email: user48
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user49
+    namespace: hobbyfarm
+spec:
+    email: user49
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user50
+    namespace: hobbyfarm
+spec:
+    email: user50
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user51
+    namespace: hobbyfarm
+spec:
+    email: user51
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user52
+    namespace: hobbyfarm
+spec:
+    email: user52
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user53
+    namespace: hobbyfarm
+spec:
+    email: user53
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user54
+    namespace: hobbyfarm
+spec:
+    email: user54
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user55
+    namespace: hobbyfarm
+spec:
+    email: user55
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user56
+    namespace: hobbyfarm
+spec:
+    email: user56
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user57
+    namespace: hobbyfarm
+spec:
+    email: user57
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user58
+    namespace: hobbyfarm
+spec:
+    email: user58
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user59
+    namespace: hobbyfarm
+spec:
+    email: user59
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user60
+    namespace: hobbyfarm
+spec:
+    email: user60
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user61
+    namespace: hobbyfarm
+spec:
+    email: user61
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user62
+    namespace: hobbyfarm
+spec:
+    email: user62
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user63
+    namespace: hobbyfarm
+spec:
+    email: user63
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user64
+    namespace: hobbyfarm
+spec:
+    email: user64
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user65
+    namespace: hobbyfarm
+spec:
+    email: user65
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user66
+    namespace: hobbyfarm
+spec:
+    email: user66
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user67
+    namespace: hobbyfarm
+spec:
+    email: user67
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user68
+    namespace: hobbyfarm
+spec:
+    email: user68
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user69
+    namespace: hobbyfarm
+spec:
+    email: user69
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user70
+    namespace: hobbyfarm
+spec:
+    email: user70
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user71
+    namespace: hobbyfarm
+spec:
+    email: user71
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user72
+    namespace: hobbyfarm
+spec:
+    email: user72
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user73
+    namespace: hobbyfarm
+spec:
+    email: user73
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user74
+    namespace: hobbyfarm
+spec:
+    email: user74
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user75
+    namespace: hobbyfarm
+spec:
+    email: user75
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user76
+    namespace: hobbyfarm
+spec:
+    email: user76
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user77
+    namespace: hobbyfarm
+spec:
+    email: user77
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user78
+    namespace: hobbyfarm
+spec:
+    email: user78
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user79
+    namespace: hobbyfarm
+spec:
+    email: user79
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user80
+    namespace: hobbyfarm
+spec:
+    email: user80
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user81
+    namespace: hobbyfarm
+spec:
+    email: user81
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user82
+    namespace: hobbyfarm
+spec:
+    email: user82
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user83
+    namespace: hobbyfarm
+spec:
+    email: user83
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user84
+    namespace: hobbyfarm
+spec:
+    email: user84
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user85
+    namespace: hobbyfarm
+spec:
+    email: user85
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user86
+    namespace: hobbyfarm
+spec:
+    email: user86
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user87
+    namespace: hobbyfarm
+spec:
+    email: user87
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user88
+    namespace: hobbyfarm
+spec:
+    email: user88
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user89
+    namespace: hobbyfarm
+spec:
+    email: user89
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user90
+    namespace: hobbyfarm
+spec:
+    email: user90
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user91
+    namespace: hobbyfarm
+spec:
+    email: user91
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user92
+    namespace: hobbyfarm
+spec:
+    email: user92
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user93
+    namespace: hobbyfarm
+spec:
+    email: user93
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user94
+    namespace: hobbyfarm
+spec:
+    email: user94
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user95
+    namespace: hobbyfarm
+spec:
+    email: user95
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user96
+    namespace: hobbyfarm
+spec:
+    email: user96
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user97
+    namespace: hobbyfarm
+spec:
+    email: user97
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user98
+    namespace: hobbyfarm
+spec:
+    email: user98
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user99
+    namespace: hobbyfarm
+spec:
+    email: user99
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: user100
+    namespace: hobbyfarm
+spec:
+    email: user100
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light

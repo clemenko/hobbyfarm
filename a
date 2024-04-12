@@ -1,0 +1,17 @@
+---
+apiVersion: hobbyfarm.io/v2
+kind: User
+metadata:
+    name: userXX
+    namespace: hobbyfarm
+spec:
+    email: userXX
+    password: '$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+    access_codes:
+    - workshop
+    settings:
+      ctr_enabled: "true"
+      ctxAccessCode: example-access-code
+      terminal_fontSize: "14"
+      terminal_theme: GitHub
+      theme: light
