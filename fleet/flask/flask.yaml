@@ -62,7 +62,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis
+        image: valkey/valkey
         args: ["--appendonly", "yes"]
         securityContext:
           allowPrivilegeEscalation: false
