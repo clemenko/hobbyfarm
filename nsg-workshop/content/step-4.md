@@ -34,7 +34,7 @@ kubelet-arg:
 Great. We have all the files setup. We can now install rke2 and start it.
 
 ```ctr:sles
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.27 INSTALL_RKE2_TYPE=agent sh - 
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.28 INSTALL_RKE2_TYPE=agent sh - 
 systemctl enable --now rke2-agent.service
 ```
 

@@ -76,7 +76,7 @@ Great. We have all the files setup. We can now install rke2 and start it.
 Since we are online we can `curl|bash`. See the docs for the airgap install.
 
 ```ctr:rocky
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.27 sh - 
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.28 sh - 
 systemctl enable --now rke2-server.service
 ```
 
