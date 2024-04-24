@@ -14,15 +14,15 @@ The gitrepo object is used by fleet to describe where the git repo to be used.
 kind: GitRepo
 apiVersion: fleet.cattle.io/v1alpha1
 metadata:
-  name: flask
+  name: versions
   namespace: fleet-local
 spec:
   branch: main
   insecureSkipTLSVerify: true
   repo: http://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop
-  targetNamespace: flask
+  targetNamespace: versions
   paths:
-  - fleet/flask
+  - fleet/versions
 ```
 
 ### **B. deploy gitrepo file**
@@ -39,6 +39,6 @@ Now we can Navigate to https://rancher.${vminfo:rocky:public_ip}.sslip.io/dashbo
 Change "fleet-default" to "fleet-local" in the top right corner.  
 We can see everything come up.
 
-to: **http://flask.${vminfo:rocky:public_ip}.sslip.io**  
+to: **http://versions.${vminfo:rocky:public_ip}.sslip.io**  
 
 ### **On to Challenge A**
