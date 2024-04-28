@@ -25,15 +25,13 @@ Once everything is up. We can mirror a demo repo.
 curl -X POST 'http://git.${vminfo:rocky:public_ip}.sslip.io/api/v1/repos/migrate' -H 'accept: application/json' -H 'authorization: Basic Z2l0ZWE6UGEyMndvcmQ=' -H 'Content-Type: application/json' -d '{ "clone_addr": "https://github.com/clemenko/hobbyfarm", "repo_name": "workshop","repo_owner": "gitea"}'
 ```
 
-### **C. navigate to site**
-
-Navigate to **http://git.${vminfo:rocky:public_ip}.sslip.io**  
-The username is `gitea`.  
-The password is `Pa22word`.
+### **C. Edit IP**
 
 ####
 **CHANGE X.X.X.X to the ${vminfo:rocky:public_ip} in Gitea!**
 
-We need to edit flask yaml : http://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml
+We need to edit flask yaml : http://git.${vminfo:rocky:public_ip}.sslip.io/gitea/workshop/_edit/main/fleet/flask/flask.yaml 
+The username is `gitea`.  
+The password is `Pa22word`.
 
 ### **On to Fleet**
