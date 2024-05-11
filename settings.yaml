@@ -5,8 +5,8 @@ metadata:
   namespace: hobbyfarm
 spec:
   count_capacity:
-    rocky-9.3: 202
-    ubuntu-22.04: 101
+    rocky-9.4: 202
+    ubuntu-24.04: 101
     sles-15-sp4: 101
   display_name: aws-env
   environment_specifics:
@@ -18,14 +18,14 @@ spec:
     vpc_security_group_id: sg-0c87eb1835fdbb24f
   provider: aws
   template_mapping:
-    rocky-9.3:
+    rocky-9.4:
       disk: "80"
-      image: ami-08f362c39d03a4eb5
+      image: ami-09eb79aa215c2a900
       instance_type: m6a.2xlarge
       ssh_username: rocky
-    ubuntu-22.04:
+    ubuntu-24.04:
       disk: "80"
-      image: ami-0c7217cdde317cfec
+      image: ami-04b70fa74e45c3917
       instance_type: m6a.2xlarge
       ssh_username: ubuntu
     sles-15-sp4:
@@ -48,7 +48,7 @@ spec:
 #    token-secret: do-token # a secret with key of 'token' and value
 #  count_capacity:
 #    rocky-9.3: 41
-#    ubuntu-22.04: 41
+#    ubuntu-24.04: 41
 #  display_name: do-env
 #  provider: digitalocean
 #  template_mapping:
@@ -56,7 +56,7 @@ spec:
 #      image: rockylinux-9-x64
 #      size: s-4vcpu-8gb-amd
 #      ssh_username: root
-#    ubuntu-22.04:
+#    ubuntu-24.04:
 #      image: ubuntu-22-04-x64
 #      size: s-4vcpu-8gb-amd
 #      ssh_username: root
@@ -76,7 +76,7 @@ spec:
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
 metadata:
-  name: rocky-9.3
+  name: rocky-9.4
   namespace: hobbyfarm
 spec:
   config_map:
@@ -93,13 +93,13 @@ spec:
         - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
         - sysctl -p
         - echo "export PATH=/root/.local/bin:/root/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin/" > /root/.bashrc
-  image: rocky-9.3
-  name: rocky-9.3
+  image: rocky-9.4
+  name: rocky-9.4
 ---
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
 metadata:
-  name: ubuntu-22.04
+  name: ubuntu-24.04
   namespace: hobbyfarm
 spec:
   config_map:
@@ -112,8 +112,8 @@ spec:
         - systemctl disable ufw --now
         - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
         - sysctl -p
-  image: ubuntu-22.04
-  name: ubuntu-22.04
+  image: ubuntu-24.04
+  name: ubuntu-24.04
 ---
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
