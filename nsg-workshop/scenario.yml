@@ -8,7 +8,7 @@ pauseable: false
 steps: null
 tags: []
 virtualmachines:
-- rocky: rocky-9.3
+- rocky: rocky-9.4
   sles: sles-15-sp4
-  ubuntu: ubuntu-22.04
-  z_downstream: rocky-9.3
+  ubuntu: ubuntu-24.04
+  z_downstream: rocky-9.4

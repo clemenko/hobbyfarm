@@ -90,7 +90,7 @@ Now we can serve out the bits in either a registry or http server.
 nohup hauler store serve fileserver -s /opt/hauler/store & 
 ```
 
-There is also `hauler store serve fileserver -s /opt/hauler/store` for serving a registry.
+There is also `hauler store serve registry -s /opt/hauler/store` for serving a registry.
 We can check it **http://${vminfo:rocky:public_ip}.sslip.io:8080**  
 We can clearly ses how Hauler will accelerator the air gapping process.
 
