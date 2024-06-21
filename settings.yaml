@@ -30,7 +30,7 @@ spec:
       ssh_username: ubuntu
     sles-15-sp4:
       disk: "80"
-      image: ami-021b67c90e3e68a8f
+      image: ami-0e9777e8a2a5b54fb # ami-021b67c90e3e68a8f
       instance_type: m7a.2xlarge
       ssh_username: ec2-user
   ws_endpoint: hobby-shell.rfed.io
