@@ -91,10 +91,6 @@ helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --version 3.1.0 --set
 
 #--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
 
-# https://github.com/hobbyfarm/hf-provisioner-digitalocean
-# --set gargantua.image=ebauman/gargantua:pr-154-3
-# helm install hf-provisioner-digitalocean provisioner-digitalocean/chart/hf-provisioner-digitalocean --namespace hobbyfarm > /dev/null 2>&1
-
 sleep 60
 
 echo -e "$GREEN" "ok" "$NO_COLOR"
