@@ -103,7 +103,7 @@ spec:
       - nfs-common
       runcmd:
         - mkdir -p /etc/rancher/rke2/
-        - systemctl disable ufw --now
+        - apt remove ufw -y
         - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
         - sysctl -p
   image: ubuntu-24.04

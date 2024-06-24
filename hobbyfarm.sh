@@ -82,9 +82,6 @@ kubectl -n hobbyfarm create secret tls tls-hobbyfarm-certs  --cert=/Users/clemen
 kubectl create configmap rgs-logo -n hobbyfarm --from-file=rancher-labs-stacked-color.svg=images/RGS_Vertical.svg > /dev/null 2>&1
 
 ### add creds - set the variables on the shell
-# set export ACCESS_KEY=...
-# set export SECRET_KEY=...
-# set export DO_TOKEN=...
 kubectl create secret -n hobbyfarm generic aws-creds --from-literal=access_key=$HF_ACCESS_KEY --from-literal=secret_key=$HF_SECRET_KEY > /dev/null 2>&1
 kubectl create secret -n hobbyfarm generic do-token --from-literal=token=$DO_TOKEN > /dev/null 2>&1
 
