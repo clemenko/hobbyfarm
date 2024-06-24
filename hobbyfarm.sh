@@ -27,6 +27,8 @@ aws ec2 run-instances --tag-specifications 'ResourceType=instance,Tags=[{Key=Nam
 
 aws ec2 wait instance-running --filters Name=tag:Name,Values=clem_hobbyfarm
 
+sleep 10
+
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
 #check for SSH
@@ -87,9 +89,9 @@ kubectl create secret -n hobbyfarm generic aws-creds --from-literal=access_key=$
 kubectl create secret -n hobbyfarm generic do-token --from-literal=token=$DO_TOKEN > /dev/null 2>&1
 
 ### Install Hobbyfarm
-helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --version 3.1.0 --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain --set ui.config.title="RGS - Workshop"  --set ui.config.login.logo=https://raw.githubusercontent.com/clemenko/hobbyfarm/main/images/RGS_Vertical.svg --set terraform.enabled=true --set shell.replicas=2 --set general.dynamicBaseNamePrefix="clem" --set dynamicBaseNamePrefix.scheduledBaseNamePrefix="clem" --set admin.config.title="RGS - Workshop" --set admin.config.login.customlogo=rgs-logo  > /dev/null 2>&1
+helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain --set ui.config.title="RGS - Workshop"  --set ui.config.login.logo=https://raw.githubusercontent.com/clemenko/hobbyfarm/main/images/RGS_Vertical.svg --set terraform.enabled=true  --set general.dynamicBaseNamePrefix="clem" --set dynamicBaseNamePrefix.scheduledBaseNamePrefix="clem" --set admin.config.title="RGS - Workshop" --set admin.config.login.customlogo=rgs-logo  > /dev/null 2>&1
 
-#--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO'
+#--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO' --version 3.1.0 
 
 sleep 60
 

@@ -1,5 +1,5 @@
 +++
-title = "RKE2 - Install - Control Plane - rocky"
+title = "RKE2 - Install - Control Plane - server"
 weight = 2
 +++
 
@@ -9,7 +9,7 @@ Let's start with the control plane node.
 
 We need to sudo and create an account and directory.
 
-```ctr:rocky
+```ctr:server
 sudo -i
 ```
 
@@ -17,9 +17,9 @@ on to the config yaml
 
 ### **B. config - /etc/rancher/rke2/config.yaml**
 
-Next we create a STIG config yaml on rocky.
+Next we create a STIG config yaml on server.
 
-```file:yaml:/etc/rancher/rke2/config.yaml:rocky
+```file:yaml:/etc/rancher/rke2/config.yaml:server
 #profile: cis-1.23
 token: bootStrapAllTheThings
 selinux: true
@@ -53,7 +53,7 @@ kubelet-arg:
 We need to add one more file for the STIG  
 audit - /etc/rancher/rke2/audit-policy.yaml
 
-```file:yaml:/etc/rancher/rke2/audit-policy.yaml:rocky
+```file:yaml:/etc/rancher/rke2/audit-policy.yaml:server
 apiVersion: audit.k8s.io/v1
 kind: Policy
 metadata:
@@ -75,7 +75,7 @@ Great. We have all the files setup. We can now install rke2 and start it.
 
 Since we are online we can `curl|bash`. See the docs for the airgap install.
 
-```ctr:rocky
+```ctr:server
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.28 sh - 
 systemctl enable --now rke2-server.service
 ```
@@ -84,7 +84,7 @@ systemctl enable --now rke2-server.service
 
 We need to set some environment variables.
 
-```ctr:rocky
+```ctr:server
 echo 'export PATH=$PATH:/usr/local/bin/:/var/lib/rancher/rke2/bin/' >> ~/.bashrc
 echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml " >> ~/.bashrc
 source ~/.bashrc

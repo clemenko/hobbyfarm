@@ -5,9 +5,9 @@ weight = 5
 
 ### **A. install helm**
 
-We will need helm on rocky
+We will need helm on server
 
-```ctr:rocky
+```ctr:server
 curl -s https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```
 
@@ -15,7 +15,7 @@ curl -s https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | ba
 
 We need to add the helm repos for CertManager and Rancher. Then we install.
 
-```ctr:rocky
+```ctr:server
 # helm repo add
 helm repo add rancher-latest https://releases.rancher.com/server-charts/latest --force-update
 helm repo add jetstack https://charts.jetstack.io --force-update
@@ -25,19 +25,19 @@ helm repo add jetstack https://charts.jetstack.io --force-update
 
 We use `helm upgrade -i` to install.
 
-```ctr:rocky
+```ctr:server
 # helm install cert-manager
 helm upgrade -i cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --set installCRDs=true
 
 # helm install rancher
-helm upgrade -i rancher rancher-latest/rancher --namespace cattle-system --create-namespace --set hostname=rancher.${vminfo:rocky:public_ip}.sslip.io --set bootstrapPassword=Pa22word --set replicas=1
+helm upgrade -i rancher rancher-latest/rancher --namespace cattle-system --create-namespace --set hostname=rancher.${vminfo:server:public_ip}.sslip.io --set bootstrapPassword=Pa22word --set replicas=1
 ```
 
 ### **D. check rancher pod**
 
 We should wait a few seconds for the pods to deploy.
 
-```ctr:rocky
+```ctr:server
 kubectl get pod -n cattle-system
 ```
 
@@ -45,7 +45,7 @@ kubectl get pod -n cattle-system
 
 Once the pod is running we can now navigate to:
 
-**https://rancher.${vminfo:rocky:public_ip}.sslip.io**  
+**https://rancher.${vminfo:server:public_ip}.sslip.io**  
 **The bootstrap is "Pa22word".**
 
 ### **F. accept eula**

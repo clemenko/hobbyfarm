@@ -5,9 +5,8 @@ metadata:
   namespace: hobbyfarm
 spec:
   count_capacity:
-    rocky-9.4: 202
+    rocky-9.4: 303
     ubuntu-24.04: 101
-    sles-15-sp4: 101
   display_name: aws-env
   environment_specifics:
     cred_secret: aws-creds
@@ -20,19 +19,14 @@ spec:
   template_mapping:
     rocky-9.4:
       disk: "80"
-      image: ami-09eb79aa215c2a900
+      image: ami-09d1c0fa810f404d6 # ami-09eb79aa215c2a900
       instance_type: m7a.2xlarge
       ssh_username: rocky
     ubuntu-24.04:
       disk: "80"
-      image: ami-04b70fa74e45c3917
+      image: ami-06f59e43b31a49ecc # ami-04b70fa74e45c3917
       instance_type: m7a.2xlarge
       ssh_username: ubuntu
-    sles-15-sp4:
-      disk: "80"
-      image: ami-0e9777e8a2a5b54fb # ami-021b67c90e3e68a8f
-      instance_type: m7a.2xlarge
-      ssh_username: ec2-user
   ws_endpoint: hobby-shell.rfed.io
 ---
 #apiVersion: hobbyfarm.io/v1
@@ -114,25 +108,6 @@ spec:
         - sysctl -p
   image: ubuntu-24.04
   name: ubuntu-24.04
----
-apiVersion: hobbyfarm.io/v1
-kind: VirtualMachineTemplate
-metadata:
-  name: sles-15-sp4
-  namespace: hobbyfarm
-spec:
-  config_map:
-    cloud-config: |
-      #cloud-config
-      packages:
-      - nfs-client
-      - open-iscsi
-      runcmd:
-        - mkdir -p /etc/rancher/rke2/
-        - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
-        - sysctl -p
-  image: sles-15-sp4
-  name: sles-15-sp4
 ---
 apiVersion: hobbyfarm.io/v1
 dataType: boolean

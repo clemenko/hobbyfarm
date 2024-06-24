@@ -1,5 +1,5 @@
 +++
-title = "RKE2 - Install - worker #2 - sles"
+title = "RKE2 - Install - worker #2 - worker2"
 weight = 4
 +++
 
@@ -7,7 +7,7 @@ weight = 4
 
 We need to sudo and create an account and directory.
 
-```ctr:sles
+```ctr:worker2
 sudo -i
 ```
 
@@ -15,7 +15,7 @@ sudo -i
 
 Next we create a config yaml on ubuntu.
 
-```file:yaml:/etc/rancher/rke2/config.yaml:sles
+```file:yaml:/etc/rancher/rke2/config.yaml:worker2
 #profile: cis-1.23
 selinux: true
 token: bootStrapAllTheThings
@@ -33,16 +33,16 @@ kubelet-arg:
 
 Great. We have all the files setup. We can now install rke2 and start it.
 
-```ctr:sles
+```ctr:worker2
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.28 INSTALL_RKE2_TYPE=agent sh - 
 systemctl enable --now rke2-agent.service
 ```
 
 ### **D. watch nodes**
 
-While this is starting we can watch the nodes join from the rocky node.
+While this is starting we can watch the nodes join from the server node.
 
-```ctr:rocky
+```ctr:server
 watch kubectl get node
 ```
 
