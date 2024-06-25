@@ -93,4 +93,4 @@ source ~/.bashrc
 kubectl get node
 ```
 
-## **next ubuntu worker**
+## **next worker 1**

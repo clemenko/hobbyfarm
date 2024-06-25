@@ -80,7 +80,6 @@ spec:
       - nfs-utils
       - cryptsetup
       - iscsi-initiator-utils
-      - vim
       runcmd:
         - mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
         - systemctl enable --now iscsid.service

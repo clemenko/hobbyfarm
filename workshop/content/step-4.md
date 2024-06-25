@@ -19,7 +19,7 @@ Next we create a config yaml on ubuntu.
 #profile: cis-1.23
 selinux: true
 token: bootStrapAllTheThings
-server: https://${vminfo:rocky:public_ip}:9345
+server: https://${vminfo:server:public_ip}:9345
 write-kubeconfig-mode: 0600
 kube-apiserver-arg:
 - authorization-mode=RBAC,Node

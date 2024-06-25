@@ -19,7 +19,7 @@ Next we create a config yaml on worker1.
 #profile: cis-1.23
 selinux: true
 token: bootStrapAllTheThings
-server: https://${vminfo:rocky:public_ip}:9345
+server: https://${vminfo:server:public_ip}:9345
 write-kubeconfig-mode: 0600
 kube-apiserver-arg:
 - authorization-mode=RBAC,Node
@@ -38,4 +38,4 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.28 INSTALL_RKE2_TYPE=age
 systemctl enable --now rke2-agent.service
 ```
 
-## **next sles worker**
+## **next worker 2**
