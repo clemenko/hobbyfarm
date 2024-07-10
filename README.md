@@ -19,10 +19,10 @@ default password **Pa22word**
 Each Student will get:
 
 * 4 VMS :
-  * **rocky** ( Rocky 9.3 ) - Control Plane/etcd/Worker
-  * **ubuntu** ( Ubuntu 22.04 ) - Worker
-  * **sles** ( SLES 15 - SP4 ) - Worker
-  * **z_downstream** ( Rocky 9.3 ) - Downstream
+  * **server** ( Rocky 9.4 ) - Control Plane/etcd/Worker
+  * **worker1** ( Rocky 9.4 ) - Worker
+  * **worker2** ( Rocky 9.4 ) - Worker
+  * **z_downstream** ( Ubuntu 24.04 ) - Downstream
 
 We are Deploying:
 
