@@ -51,7 +51,7 @@ sleep 30
 
 echo -e -n " installing rke2"
 
-ssh root@$server 'mkdir -p /etc/rancher/rke2/; useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U; echo -e "\ntls-san:\n- "'$server'"\nkubelet-arg:\n- max-pods=400" > /etc/rancher/rke2/config.yaml; curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.28 sh - ; systemctl enable --now rke2-server.service' > /dev/null 2>&1
+ssh root@$server 'mkdir -p /etc/rancher/rke2/; useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U; echo -e "\ntls-san:\n- "'$server'"\nkubelet-arg:\n- max-pods=400" > /etc/rancher/rke2/config.yaml; curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.30 sh - ; systemctl enable --now rke2-server.service' > /dev/null 2>&1
 
 sleep 10
 

@@ -20,12 +20,12 @@ spec:
     rocky-9.4:
       disk: "80"
       image: ami-09d1c0fa810f404d6 # ami-09eb79aa215c2a900
-      instance_type: m7a.2xlarge
+      instance_type: m6a.2xlarge
       ssh_username: rocky
     ubuntu-24.04:
       disk: "80"
       image: ami-06f59e43b31a49ecc # ami-04b70fa74e45c3917
-      instance_type: m7a.2xlarge
+      instance_type: m6a.2xlarge
       ssh_username: ubuntu
   ws_endpoint: hobby-shell.rfed.io
 ---

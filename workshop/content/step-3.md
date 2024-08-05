@@ -16,7 +16,7 @@ sudo -i
 Next we create a config yaml on worker1.
 
 ```file:yaml:/etc/rancher/rke2/config.yaml:worker1
-#profile: cis-1.23
+#profile: cis
 selinux: true
 token: bootStrapAllTheThings
 server: https://${vminfo:server:public_ip}:9345
@@ -34,7 +34,7 @@ kubelet-arg:
 Great. We have all the files setup. We can now install rke2 and start it.
 
 ```ctr:worker1
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.28 INSTALL_RKE2_TYPE=agent sh - 
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.30 INSTALL_RKE2_TYPE=agent sh - 
 systemctl enable --now rke2-agent.service
 ```
 

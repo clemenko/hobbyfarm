@@ -20,7 +20,7 @@ on to the config yaml
 Next we create a STIG config yaml on server.
 
 ```file:yaml:/etc/rancher/rke2/config.yaml:server
-#profile: cis-1.23
+#profile: cis
 token: bootStrapAllTheThings
 selinux: true
 secrets-encryption: true
@@ -76,7 +76,7 @@ Great. We have all the files setup. We can now install rke2 and start it.
 Since we are online we can `curl|bash`. See the docs for the airgap install.
 
 ```ctr:server
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.28 sh - 
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.30 sh - 
 systemctl enable --now rke2-server.service
 ```
 
