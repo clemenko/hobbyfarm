@@ -37,7 +37,7 @@ We are building:
   * **local** 3 nodes/vms
   * **downstream** 1 node - downstream
 
-Check out [Content - Step 1](https://github.com/clemenko/hobbyfarm/blob/main/nsg-workshop/content/step-1.md) of the content.
+Check out [Content - Step 1](https://github.com/clemenko/hobbyfarm/blob/main/workshop/content/step-1.md) of the content.
 
 Hope you enjoy.
 
