@@ -12,6 +12,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -29,6 +30,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -46,6 +48,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -63,6 +66,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -81,6 +85,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -98,6 +103,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -115,6 +121,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -132,6 +139,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -149,6 +157,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -166,6 +175,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -183,6 +193,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -200,6 +211,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -217,6 +229,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -234,6 +247,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -251,6 +265,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -268,6 +283,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -285,6 +301,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -302,6 +319,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -319,6 +337,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -336,6 +355,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -353,6 +373,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -370,6 +391,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -387,6 +409,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -404,6 +427,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -421,6 +445,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -438,6 +463,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -455,6 +481,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -472,6 +499,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -489,6 +517,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -506,6 +535,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -523,6 +553,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -540,6 +571,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -557,6 +589,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -574,6 +607,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -591,6 +625,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -608,6 +643,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -625,6 +661,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -642,6 +679,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -659,6 +697,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -676,6 +715,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -693,6 +733,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -710,6 +751,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -727,6 +769,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -744,6 +787,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -761,6 +805,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -778,6 +823,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -795,6 +841,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -812,6 +859,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -829,6 +877,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -846,6 +895,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -863,6 +913,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -880,6 +931,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -897,6 +949,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -914,6 +967,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -931,6 +985,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -948,6 +1003,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -965,6 +1021,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -982,6 +1039,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -999,6 +1057,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1016,6 +1075,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1033,6 +1093,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1050,6 +1111,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1067,6 +1129,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1084,6 +1147,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1101,6 +1165,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1118,6 +1183,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1135,6 +1201,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1152,6 +1219,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1169,6 +1237,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1186,6 +1255,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1203,6 +1273,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1220,6 +1291,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1237,6 +1309,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1254,6 +1327,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1271,6 +1345,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1288,6 +1363,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1305,6 +1381,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1322,6 +1399,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1339,6 +1417,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1356,6 +1435,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1373,6 +1453,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1390,6 +1471,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1407,6 +1489,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1424,6 +1507,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1441,6 +1525,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1458,6 +1543,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1475,6 +1561,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1492,6 +1579,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1509,6 +1597,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1526,6 +1615,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1543,6 +1633,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1560,6 +1651,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1577,6 +1669,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1594,6 +1687,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1611,6 +1705,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1628,6 +1723,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1645,6 +1741,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1662,6 +1759,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1679,6 +1777,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
@@ -1696,6 +1795,7 @@ spec:
     access_codes:
     - workshop
     settings:
+      bashbrawl_enabled: "true"
       ctr_enabled: "true"
       ctxAccessCode: example-access-code
       terminal_fontSize: "14"
