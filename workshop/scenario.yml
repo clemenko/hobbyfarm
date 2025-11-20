@@ -11,4 +11,3 @@ virtualmachines:
 - server: rocky-9.4
   worker1: rocky-9.4
   worker2: rocky-9.4
-  z_downstream: ubuntu-24.04

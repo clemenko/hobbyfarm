@@ -13,14 +13,14 @@ spec:
     executor_image: rancher/terraform-controller-executor:v0.0.13-alpha1
     module: tf-module-aws
     region: us-east-1
-    subnet: subnet-0ca6bea3c0d18b6f3
-    vpc_security_group_id: sg-0c87eb1835fdbb24f
+    subnet: subnet-0d77b87a
+    vpc_security_group_id: sg-vpc-49ab052c
   provider: aws
   template_mapping:
     rocky-9.4:
       disk: "80"
       image: ami-09d1c0fa810f404d6 # ami-09eb79aa215c2a900
-      instance_type: m6a.2xlarge
+      instance_type: m6a.large
       ssh_username: rocky
   ws_endpoint: hobby-shell.rfed.io
 ---
@@ -83,25 +83,6 @@ spec:
         - echo "export PATH=/root/.local/bin:/root/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin/" > /root/.bashrc
   image: rocky-9.4
   name: rocky-9.4
----
-apiVersion: hobbyfarm.io/v1
-kind: VirtualMachineTemplate
-metadata:
-  name: ubuntu-24.04
-  namespace: hobbyfarm
-spec:
-  config_map:
-    cloud-config: |
-      #cloud-config
-      packages:
-      - nfs-common
-      runcmd:
-        - mkdir -p /etc/rancher/rke2/
-        - apt remove ufw -y
-        - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
-        - sysctl -p
-  image: ubuntu-24.04
-  name: ubuntu-24.04
 ---
 apiVersion: hobbyfarm.io/v1
 dataType: boolean
