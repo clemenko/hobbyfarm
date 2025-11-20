@@ -5,8 +5,7 @@ metadata:
   namespace: hobbyfarm
 spec:
   count_capacity:
-    rocky-9.4: 303
-    ubuntu-24.04: 101
+    rocky-9.4: 30
   display_name: aws-env
   environment_specifics:
     cred_secret: aws-creds
@@ -14,13 +13,13 @@ spec:
     module: tf-module-aws
     region: us-east-1
     subnet: subnet-0d77b87a
-    vpc_security_group_id: sg-vpc-49ab052c
+    vpc_security_group_id: sg-2c4e0549
   provider: aws
   template_mapping:
     rocky-9.4:
       disk: "80"
-      image: ami-09d1c0fa810f404d6 # ami-09eb79aa215c2a900
-      instance_type: m6a.large
+      image: ami-09d1c0fa810f404d6
+      instance_type: c6a.large
       ssh_username: rocky
   ws_endpoint: hobby-shell.rfed.io
 ---
@@ -60,7 +59,7 @@ spec:
   git:
     branch: master
     intervalSeconds: 150
-    url: https://github.com/hobbyfarm/tf-module-aws 
+    url: https://github.com/clemenko/tf-module-aws 
 ---
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
