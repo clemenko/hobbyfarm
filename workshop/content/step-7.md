@@ -1,34 +1,79 @@
 +++
-title = "NeuVector Install"
+title = "PortWorx Install"
 weight = 7
 +++
 
-We can continue to use helm.
+The good news is that installing PX-CSI is fairly simple. These are the steps with some fake values.
 
-### **A. add helm repo and install**
+### **A. create namespace and json**
 
-We need to add the helm repo for NeuVector.
-
-```ctr:server
-# helm repo add
-helm repo add neuvector https://neuvector.github.io/neuvector-helm/ --force-update
-
-# helm install 
-helm upgrade -i neuvector --namespace cattle-neuvector-system neuvector/core --create-namespace --set manager.svc.type=ClusterIP --set controller.pvc.enabled=true --set controller.pvc.capacity=500Mi --set controller.ranchersso.enabled=true --set global.cattle.url=https://rancher.${vminfo:server:public_ip}.sslip.io
-```
-
-### **B. Wait and watch the pods deploy**
-
-We should wait a few seconds for the pods to deploy.
+We are simulating the install. The IP of the array is fake. The API token is also fake.
 
 ```ctr:server
-kubectl get pod -n cattle-neuvector-system
+# get latest version of PX-CSI
+PX_CSI_VER=$(curl -sL https://dzver.rfed.io/json | jq -r .portworx)
+
+# create namespace
+kubectl create ns portworx
+
+# create and add secret
+cat << EOF > pure.json 
+{
+    "FlashArrays": [
+        {
+            "MgmtEndPoint": "192.168.1.11",
+            "APIToken": "934f95b6-6d1d-ee91-d210-6ed9bce13ad1"
+        }
+    ]
+}
+EOF
+
+kubectl create secret generic px-pure-secret -n portworx --from-file=pure.json=pure.json
 ```
 
-### **C. navigate to site**
+### **B. Deploy the operator**
 
-Now we can use the Rancher proxy to get to the dashboard.
+```ctr:server
+kubectl apply -f 'https://install.portworx.com/'$PX_CSI_VER'?comp=pxoperator&oem=px-csi&kbver=1.33.5&ns=portworx'
+```
 
-**https://rancher.${vminfo:server:public_ip}.sslip.io/api/v1/namespaces/cattle-neuvector-system/services/https:neuvector-service-webui:8443/proxy/#/login**
+### **C. Add the StorageCluster object**
+
+We have a couple of options here.
+- "portworx.io/health-check: "skip" " for running on a single node
+- value: "NVMEOF-TCP"
+
+```ctr:server
+cat << EOF | kubectl apply -n portworx  -f -
+kind: StorageCluster
+apiVersion: core.libopenstorage.org/v1
+metadata:
+  name: px-cluster
+  namespace: portworx
+  annotations:
+    portworx.io/misc-args: "--oem px-csi"
+    #portworx.io/health-check: "skip"
+spec:
+  image: portworx/px-pure-csi-driver:$PX_CSI_VER
+  imagePullPolicy: IfNotPresent
+  csi:
+    enabled: true
+  monitoring:
+    telemetry:
+      enabled: false
+    prometheus:
+      enabled: false
+      exportMetrics: false
+  env:
+  - name: PURE_FLASHARRAY_SAN_TYPE
+    value: "ISCSI"
+EOF
+```
+
+### **D. verify**
+
+```ctr:server
+kubectl get pod -n portworx
+```
 
 ### **On to GitOPs**

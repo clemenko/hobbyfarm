@@ -14,14 +14,14 @@ This training platform is open-source. And can be found at https://github.com/ho
 The good news is that all the fields are clickable and do not require copying and pasting. This will create great success.
 
 ####
-Rancher Government Workshop is designed to walk attendees through how to install Rancher’s stack manor. The workshop includes several methods for deploying and managing applications.
+Just a workshop to play with RKE2, Rancher, and Portworx.
 
 ####
 Deploying:
 * **RKE2** ( STIG'd ) - Kubernetes
 * **Rancher** - Multi Cluster Manager
 * **Longhorn** - Stateful Storage
-* **NeuVector** - Container Security
+* **PortWorx* - Better Stateful Storage
 * **Gitea** - Version Control
 
 ####
@@ -30,10 +30,6 @@ We are building:
   * **server** ( Rocky 9.4 ) - Control Plane/etcd/Worker
   * **worker1** ( Rocky 9.4 ) - Worker
   * **worker2** ( Rocky 9.4 ) - Worker
-  * **z_downstream** ( Ubuntu 24.04 ) - Downstream
-* 2 clusters:
-  * **local** 3 nodes/vms
-  * **downstream** 1 node - downstream
 
 ####
 Have FUN! Ask Questions!

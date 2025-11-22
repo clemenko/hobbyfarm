@@ -7,7 +7,7 @@ weight = 12
 
 For all the docs check out **https://hauler.dev**.
 
-![hauler logo](https://rancherfederal.github.io/hauler-docs/img/rgs-hauler-logo.png)
+![hauler logo](https://raw.githubusercontent.com/hauler-dev/hauler-docs/refs/heads/main/static/img/rgs-hauler-logo.png)
 
 ### **A. install hauler**
 
@@ -28,7 +28,7 @@ mkdir -p /opt/hauler; cd /opt/hauler
 Here is an example manifest. We are going to write it to `/opt/hauler/demo_manifest.yaml`.
 
 ```file:yaml:/opt/hauler/demo_manifest.yaml:server
-apiVersion: content.hauler.cattle.io/v1alpha1
+apiVersion: content.hauler.cattle.io/v1
 kind: Images
 metadata:
   name: hauler-content-images-example
@@ -41,7 +41,7 @@ spec:
     - name: neuvector/scanner
     - name: docker.io/neuvector/updater:latest
 ---
-apiVersion: content.hauler.cattle.io/v1alpha1
+apiVersion: content.hauler.cattle.io/v1
 kind: Charts
 metadata:
   name: hauler-content-charts-example
@@ -53,7 +53,7 @@ spec:
       repoURL: https://releases.rancher.com/server-charts/stable
       version: 2.8.2
 ---
-apiVersion: content.hauler.cattle.io/v1alpha1
+apiVersion: content.hauler.cattle.io/v1
 kind: Files
 metadata:
   name: hauler-content-files-example
@@ -103,7 +103,7 @@ Let's create a "Haul" with all the Images/Charts/Files for airgapping. It will t
 curl -L https://raw.githubusercontent.com/clemenko/hauler_hacks/main/make_hauler.sh -o /opt/hauler/make_hauler.sh
 chmod 755 /opt/hauler/make_hauler.sh
 cd /opt/hauler; ./make_hauler.sh
-hauler store sync -f airgap_hauler.yaml hauler store info -s /opt/hauler/airstore
+hauler store sync -f airgap_hauler.yaml
 ```
 
 Did we get everything?

@@ -51,7 +51,7 @@ sleep 30
 
 echo -e -n " installing rke2"
 
-ssh root@$server 'mkdir -p /etc/rancher/rke2/; useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U; echo -e "\ntls-san:\n- "'$server'"\nkubelet-arg:\n- max-pods=400" > /etc/rancher/rke2/config.yaml; curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.30 sh - ; systemctl enable --now rke2-server.service' > /dev/null 2>&1
+ssh root@$server 'mkdir -p /etc/rancher/rke2/; useradd -r -c "etcd user" -s /sbin/nologin -M etcd -U; echo -e "\ntls-san:\n- "'$server'"\nkubelet-arg:\n- max-pods=400" > /etc/rancher/rke2/config.yaml; curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=stable sh - ; systemctl enable --now rke2-server.service' > /dev/null 2>&1
 
 sleep 10
 
@@ -84,8 +84,6 @@ kubectl create secret -n hobbyfarm generic aws-creds --from-literal=access_key=$
 
 ### Install Hobbyfarm
 helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain --set ui.config.title="k8s - Workshop" --set terraform.enabled=true  --set general.dynamicBaseNamePrefix="clem" --set dynamicBaseNamePrefix.scheduledBaseNamePrefix="clem" --set admin.config.title="k8s - Workshop" --set ingress.className=nginx > /dev/null 2>&1
-
-#--set users.admin.enabled=true --set users.admin.password='$2a$10$QkpisIWlrq/uA/BWcOX0/uYWinHcbbtbPMomY6tp3Gals0LbuFEDO' --version 3.1.0 
 
 sleep 60
 
