@@ -118,7 +118,7 @@ function kill () {
 if [ $(awslist | wc -l) = 1 ]; then
   echo -e -n " killing hobbyfarm"
 #  for i in $(dolist | awk '{print $2}'); do doctl compute droplet delete --force $i; done
-  aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters Name=tag:Name,Values=clem_hobbyfarm --query 'Reservations[*].Instances[*].InstanceId' --output text) > /dev/null 2>&1
+  aws ec2 terminate-instances --instance-ids $(aws ec2 describe-instances --filters Name=tag:Name,Values=clem* --query 'Reservations[*].Instances[*].InstanceId' --output text) > /dev/null 2>&1
   
   for i in $(aws ec2 describe-key-pairs  | jq -r '.KeyPairs[] | select(.KeyName | contains("clem")) | .KeyName'); do aws ec2 delete-key-pair --key-name $i > /dev/null 2>&1 ; done
 
