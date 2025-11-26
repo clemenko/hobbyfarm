@@ -16,17 +16,9 @@ sudo -i
 Next we create a config yaml on ubuntu.
 
 ```file:yaml:/etc/rancher/rke2/config.yaml:worker2
-#profile: cis
 selinux: true
 token: bootStrapAllTheThings
 server: https://${vminfo:server:public_ip}:9345
-write-kubeconfig-mode: 0600
-kube-apiserver-arg:
-- authorization-mode=RBAC,Node
-kubelet-arg:
-- protect-kernel-defaults=true
-- read-only-port=0
-- authorization-mode=Webhook
 ```
 
 ### **C. rke2 agent install**

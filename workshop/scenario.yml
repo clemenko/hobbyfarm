@@ -2,7 +2,7 @@ categories: []
 description: k8s - Workshop
 id: ""
 keepalive_duration: 60m
-name: Workshop
+name: K8s for SEs Workshop
 pause_duration: 2h
 pauseable: false
 steps: null
