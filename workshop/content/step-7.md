@@ -5,12 +5,12 @@ weight = 7
 
 The good news is that installing PX-CSI is fairly simple. These are the steps with some fake values.
 
-### **A. enable multipathd**
+### **A. check for multipathd**
 
 ```ctr:server
 cat /etc/multipath.conf
 
-systemctl restart multipathd
+systemctl status multipathd
 ```
 
 ### **B. create namespace and json**

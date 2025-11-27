@@ -74,12 +74,14 @@ spec:
       - nfs-utils
       - cryptsetup
       - iscsi-initiator-utils
+      - device-mapper-multipath
       runcmd:
         - mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/
         - systemctl enable --now iscsid.service
         - curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt
         - sysctl -p
         - curl -L -o /etc/multipath.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/multipath.conf
+        - systemctl enable --now  multipathd
         - echo "export PATH=/root/.local/bin:/root/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin/" > /root/.bashrc
   image: rocky-9.4
   name: rocky-9.4
