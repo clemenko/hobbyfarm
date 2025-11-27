@@ -19,7 +19,7 @@ spec:
     rocky-9.4:
       disk: "80"
       image: ami-09d1c0fa810f404d6
-      instance_type: c6a.large
+      instance_type: c6a.xlarge
       ssh_username: rocky
   ws_endpoint: hobby-shell.rfed.io
 ---

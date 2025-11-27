@@ -5,6 +5,8 @@ weight = 7
 
 The good news is that installing PX-CSI is fairly simple. These are the steps with some fake values.
 
+First we should look at the docs : https://docs.portworx.com/portworx-csi/
+
 ### **A. check for multipathd**
 
 ```ctr:server
