@@ -11,8 +11,6 @@ First we should look at the docs : https://docs.portworx.com/portworx-csi/
 
 ```ctr:server
 cat /etc/multipath.conf
-
-systemctl status multipathd
 ```
 
 ### **B. create namespace and json**
@@ -104,4 +102,4 @@ verify storagecluster
 kubectl get storagecluster -A
 ```
 
-### **On to GitOPs**
+### **On to Hauler**

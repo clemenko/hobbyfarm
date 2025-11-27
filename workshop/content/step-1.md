@@ -22,7 +22,6 @@ Deploying:
 * **Rancher** - Multi Cluster Manager
 * **Longhorn** - Stateful Storage
 * **PortWorx** - Better Stateful Storage
-* **Gitea** - Version Control
 
 ####
 We are building:
