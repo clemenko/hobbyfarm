@@ -30,7 +30,7 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=stable INSTALL_RKE2_TYPE=ag
 systemctl enable --now rke2-agent.service
 ```
 
-### **D. watch nodes**
+### **D. watch nodes on server node**
 
 While this is starting we can watch the nodes join from the server node.
 

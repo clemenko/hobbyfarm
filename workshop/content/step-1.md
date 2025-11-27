@@ -21,7 +21,7 @@ Deploying:
 * **RKE2** ( STIG'd ) - Kubernetes
 * **Rancher** - Multi Cluster Manager
 * **Longhorn** - Stateful Storage
-* **PortWorx* - Better Stateful Storage
+* **PortWorx** - Better Stateful Storage
 * **Gitea** - Version Control
 
 ####

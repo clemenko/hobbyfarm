@@ -40,11 +40,8 @@ kubectl get sc
 
 ### **D. navigate to site**
 
-Now we can use the Rancher proxy to get to the dashboard.
-
-**https://rancher.${vminfo:server:public_ip}.sslip.io/k8s/clusters/local/api/v1/namespaces/longhorn-system/services/http:longhorn-frontend:80/proxy/#/dashboard**
-
-or direct.
+Now we can check out the dashbaord.
 
 **https://longhorn.${vminfo:server:public_ip}.sslip.io**
-### **On to NeuVector**
+
+### **On to Portworx**

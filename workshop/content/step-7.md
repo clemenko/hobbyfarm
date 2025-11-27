@@ -5,7 +5,15 @@ weight = 7
 
 The good news is that installing PX-CSI is fairly simple. These are the steps with some fake values.
 
-### **A. create namespace and json**
+### **A. enable multipathd**
+
+```ctr:server
+cat /etc/multipath.conf
+
+systemctl restart multipathd
+```
+
+### **B. create namespace and json**
 
 We are simulating the install. The IP of the array is fake. The API token is also fake.
 
@@ -31,13 +39,19 @@ EOF
 kubectl create secret generic px-pure-secret -n portworx --from-file=pure.json=pure.json
 ```
 
-### **B. Deploy the operator**
+### **C. Deploy the operator**
 
 ```ctr:server
 kubectl apply -f 'https://install.portworx.com/'$PX_CSI_VER'?comp=pxoperator&oem=px-csi&kbver=1.33.5&ns=portworx'
 ```
 
-### **C. Add the StorageCluster object**
+Check it is up.
+
+```ctr:server
+kubectl get pod -n portworx
+```
+
+### **D. Add the StorageCluster object**
 
 We have a couple of options here.
 - "portworx.io/health-check: "skip" " for running on a single node
@@ -70,10 +84,22 @@ spec:
 EOF
 ```
 
-### **D. verify**
+### **E. verify**
 
 ```ctr:server
 kubectl get pod -n portworx
+```
+
+verify storageclass
+
+```ctr:server
+kubectl get storageclass
+```
+
+verify storagecluster
+
+```ctr:server
+kubectl get storagecluster -A
 ```
 
 ### **On to GitOPs**
