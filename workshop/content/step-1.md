@@ -18,14 +18,14 @@ Just a workshop to play with RKE2, Rancher, and Portworx.
 
 ####
 Deploying:
-* **RKE2** ( STIG'd ) - Kubernetes
+* **RKE2** - Kubernetes
 * **Rancher** - Multi Cluster Manager
 * **Longhorn** - Stateful Storage
 * **PortWorx** - Better Stateful Storage
 
 ####
 We are building:
-* 4 VMS :
+* 3 VMS :
   * **server** ( Rocky 9.4 ) - Control Plane/etcd/Worker
   * **worker1** ( Rocky 9.4 ) - Worker
   * **worker2** ( Rocky 9.4 ) - Worker
