@@ -27,18 +27,7 @@ kubectl  get pod -n longhorn-system
 kubectl get sc
 ```
 
-### **C. Add encryption StorageClass**
-
-Longhorn has the ability for encryption at rest. We need to enable it.
-
-```ctr:server
-kubectl apply -f https://raw.githubusercontent.com/clemenko/k8s_yaml/master/longhorn_encryption.yml
-
-# verify the new storageclass
-kubectl get sc
-```
-
-### **D. navigate to site**
+### **C. navigate to site**
 
 Now we can check out the dashbaord.
 

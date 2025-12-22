@@ -17,9 +17,10 @@ on to the config yaml
 
 ### **B. config - /etc/rancher/rke2/config.yaml**
 
-Next we create a STIG config yaml on server.
+Next we create a config yaml on server.
 
 ```file:yaml:/etc/rancher/rke2/config.yaml:server
+selinux: true
 token: bootStrapAllTheThings
 ```
 

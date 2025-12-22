@@ -7,10 +7,12 @@ The good news is that installing PX-CSI is fairly simple. These are the steps wi
 
 First we should look at the docs : https://docs.portworx.com/portworx-csi/
 
-### **A. check for multipathd**
+### **A. check for multipathd and iscsiadm**
 
 ```ctr:server
 cat /etc/multipath.conf
+
+systemctl -t service --state=running --no-legend --no-pager |grep -e multipathd -e iscsid
 ```
 
 ### **B. create namespace and json**
@@ -30,7 +32,8 @@ cat << EOF > pure.json
     "FlashArrays": [
         {
             "MgmtEndPoint": "192.168.1.11",
-            "APIToken": "934f95b6-6d1d-ee91-d210-6ed9bce13ad1"
+            "APIToken": "934f95b6-6d1d-ee91-d210-6ed9bce13ad1",
+            "NFSEndPoint": "192.168.1.8"
         }
     ]
 }

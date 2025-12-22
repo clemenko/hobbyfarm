@@ -1,9 +1,15 @@
 # clemenko
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: flask
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: flask
+  namespace: flask
 spec:
   rules:
   - host: flask.X.X.X.X.sslip.io
@@ -21,6 +27,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask
+  namespace: flask
   labels:
     app: flask
 spec:
@@ -46,6 +53,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis
+  namespace: flask
   labels:
     app: redis
 spec:
@@ -75,33 +83,24 @@ spec:
         persistentVolumeClaim:
           claimName: redis
 ---
-
-apiVersion: v1
-kind: Secret
-metadata:
-  name: redis
-stringData:
-  CRYPTO_KEY_VALUE: "flaskisthebestdemoapplication"
-  CRYPTO_KEY_PROVIDER: "secret"
-
----
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: redis
+  namespace: flask
   labels:
     app: redis
 spec:
-#  storageClassName: "longhorn-crypto-per-volume"
   accessModes: 
     - ReadWriteMany
   resources:
     requests:
-      storage: 250Mi
+      storage: 500Mi
 ---
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: flask
   labels:
     name: flask
     kubernetes.io/name: "flask"
@@ -118,6 +117,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: flask
   labels:
     name: redis
     kubernetes.io/name: "redis"
