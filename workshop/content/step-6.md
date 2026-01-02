@@ -3,7 +3,6 @@ title = "Longhorn Install"
 weight = 6
 +++
 
-
 ## **Longhorn - Install**
 
 ### **A. add helm repo and install**
