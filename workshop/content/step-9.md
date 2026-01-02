@@ -24,9 +24,15 @@ Now the app.
 curl -L https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/fleet/flask/flask.yaml | sed  's/X.X.X.X/${vminfo:server:public_ip}/g' | kubectl apply -f - 
 ```
 
+check the pods
+
+```ctr:server
+kubectl get pod,ingress -n flask
+```
+
 ### **B. navigate to site**
 
-Now we can check out the dashbaord.
+Now we can check out the dashboard.
 
 **https://flask.${vminfo:server:public_ip}.sslip.io**
 
@@ -35,6 +41,7 @@ Now we can check out the dashbaord.
 For fun let's delete the redis pod.
 
 ```ctr:server
-kubectl delete pod -n flask redis......
+kubectl delete pod -n flask redis
 ```
 
+Does it come back?
