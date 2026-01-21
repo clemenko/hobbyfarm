@@ -5,7 +5,7 @@ metadata:
   namespace: hobbyfarm
 spec:
   count_capacity:
-    rocky-9.4: 30
+    rocky-9.4: 50
   display_name: aws-env
   environment_specifics:
     cred_secret: aws-creds

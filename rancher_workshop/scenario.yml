@@ -1,0 +1,14 @@
+categories: []
+description: Rancher Workshop
+id: ""
+keepalive_duration: 60m
+name: Rancher Workshop
+pause_duration: 2h
+pauseable: false
+steps: null
+tags: []
+virtualmachines:
+- server: rocky-9.4
+  worker1: rocky-9.4
+  worker2: rocky-9.4
+  z_downstream: rocky-9.4
