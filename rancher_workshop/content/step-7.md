@@ -8,13 +8,11 @@ We can continue to use helm to install Gitea. https://gitea.com
 ### **A. add helm repo and install**
 
 ```ctr:server
-helm repo add gitea-charts https://dl.gitea.io/charts/ --force-update
-
-helm upgrade -i gitea gitea-charts/gitea --namespace gitea --create-namespace --set gitea.admin.password=Pa22word --set gitea.admin.username=gitea --set persistence.size=1Gi --set ingress.enabled=true --set ingress.hosts[0].host=git.${vminfo:server:public_ip}.sslip.io --set ingress.hosts[0].paths[0].path=/ --set ingress.hosts[0].paths[0].pathType=Prefix --set postgresql.enabled=false  --set postgresql-ha.enabled=false --set redis-cluster.enabled=false --set gitea.config.database.DB_TYPE=sqlite3 --set gitea.config.session.PROVIDER=memory  --set gitea.config.cache.ADAPTER=memory --set gitea.config.queue.TYPE=level 
+helm upgrade -i forgejo oci://code.forgejo.org/forgejo-helm/forgejo --namespace forgejo --create-namespace --set gitea.admin.password=Pa22word --set gitea.admin.username=gitea --set persistence.size=1Gi --set ingress.enabled=true --set ingress.hosts[0].host=git.${vminfo:server:public_ip}.sslip.io --set ingress.hosts[0].paths[0].path=/ --set ingress.hosts[0].paths[0].pathType=Prefix --set postgresql.enabled=false  --set postgresql-ha.enabled=false --set redis-cluster.enabled=false --set gitea.config.database.DB_TYPE=sqlite3 --set gitea.config.session.PROVIDER=memory  --set gitea.config.cache.ADAPTER=memory --set gitea.config.queue.TYPE=level 
 
 # wait for it to complete
 sleep 10
-kubectl wait --for condition=containersready -n gitea pod --all
+kubectl wait --for condition=containersready -n forgejo pod --all
 ```
 
 ### **B. Mirror upstream git repo**

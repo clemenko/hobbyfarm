@@ -3,7 +3,6 @@ title = "Longhorn Install"
 weight = 6
 +++
 
-
 ## **Longhorn - Install**
 
 ### **A. add helm repo and install**
@@ -11,11 +10,8 @@ weight = 6
 We need to add the helm repo and then we can install.
 
 ```ctr:server
-# helm repo add
-helm repo add longhorn https://charts.longhorn.io --force-update
-
 # helm install
-helm upgrade -i longhorn longhorn/longhorn --namespace longhorn-system --create-namespace
+helm upgrade -i longhorn longhorn --repo https://charts.longhorn.io -n longhorn-system --create-namespace --set ingress.enabled=true,ingress.host=longhorn.${vminfo:server:public_ip}.sslip.io 
 ```
 
 ### **B. Wait and watch the pods deploy**
