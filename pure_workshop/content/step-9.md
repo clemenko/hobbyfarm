@@ -21,7 +21,7 @@ What did we see?
 Now the app.
 
 ```ctr:server
-curl -L https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/fleet/flask/flask.yaml | sed  's/X.X.X.X/${vminfo:server:public_ip}/g' | kubectl apply -f - 
+curl -L https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/fleet/flask/flask.yaml | sed  's/X.X.X.X/${vminfo:server:public_ip}/g' | kubectl apply -f -n flask - 
 ```
 
 check the pods

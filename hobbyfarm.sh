@@ -95,8 +95,8 @@ kubectl apply -f settings.yaml > /dev/null 2>&1
 kubectl apply -f users.yaml > /dev/null 2>&1
 
 ## add content
-hfcli -k ~/.kube/config -n hobbyfarm apply scenario rancher_workshop rancher_workshop/ > /dev/null 2>&1
-hfcli -k ~/.kube/config -n hobbyfarm apply scenario pure_workshop pure_workshop/ > /dev/null 2>&1
+hfcli -k ~/.kube/config -n hobbyfarm apply scenario rancher rancher_workshop/ > /dev/null 2>&1
+hfcli -k ~/.kube/config -n hobbyfarm apply scenario pure pure_workshop/ > /dev/null 2>&1
 
 ############  end hobbyfarm install  ############
 
