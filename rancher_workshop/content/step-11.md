@@ -28,7 +28,7 @@ mkdir -p /opt/hauler; cd /opt/hauler
 Here is an example manifest. We are going to write it to `/opt/hauler/demo_manifest.yaml`.
 
 ```file:yaml:/opt/hauler/demo_manifest.yaml:server
-apiVersion: content.hauler.cattle.io/v1alpha1
+apiVersion: content.hauler.cattle.io/v1
 kind: Images
 metadata:
   name: hauler-content-images-example
