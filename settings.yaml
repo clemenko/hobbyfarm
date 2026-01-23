@@ -1,65 +1,51 @@
-apiVersion: hobbyfarm.io/v1
-kind: Environment
-metadata:
-  name: aws-env
-  namespace: hobbyfarm
-spec:
-  count_capacity:
-    rocky-9.4: 50
-  display_name: aws-env
-  environment_specifics:
-    cred_secret: aws-creds
-    executor_image: rancher/terraform-controller-executor:v0.0.13-alpha1
-    module: tf-module-aws
-    region: us-east-1
-    subnet: subnet-0d77b87a
-    vpc_security_group_id: sg-2c4e0549
-  provider: aws
-  template_mapping:
-    rocky-9.4:
-      disk: "80"
-      image: ami-09d1c0fa810f404d6
-      instance_type: c6a.2xlarge
-      ssh_username: rocky
-  ws_endpoint: hobby-shell.rfed.io
----
 #apiVersion: hobbyfarm.io/v1
 #kind: Environment
 #metadata:
-#  name: do-env
+#  name: aws-env
 #  namespace: hobbyfarm
-#  annotations:
-#    hobbyfarm.io/provisioner: digitalocean
 #spec:
-#  environment_specifics:
-#    region: nyc1 # any valid digitalocean region slug
-#    token-secret: do-token # a secret with key of 'token' and value
 #  count_capacity:
-#    rocky-9.3: 41
-#    ubuntu-24.04: 41
-#  display_name: do-env
-#  provider: digitalocean
+#    rocky-9.4: 50
+#  display_name: aws-env
+#  environment_specifics:
+#    cred_secret: aws-creds
+#    executor_image: rancher/terraform-controller-executor:v0.0.13-alpha1
+#    module: tf-module-aws
+#    region: us-east-1
+#    subnet: subnet-0d77b87a
+#    vpc_security_group_id: sg-2c4e0549
+#  provider: aws
 #  template_mapping:
-#    rocky-9.3:
-#      image: rockylinux-9-x64
-#      size: s-4vcpu-8gb-amd
-#      ssh_username: root
-#    ubuntu-24.04:
-#      image: ubuntu-22-04-x64
-#      size: s-4vcpu-8gb-amd
-#      ssh_username: root
+#    rocky-9.4:
+#      disk: "80"
+#      image: ami-09d1c0fa810f404d6
+#      instance_type: c6a.2xlarge
+#      ssh_username: rocky
 #  ws_endpoint: hobby-shell.rfed.io
 ---
-apiVersion: terraformcontroller.cattle.io/v1
-kind: Module
+apiVersion: hobbyfarm.io/v1
+kind: Environment
 metadata:
-  name: tf-module-aws
+  name: do-env
   namespace: hobbyfarm
+  annotations:
+    hobbyfarm.io/provisioner: digitalocean
 spec:
-  git:
-    branch: master
-    intervalSeconds: 150
-    url: https://github.com/clemenko/tf-module-aws 
+  environment_specifics:
+    region: nyc1
+    token-secret: do-token
+  count_capacity:
+    rocky-9.4: 100
+  display_name: do-env
+  dnssuffix: rfed.io
+  provider: digitalocean
+  ip_translation_map: {}
+  template_mapping:
+    rocky-9.4:
+      image: rockylinux-9-x64
+      size: s-4vcpu-8gb-amd
+      ssh_username: root
+  ws_endpoint: hobby-shell.rfed.io
 ---
 apiVersion: hobbyfarm.io/v1
 kind: VirtualMachineTemplate
@@ -120,7 +106,6 @@ valueType: scalar
 #  - workshop
 #status:
 #  active: true
-
 
 ## USER / RBAC
 
