@@ -69,7 +69,6 @@ echo -e "$GREEN" "ok" "$NO_COLOR"
 ############   hobbyfarm install   ############
 ### Add Helm Repo
 echo -e -n " - deploying hobbyfarm "
-helm repo add hobbyfarm https://hobbyfarm.github.io/hobbyfarm --force-update > /dev/null 2>&1
 
 ### Create Namespace
 kubectl create namespace hobbyfarm > /dev/null 2>&1
@@ -83,7 +82,7 @@ kubectl create secret -n hobbyfarm generic aws-creds --from-literal=access_key=$
 #kubectl create secret -n hobbyfarm generic do-token --from-literal=token=$DO_TOKEN > /dev/null 2>&1
 
 ### Install Hobbyfarm
-helm upgrade -i hobbyfarm hobbyfarm/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain --set ui.config.title="k8s - Workshop" --set terraform.enabled=true  --set general.dynamicBaseNamePrefix="clem" --set dynamicBaseNamePrefix.scheduledBaseNamePrefix="clem" --set admin.config.title="k8s - Workshop" --set ingress.className=nginx > /dev/null 2>&1
+helm upgrade -i hobbyfarm hobbyfarm --repo  https://hobbyfarm.github.io/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain --set ui.config.title="k8s - Workshop" --set terraform.enabled=true  --set ingress.className=nginx > /dev/null 2>&1
 
 sleep 60
 
