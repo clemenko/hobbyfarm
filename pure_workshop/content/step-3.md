@@ -3,15 +3,7 @@ title = "RKE2 - Install - worker #1 - worker1"
 weight = 3
 +++
 
-### **A. sudo**
-
-We need to sudo and create an account and directory.
-
-```ctr:worker1
-sudo -i
-```
-
-### **B. config - /etc/rancher/rke2/config.yaml**
+### **A. config - /etc/rancher/rke2/config.yaml**
 
 Next we create a config yaml on worker1.
 
@@ -21,7 +13,7 @@ token: bootStrapAllTheThings
 server: https://${vminfo:server:public_ip}:9345
 ```
 
-### **C. rke2 agent install**
+### **B. rke2 agent install**
 
 Great. We have all the files setup. We can now install rke2 and start it.
 

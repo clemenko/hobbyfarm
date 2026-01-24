@@ -21,13 +21,14 @@ What did we see?
 Now the app.
 
 ```ctr:server
-curl -L https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/fleet/flask/flask.yaml | sed  's/X.X.X.X/${vminfo:server:public_ip}/g' | kubectl apply -f -n flask - 
+kubectl create ns flask
+curl -L https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/fleet/flask/flask.yaml | sed  's/X.X.X.X/${vminfo:server:public_ip}/g' | kubectl apply -n flask -f - 
 ```
 
 check the pods
 
 ```ctr:server
-kubectl get pod,ingress -n flask
+kubectl get pod,ingress,pvc -n flask
 ```
 
 ### **B. navigate to site**
@@ -41,7 +42,7 @@ Now we can check out the dashboard.
 For fun let's delete the redis pod.
 
 ```ctr:server
-kubectl delete pod -n flask redis
+kubectl delete pod -n flask $(kubectl get pod -n flask | grep redis | awk '{print $1}')
 ```
 
 Does it come back?

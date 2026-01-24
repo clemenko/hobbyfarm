@@ -12,7 +12,7 @@ export YELLOW='\x1b[33m'
 export NO_COLOR='\x1b[0m'
 
 # builds a vm list
-function dolist () { doctl compute droplet list --no-header|grep hobby |sort -k 2; }
+function dolist () { doctl compute droplet list --format "ID,Name,PublicIPv4,Memory,VCPUs,Region,Image,Status" |grep hobby |sort -k 2; }
 
 ################################# up ################################
 function up () {
@@ -74,12 +74,15 @@ kubectl -n hobbyfarm create secret tls tls-hobbyfarm-certs  --cert=/Users/clemen
 kubectl create secret -n hobbyfarm generic do-token --from-literal=token=$DO_TOKEN > /dev/null 2>&1
 
 ### Install Hobbyfarm
-helm upgrade -i hobbyfarm hobbyfarm --repo  https://hobbyfarm.github.io/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain --set terraform.enabled=true  --set ingress.className=nginx > /dev/null 2>&1
+helm upgrade -i hobbyfarm hobbyfarm --repo  https://hobbyfarm.github.io/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain --set terraform.enabled=true  --set ingress.className=nginx --set general.dynamicBaseNamePrefix="hobby" > /dev/null 2>&1
 
 sleep 60
 
 ### install do prov
-helm install hf-provisioner-digitalocean ./hf-provisioner-digitalocean/chart/hf-provisioner-digitalocean -n hobbyfarm
+helm upgrade -i  hf-provisioner-digitalocean ./hf-provisioner-digitalocean/chart/hf-provisioner-digitalocean -n hobbyfarm --set image.tag=v0.1.0-rc0  > /dev/null 2>&1
+
+# patch for configmaps
+kubectl patch role -n hobbyfarm hf-provisioner-digitalocean --type='json' -p='[{"op": "replace", "path": "/rules/2/resources", "value":["secrets","configmaps"]}]'  > /dev/null 2>&1
 
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
@@ -101,20 +104,12 @@ echo -e "$GREEN" "ok" "$NO_COLOR"
 #remove the vms
 function kill () {
 
-# for do
-#if [ ! -z $(dolist | awk '{printf $3","}' | sed 's/,$//') ]; then
-#  echo -e -n " killing it all "
-#  for i in $(dolist | awk '{print $2}'); do doctl compute droplet delete --force $i; done
-#  for i in $(dolist | awk '{print $3}'); do ssh-keygen -q -R $i > /dev/null 2>&1; done
-#  for i in $(doctl compute domain records list $domain|grep hobbyfarm |awk '{print $1}'); do doctl compute domain records delete -f $domain $i; done
-#  until [ $(dolist | wc -l | sed 's/ //g') == 0 ]; do echo -e -n "."; sleep 2; done
-
-# for aws
-if [ $(dolist | wc -l) = 1 ]; then
+if [ $(dolist | wc -l) -gt 1 ]; then
   echo -e -n " killing hobbyfarm"
   for i in $(dolist | awk '{print $3}'); do ssh-keygen -q -R $i > /dev/null 2>&1; done
   for i in $(dolist | awk '{print $1}'); do doctl compute droplet delete --force $i; done
   for i in $(doctl compute domain records list $domain|grep hobby |awk '{print $1}'); do doctl compute domain records delete -f $domain $i; done
+  for i in $(doctl compute ssh-key list | grep hobby| awk '{ print $1 }' ); do doctl compute ssh-key delete $i --force ; done
 
   rm -rf ~/.kube/config 
 

@@ -5,10 +5,7 @@ weight = 10
 
 ## **Congrats**
 
-For more resources check out **https://rfed.io/links**
-
-####
-To review the content check out: **https://github.com/clemenko/hobbyfarm**
+review the content check out: **https://github.com/clemenko/hobbyfarm**
 
 ####
 ![success](https://raw.githubusercontent.com/clemenko/hobbyfarm/main/images/success.jpg)

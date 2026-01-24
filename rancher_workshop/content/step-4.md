@@ -3,15 +3,7 @@ title = "RKE2 - Install - worker #2 - worker2"
 weight = 4
 +++
 
-### **A. sudo**
-
-We need to sudo and create an account and directory.
-
-```ctr:worker2
-sudo -i
-```
-
-### **B. config - /etc/rancher/rke2/config.yaml**
+### **A. config - /etc/rancher/rke2/config.yaml**
 
 Next we create a config yaml on ubuntu.
 
@@ -29,7 +21,7 @@ kubelet-arg:
 - authorization-mode=Webhook
 ```
 
-### **C. rke2 agent install**
+### **B. rke2 agent install**
 
 Great. We have all the files setup. We can now install rke2 and start it.
 
@@ -38,7 +30,7 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=stable INSTALL_RKE2_TYPE=ag
 systemctl enable --now rke2-agent.service
 ```
 
-### **D. watch nodes**
+### **C. watch nodes**
 
 While this is starting we can watch the nodes join from the server node.
 

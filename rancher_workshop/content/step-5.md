@@ -38,7 +38,7 @@ Once the pod is running we can now navigate to:
 **https://rancher.${vminfo:server:public_ip}.sslip.io**  
 **The bootstrap is "Pa22word".**
 
-### **F. accept eula**
+### **E. accept eula**
 
 Uncheck "Allow collection..."  
 and  

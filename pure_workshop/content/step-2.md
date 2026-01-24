@@ -5,17 +5,7 @@ weight = 2
 
 Let's start with the control plane node.
 
-### **A. sudo**
-
-We need to sudo and create an account and directory.
-
-```ctr:server
-sudo -i
-```
-
-on to the config yaml
-
-### **B. config - /etc/rancher/rke2/config.yaml**
+### **A. config - /etc/rancher/rke2/config.yaml**
 
 Next we create a config yaml on server.
 
@@ -26,7 +16,7 @@ token: bootStrapAllTheThings
 
 Great. We have all the files setup. We can now install rke2 and start it.
 
-### **C. rke2 server install**
+### **B. rke2 server install**
 
 Since we are online we can `curl|bash`. See the docs for the airgap install.
 
@@ -35,7 +25,7 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=stable sh -
 systemctl enable --now rke2-server.service
 ```
 
-### **D. enable kubectl**
+### **C. enable kubectl**
 
 We need to set some environment variables.
 

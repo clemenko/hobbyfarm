@@ -5,17 +5,7 @@ weight = 2
 
 Let's start with the control plane node.
 
-### **A. sudo**
-
-We need to sudo and create an account and directory.
-
-```ctr:server
-sudo -i
-```
-
-on to the config yaml
-
-### **B. config - /etc/rancher/rke2/config.yaml**
+### **A. config - /etc/rancher/rke2/config.yaml**
 
 Next we create a STIG config yaml on server.
 
@@ -48,7 +38,7 @@ kubelet-arg:
 - streaming-connection-idle-timeout=5m
 ```
 
-### **C. Audit Policy - /etc/rancher/rke2/audit-policy.yaml**
+### **B. Audit Policy - /etc/rancher/rke2/audit-policy.yaml**
 
 We need to add one more file for the STIG  
 audit - /etc/rancher/rke2/audit-policy.yaml
@@ -71,7 +61,7 @@ rules:
 
 Great. We have all the files setup. We can now install rke2 and start it.
 
-### **D. rke2 server install**
+### **C. rke2 server install**
 
 Since we are online we can `curl|bash`. See the docs for the airgap install.
 
@@ -80,7 +70,7 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=stable sh -
 systemctl enable --now rke2-server.service
 ```
 
-### **E. enable kubectl**
+### **D. enable kubectl**
 
 We need to set some environment variables.
 
