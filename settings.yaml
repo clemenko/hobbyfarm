@@ -14,7 +14,6 @@ spec:
   display_name: do-env
   dnssuffix: rfed.io
   provider: digitalocean
-  ip_translation_map: {}
   template_mapping:
     rocky-9.4:
       image: rockylinux-9-x64
