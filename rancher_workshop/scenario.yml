@@ -1,8 +1,8 @@
 categories: []
-description: Rancher Workshop
+description: Rancher Products
 id: ""
-keepalive_duration: 60m
-name: Rancher Workshop
+keepalive_duration: 120m
+name: Rancher Products
 pause_duration: 2h
 pauseable: false
 steps: null

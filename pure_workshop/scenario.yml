@@ -1,8 +1,8 @@
 categories: []
-description: K8s for SEs Workshop
+description: K8s for SEs
 id: ""
-keepalive_duration: 60m
-name: K8s for SEs Workshop
+keepalive_duration: 120m
+name: K8s for SEs
 pause_duration: 2h
 pauseable: false
 steps: null
