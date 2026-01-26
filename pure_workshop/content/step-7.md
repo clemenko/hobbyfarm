@@ -61,7 +61,7 @@ We have a couple of options here.
 - value: "NVMEOF-TCP"
 
 ```ctr:server
-cat << EOF | kubectl apply -n portworx  -f -
+kubectl apply -n portworx  -f - <<EOF
 kind: StorageCluster
 apiVersion: core.libopenstorage.org/v1
 metadata:

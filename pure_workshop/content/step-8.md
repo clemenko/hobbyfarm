@@ -37,6 +37,7 @@ spec:
     #- path: https://releases.purestorage.com/flasharray/purity/6.9.2/purity_6.9.2_202510142333%2Baf11cde1386b.ppkg
     #- path: https://releases.purestorage.com/flasharray/purity/6.9.2/purity_6.9.2_202510142333%2Baf11cde1386b.ppkg.sha1
     #- path: https://raw.githubusercontent.com/PureStorage-OpenConnect/pure-fa-openmetrics-exporter/refs/heads/master/extra/grafana/grafana-purefa-flasharray-overview.json
+    #- path: https://cloud-images.ubuntu.com/minimal/releases/plucky/release/ubuntu-25.04-minimal-cloudimg-amd64.img
     - path: https://install.portworx.com/25.8.1/version?kbver=1.32.8
       name: versions.yaml
     - path: https://install.portworx.com/25.8?comp=pxoperator&oem=px-csi&kbver=1.32.3&ns=portworx
@@ -45,7 +46,6 @@ spec:
       name: px_harvester.md
     - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/StorageCluster_example.yaml
     - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/airgap_reademe.md
-    #- path: https://cloud-images.ubuntu.com/minimal/releases/plucky/release/ubuntu-25.04-minimal-cloudimg-amd64.img
 ---
 apiVersion: content.hauler.cattle.io/v1
 kind: Charts
@@ -96,26 +96,13 @@ Now we can serve out the bits in either a registry or http server.
 
 ```ctr:server
 nohup hauler store serve fileserver -s /opt/hauler/store & 
+nohup hauler store serve registry -s /opt/hauler/store & 
 ```
 
-There is also `hauler store serve registry -s /opt/hauler/store` for serving a registry.
-We can check it **http://${vminfo:server:public_ip}.sslip.io:8080**  
-We can clearly ses how Hauler will accelerator the air gapping process.
+Check the webserver: **http://${vminfo:server:public_ip}.sslip.io:8080**  
 
-### **F. extra credit**
+####
+Check the registry: **http://${vminfo:server:public_ip}.sslip.io:5000/v2/_catalog**  
 
-For fun check out **https://github.com/clemenko/hauler_hacks/** for a script to create a complete manifest for all the Rancher bits.
-Let's create a "Haul" with all the Images/Charts/Files for airgapping. It will take a few minutes to complete.
-
-```ctr:server
-curl -L https://raw.githubusercontent.com/clemenko/hauler_hacks/main/make_hauler.sh -o /opt/hauler/make_hauler.sh
-chmod 755 /opt/hauler/make_hauler.sh
-cd /opt/hauler; ./make_hauler.sh
-hauler store sync -f airgap_hauler.yaml
-```
-
-Did we get everything?
-
-```ctr:server
-hauler store info -s /opt/hauler/airstore
-```
+####
+We can clearly see how Hauler will accelerator the air gapping process.
