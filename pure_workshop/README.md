@@ -1,5 +1,7 @@
 
-# Kubernetes for Sales Engineeers
+# Kubernetes for Sales Engineers
+
+![products](https://raw.githubusercontent.com/clemenko/rke_workshop/main/images/px-logos.png)
 
 Welcome, This is an workshop for RKE2/Rancher/Longhorn/Portworx-CSI based on an opensource framework [HobbyFarm](https://github.com/hobbyfarm/hobbyfarm).
 
