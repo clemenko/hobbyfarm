@@ -3,15 +3,14 @@
 
 ![products](https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/images/px-logos.png)
 
-Welcome, This is an workshop for RKE2/Rancher/Longhorn/Portworx-CSI based on an opensource framework [HobbyFarm](https://github.com/hobbyfarm/hobbyfarm).
+Welcome, This is an workshop for RKE2/Rancher/Longhorn/Portworx-CSI.
 
 Overview slide deck : [slide_deck.pdf](https://github.com/clemenko/hobbyfarm/blob/main/pure_workshop/k8s_4_SEs.pdf)
 
-## User Interface
+## **https://hobbyfarm.rfed.io**
 
-**https://hobbyfarm.rfed.io**
-
-default password **Pa22word**
+### login: *wait for instructor*  
+### password:  **Pa22word**
 
 Each Student will get:
 
@@ -28,7 +27,7 @@ We are Deploying:
 * **Portworx** - PX-CSI for connecting to an array
 
 We are building:
-* 2 clusters:
+* 1 clusters:
   * **local** 3 nodes/vms
 
 Check out [Content - Step 1](https://github.com/clemenko/hobbyfarm/blob/main/pure_workshop/content/step-1.md) of the content.

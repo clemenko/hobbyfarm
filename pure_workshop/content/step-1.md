@@ -5,16 +5,13 @@ weight = 1
 
 **Welcome.**
 
-![products](https://raw.githubusercontent.com/clemenko/hobbyfarm/main/images/banner-rounded.png)
+![products](https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/images/px-logos.png)
 
 ####
-This training platform is open-source. And can be found at https://github.com/hobbyfarm/hobbyfarm.
+The **good news is that all the fields are clickable** and do not require copying and pasting. This will create great success.
 
 ####
-The good news is that all the fields are clickable and do not require copying and pasting. This will create great success.
-
-####
-Just a workshop to play with RKE2, Rancher, and Portworx.
+Just a workshop to play with RKE2, Rancher, and Portworx. We will deploy everything in our own vms. We will deploy PX-CSI. However without an array it won't work. But you will understand the building blocks.
 
 ####
 Deploying:

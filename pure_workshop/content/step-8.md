@@ -29,39 +29,47 @@ Here is an example manifest. We are going to write it to `/opt/hauler/demo_manif
 
 ```file:yaml:/opt/hauler/demo_manifest.yaml:server
 apiVersion: content.hauler.cattle.io/v1
-kind: Images
+kind: Files
 metadata:
-  name: hauler-content-images-example
-  annotations:
-    # hauler.dev/key: <cosign public key>
-    # hauler.dev/registry: <registry>
-    hauler.dev/platform: linux/amd64
+  name: pure-files
 spec:
-  images:
-    - name: neuvector/scanner
-    - name: docker.io/neuvector/updater:latest
+  files:
+    #- path: https://releases.purestorage.com/flasharray/purity/6.9.2/purity_6.9.2_202510142333%2Baf11cde1386b.ppkg
+    #- path: https://releases.purestorage.com/flasharray/purity/6.9.2/purity_6.9.2_202510142333%2Baf11cde1386b.ppkg.sha1
+    #- path: https://raw.githubusercontent.com/PureStorage-OpenConnect/pure-fa-openmetrics-exporter/refs/heads/master/extra/grafana/grafana-purefa-flasharray-overview.json
+    - path: https://install.portworx.com/25.8.1/version?kbver=1.32.8
+      name: versions.yaml
+    - path: https://install.portworx.com/25.8?comp=pxoperator&oem=px-csi&kbver=1.32.3&ns=portworx
+      name: operator.yaml
+    - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/readme.md
+      name: px_harvester.md
+    - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/StorageCluster_example.yaml
+    - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/airgap_reademe.md
+    #- path: https://cloud-images.ubuntu.com/minimal/releases/plucky/release/ubuntu-25.04-minimal-cloudimg-amd64.img
 ---
 apiVersion: content.hauler.cattle.io/v1
 kind: Charts
 metadata:
-  name: hauler-content-charts-example
+  name: portworx-charts
 spec:
   charts:
-    - name: rancher
-      repoURL: https://releases.rancher.com/server-charts/stable
-    - name: rancher
-      repoURL: https://releases.rancher.com/server-charts/stable
-      version: 2.8.2
+    - name: portworx
+      repoURL: http://charts.portworx.io/ 
 ---
 apiVersion: content.hauler.cattle.io/v1
-kind: Files
+kind: Images
 metadata:
-  name: hauler-content-files-example
-spec:
-  files:
-    - path: https://get.rke2.io
-    - path: https://get.rke2.io
-      name: install.sh
+  name: rancher-images
+  annotations:
+    hauler.dev/platform: linux/amd64
+spec:       
+  images:
+```
+
+We need to add the images specifically.
+
+```ctr:server
+for i in $(curl -s https://install.portworx.com/25.8.1/images); do echo "    - name: "$i >> /opt/hauler/demo_manifest.yaml ; done
 ```
 
 Now let's sync all the bits down.

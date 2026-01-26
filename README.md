@@ -1,20 +1,15 @@
-# K8s for SEs Workshop
+# Workshops
 
-Welcome, This is an workshop for RKE2/Rancher/Longhorn/Portworx/Gitea based on an opensource framework [HobbyFarm](https://github.com/hobbyfarm/hobbyfarm).
+Welcome to my workshop repository. All workshops use an opensource framework called [HobbyFarm](https://github.com/hobbyfarm/hobbyfarm).
 
-## User Interface
+## **https://hobbyfarm.rfed.io**
 
-**https://hobbyfarm.rfed.io**
+### login: *wait for instructor*  
+### password:  **Pa22word**
 
-default password **Pa22word**
+## Scenarios
 
-There are 2 paths.
+- [Kubernetes ( K8S ) for Sales Engineers ( SEs )](https://github.com/clemenko/hobbyfarm/tree/main/pure_workshop)
+- [Rancher Products](https://github.com/clemenko/hobbyfarm/tree/main/rancher_workshop)
 
-  - Kubernetes for Sales Engineers - https://github.com/clemenko/hobbyfarm/tree/main/pure_workshop
-  - Rancher Products - https://github.com/clemenko/hobbyfarm/tree/main/rancher_workshop
-
-Choose wisely and enjoy.
-
-## Help
-
-Please feel free to reach out at clemenko@gmail.com
+## Help: clemenko@gmail.com
