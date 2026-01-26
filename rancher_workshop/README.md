@@ -1,6 +1,6 @@
 # Rancher Workshop
 
-![products](https://raw.githubusercontent.com/clemenko/rke_workshop/main/images/rgs-banner-rounded.png)
+![products](https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/images/banner-rounded.png)
 
 Welcome, This is an workshop for RKE2/Rancher/Longhorn/NeuVector/Gitea based on an opensource framework [HobbyFarm](https://github.com/hobbyfarm/hobbyfarm).
 
