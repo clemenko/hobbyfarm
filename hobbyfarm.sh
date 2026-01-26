@@ -83,8 +83,9 @@ sleep 60
 ### install do prov
 helm upgrade -i  hf-provisioner-digitalocean ./hf-provisioner-digitalocean/chart/hf-provisioner-digitalocean -n hobbyfarm --set image.tag=v0.1.0-rc0  > /dev/null 2>&1
 
-# patch for configmaps
+# patches
 kubectl patch role -n hobbyfarm hf-provisioner-digitalocean --type='json' -p='[{"op": "replace", "path": "/rules/2/resources", "value":["secrets","configmaps"]}]'  > /dev/null 2>&1
+kubectl patch role -n hobbyfarm vmclaimsvc --type='json' -p='[{"op": "replace", "path": "/rules/1/resources", "value":["virtualmachineclaims","virtualmachineclaims/status","virtualmachines"]}]'  > /dev/null 2>&1
 
 echo -e "$GREEN" "ok" "$NO_COLOR"
 
