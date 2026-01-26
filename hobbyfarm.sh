@@ -74,7 +74,9 @@ kubectl -n hobbyfarm create secret tls tls-hobbyfarm-certs  --cert=/Users/clemen
 kubectl create secret -n hobbyfarm generic do-token --from-literal=token=$DO_TOKEN > /dev/null 2>&1
 
 ### Install Hobbyfarm
-helm upgrade -i hobbyfarm hobbyfarm --repo  https://hobbyfarm.github.io/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain --set terraform.enabled=true  --set ingress.className=nginx --set general.dynamicBaseNamePrefix="hobby" > /dev/null 2>&1
+helm upgrade -i hobbyfarm hobbyfarm --repo https://hobbyfarm.github.io/hobbyfarm -n hobbyfarm -f ./values.yaml > /dev/null 2>&1
+
+#helm upgrade -i hobbyfarm hobbyfarm --repo https://hobbyfarm.github.io/hobbyfarm -n hobbyfarm --set ingress.enabled=true --set ingress.tls.enabled=true --set ingress.tls.secrets.backend=tls-hobbyfarm-certs --set ingress.tls.secrets.admin=tls-hobbyfarm-certs --set ingress.tls.secrets.ui=tls-hobbyfarm-certs --set ingress.tls.secrets.shell=tls-hobbyfarm-certs --set ingress.hostnames.backend=hobby-backend.$domain --set ingress.hostnames.admin=hobby-admin.$domain --set ingress.hostnames.ui=hobbyfarm.$domain --set ingress.hostnames.shell=hobby-shell.$domain --set ingress.className=nginx --set general.dynamicBaseNamePrefix="hobby" > /dev/null 2>&1
 
 sleep 60
 
@@ -104,7 +106,7 @@ echo -e "$GREEN" "ok" "$NO_COLOR"
 #remove the vms
 function kill () {
 
-if [ $(dolist | wc -l) -gt 1 ]; then
+if [ $(dolist | wc -l) -ge 1 ]; then
   echo -e -n " killing hobbyfarm"
   for i in $(dolist | awk '{print $3}'); do ssh-keygen -q -R $i > /dev/null 2>&1; done
   for i in $(dolist | awk '{print $1}'); do doctl compute droplet delete --force $i; done

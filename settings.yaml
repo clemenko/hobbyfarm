@@ -20,7 +20,7 @@ spec:
       image: rockylinux-9-x64
       size: s-4vcpu-8gb-amd
       ssh_username: root
-      user_data: "#cloud-config\npackages:\n- nfs-utils\n- cryptsetup\n- iscsi-initiator-utils\n- device-mapper-multipath\n- epel-release\nruncmd:\n- mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/\n- systemctl enable --now iscsid.service\n- curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt\n- sysctl -p\n- curl -L -o /etc/multipath.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/multipath.conf\n- systemctl enable --now  multipathd\n- dnf install -y htop jq\n- echo \"export PATH=/root/.local/bin:/root/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin/\" > /root/.bashrc"
+      user_data: "#cloud-config\npackages:\n- nfs-utils\n- cryptsetup\n- iscsi-initiator-utils\n- device-mapper-multipath\n- epel-release\nruncmd:\n- mkdir -p /etc/rancher/rke2/ /var/lib/rancher/rke2/server/manifests/\n- systemctl enable --now iscsid.service\n- curl -L -o /etc/sysctl.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/main/kernel_tuning.txt\n- sysctl -p\n- curl -L -o /etc/multipath.conf https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/multipath.conf\n- systemctl enable --now  multipathd\n- dnf install -y htop jq\n- dnf update openssh -y\n- echo \"export PATH=/root/.local/bin:/root/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin/\" > /root/.bashrc"
   ws_endpoint: hobby-shell.rfed.io
 ---
 apiVersion: hobbyfarm.io/v1
