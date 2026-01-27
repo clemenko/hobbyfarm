@@ -103,6 +103,16 @@ hfcli -k ~/.kube/config -n hobbyfarm apply scenario pure pure_workshop/ > /dev/n
 echo -e "$GREEN" "ok" "$NO_COLOR"
 }
 
+
+function stats () {
+echo -e "$GREEN -------------------------- $NO_COLOR" 
+echo -en "$BLUE Hobbyfarm Load : $NO_COLOR"
+ssh root@hobbyfarm.rfed.io uptime
+echo -e "$GREEN -------------------------- $NO_COLOR" 
+
+doctl compute droplet list --format "ID,Name,PublicIPv4,Memory,VCPUs,Status" | grep hobby
+}
+
 ############################## kill ################################
 #remove the vms
 function kill () {
@@ -125,6 +135,7 @@ echo -e "$GREEN" "ok" "$NO_COLOR"
 
 case "$1" in
         up) up;;
+        stats) stats;;
         kill) kill;;
         *) echo -e "$RED" " no clue what you are trying to do..." "$NO_COLOR" ; exit 1 ;;
 esac
