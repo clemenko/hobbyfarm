@@ -81,7 +81,7 @@ helm upgrade -i hobbyfarm hobbyfarm --repo https://hobbyfarm.github.io/hobbyfarm
 sleep 60
 
 ### install do prov
-helm upgrade -i  hf-provisioner-digitalocean ./hf-provisioner-digitalocean/chart/hf-provisioner-digitalocean -n hobbyfarm --set image.tag=v0.1.0-rc0  > /dev/null 2>&1
+helm upgrade -i  hf-provisioner-digitalocean ./provisioner-digitalocean/chart/hf-provisioner-digitalocean -n hobbyfarm --set image.tag=v0.1.0-rc0  > /dev/null 2>&1
 
 # patches
 kubectl patch role -n hobbyfarm hf-provisioner-digitalocean --type='json' -p='[{"op": "replace", "path": "/rules/2/resources", "value":["secrets","configmaps"]}]'  > /dev/null 2>&1
