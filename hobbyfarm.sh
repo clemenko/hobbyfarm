@@ -19,7 +19,7 @@ function up () {
 
 echo -e -n " building hobbyfarm vm "
 # do
-doctl compute droplet create hobbyfarm --region nyc1 --image rockylinux-9-x64 --size s-8vcpu-16gb-amd --ssh-keys 30:98:4f:c5:47:c2:88:28:fe:3c:23:cd:52:49:51:01 --wait --droplet-agent=false > /dev/null 2>&1
+doctl compute droplet create hobbyfarm --region nyc1 --image rockylinux-9-x64 --size s-8vcpu-16gb-amd --ssh-keys 7532 --wait --droplet-agent=false > /dev/null 2>&1
 
 sleep 10
 
