@@ -17,7 +17,7 @@ curl -sfL https://mirrors.portworx.com/packages/px-cli/latest/px-v1.1.0.linux.am
 rsync -avP px/bin/* /usr/local/bin/
 
 # give it permissions
-xattr -rc /usr/local/bin/px*
+chmod +x /usr/local/bin/px*
 
 # clean up
 rm -rf px
