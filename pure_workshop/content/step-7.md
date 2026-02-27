@@ -45,7 +45,7 @@ kubectl create secret generic px-pure-secret -n portworx --from-file=pure.json=p
 ### **C. Deploy the operator**
 
 ```ctr:server
-kubectl apply -f 'https://install.portworx.com/'$PX_CSI_VER'?comp=pxoperator&oem=px-csi&kbver=1.33.5&ns=portworx'
+kubectl apply -f 'https://install.portworx.com/'$PX_CSI_VER'?comp=pxoperator&oem=px-csi&kbver=1.34.4&ns=portworx'
 ```
 
 Check it is up.
@@ -105,4 +105,4 @@ verify storagecluster
 kubectl get storagecluster -A
 ```
 
-### **On to Hauler**
+### **On to PX-CLI**

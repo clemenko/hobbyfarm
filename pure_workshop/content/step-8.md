@@ -1,108 +1,43 @@
 +++
-title = "Air Gapping with Hauler"
-weight = 8
+title = "PortWorx PX-CLI Install"
+weight = 7
 +++
 
-## **Air Gapping with Hauler**
+The good news is that installing PX-CLI is fairly simple.
 
-For all the docs check out **https://hauler.dev**.
+First we should look at the docs : https://docs.portworx.com/px-cli/
 
-![hauler logo](https://raw.githubusercontent.com/hauler-dev/hauler-docs/refs/heads/main/static/img/rgs-hauler-logo.png)
-
-### **A. install hauler**
-
-We will run everything as root. aka `sudo -i`.
+### **A. Install**
 
 ```ctr:server
-curl -sfL https://get.hauler.dev | bash
+# install
+curl -sfL https://mirrors.portworx.com/packages/px-cli/latest/px-v1.1.0.linux.amd64.tar.gz | tar -xzf -
+
+# copy files
+rsync -avP px/bin/* /usr/local/bin/
+
+# give it permissions
+xattr -rc /usr/local/bin/px*
+
+# clean up
+rm -rf px
 ```
 
-### **B. create manifest**
+We can review all the commands available : https://docs.portworx.com/px-cli/px-csi
 
-To automate Hauler we need to create a manifest file. Feel free to check out the [Hauler manifest docs](https://rancherfederal.github.io/hauler-docs/docs/guides-references/manifests).
+### **B. play with px-cli**
+
+Let play with `px-cli`.
 
 ```ctr:server
-mkdir -p /opt/hauler; cd /opt/hauler
+# version
+px version
+
+# status
+px csi status
+
+# List all volumes in PX-CSI
+kubectl px csi list volume
 ```
 
-Here is an example manifest. We are going to write it to `/opt/hauler/demo_manifest.yaml`.
-
-```file:yaml:/opt/hauler/demo_manifest.yaml:server
-apiVersion: content.hauler.cattle.io/v1
-kind: Files
-metadata:
-  name: pure-files
-spec:
-  files:
-    #- path: https://releases.purestorage.com/flasharray/purity/6.9.2/purity_6.9.2_202510142333%2Baf11cde1386b.ppkg
-    #- path: https://releases.purestorage.com/flasharray/purity/6.9.2/purity_6.9.2_202510142333%2Baf11cde1386b.ppkg.sha1
-    #- path: https://raw.githubusercontent.com/PureStorage-OpenConnect/pure-fa-openmetrics-exporter/refs/heads/master/extra/grafana/grafana-purefa-flasharray-overview.json
-    #- path: https://cloud-images.ubuntu.com/minimal/releases/plucky/release/ubuntu-25.04-minimal-cloudimg-amd64.img
-    - path: https://install.portworx.com/25.8.1/version?kbver=1.32.8
-      name: versions.yaml
-    - path: https://install.portworx.com/25.8?comp=pxoperator&oem=px-csi&kbver=1.32.3&ns=portworx
-      name: operator.yaml
-    - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/readme.md
-      name: px_harvester.md
-    - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/StorageCluster_example.yaml
-    - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/airgap_reademe.md
----
-apiVersion: content.hauler.cattle.io/v1
-kind: Charts
-metadata:
-  name: portworx-charts
-spec:
-  charts:
-    - name: portworx
-      repoURL: http://charts.portworx.io/ 
----
-apiVersion: content.hauler.cattle.io/v1
-kind: Images
-metadata:
-  name: rancher-images
-  annotations:
-    hauler.dev/platform: linux/amd64
-spec:       
-  images:
-```
-
-We need to add the images specifically.
-
-```ctr:server
-for i in $(curl -s https://install.portworx.com/25.8.1/images); do echo "    - name: "$i >> /opt/hauler/demo_manifest.yaml ; done
-```
-
-Now let's sync all the bits down.
-
-### **C. hauler sync**
-
-This is a simple command to sync all the bits into a local store directory.
-
-```ctr:server
-hauler store sync -f /opt/hauler/demo_manifest.yaml -s /opt/hauler/store
-```
-
-### **D. hauler store info**
-
-Hauler has a function that can show you what is in the local store. Useful for validating image paths.
-
-```ctr:server
-hauler store info -s /opt/hauler/store
-```
-
-### **E. hauler serve**
-
-Now we can serve out the bits in either a registry or http server.
-
-```ctr:server
-nohup hauler store serve fileserver -s /opt/hauler/store & 
-nohup hauler store serve registry -s /opt/hauler/store & 
-```
-
-Check the webserver: **http://${vminfo:server:public_ip}.sslip.io:8080**  
-
-####
-Check the registry: **http://${vminfo:server:public_ip}.sslip.io:5000/v2/_catalog**  
-
-####
-We can clearly see how Hauler will accelerator the air gapping process.
+### **On to Hauler**

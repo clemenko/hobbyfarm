@@ -1,13 +1,48 @@
 +++
-title = "Congrats - Completion"
-weight = 10
+title = "But Wait!"
+weight = 9
 +++
 
-## **Congrats**
+## **But Wait...**
 
-review the content check out: **https://github.com/clemenko/hobbyfarm**
+Lets deploy an application!
 
-####
-![success](https://raw.githubusercontent.com/clemenko/hobbyfarm/main/images/success.jpg)
+### **A. Get yaml**
 
-Thanks for playing!
+Let's deploy a little flask. But first lets see what storage we have.
+
+```ctr:server
+kubectl get pvc -A
+kubectl get pv -A
+kubectl get storageclass
+```
+
+What did we see?  
+Now the app.
+
+```ctr:server
+kubectl create ns flask
+curl -L https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/fleet/flask/flask.yaml | sed  's/X.X.X.X/${vminfo:server:public_ip}/g' | kubectl apply -n flask -f - 
+```
+
+check the pods
+
+```ctr:server
+kubectl get pod,ingress,pvc -n flask
+```
+
+### **B. navigate to site**
+
+Now we can check out the dashboard.
+
+**https://flask.${vminfo:server:public_ip}.sslip.io**
+
+### **C. chaos engineering**
+
+For fun let's delete the redis pod.
+
+```ctr:server
+kubectl delete pod -n flask $(kubectl get pod -n flask | grep redis | awk '{print $1}')
+```
+
+Does it come back?
