@@ -11,7 +11,7 @@ First we should look at the docs : https://docs.portworx.com/px-cli/
 
 ```ctr:server
 # install
-curl -sfL https://mirrors.portworx.com/packages/px-cli/latest/px-v1.1.0.linux.amd64.tar.gz | tar -xzf -
+curl -sfL https://mirrors.portworx.com/packages/px-cli/latest/px-v1.2.0.linux.amd64.tar.gz | tar -xzf -
 
 # copy files
 rsync -avP px/bin/* /usr/local/bin/
