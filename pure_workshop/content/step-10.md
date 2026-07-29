@@ -22,7 +22,7 @@ Now the app.
 
 ```ctr:server
 kubectl create ns flask
-curl -L https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/fleet/flask/flask.yaml | sed  's/X.X.X.X/${vminfo:server:public_ip}/g' | kubectl apply -n flask -f - 
+curl -sL https://raw.githubusercontent.com/clemenko/hobbyfarm/refs/heads/main/fleet/flask/flask.yaml | sed  's/X.X.X.X/${vminfo:server:public_ip}/g' | kubectl apply -n flask -f - 
 ```
 
 check the pods
