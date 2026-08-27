@@ -37,15 +37,12 @@ spec:
     #- path: https://releases.purestorage.com/flasharray/purity/6.9.2/purity_6.9.2_202510142333%2Baf11cde1386b.ppkg
     #- path: https://releases.purestorage.com/flasharray/purity/6.9.2/purity_6.9.2_202510142333%2Baf11cde1386b.ppkg.sha1
     #- path: https://raw.githubusercontent.com/PureStorage-OpenConnect/pure-fa-openmetrics-exporter/refs/heads/master/extra/grafana/grafana-purefa-flasharray-overview.json
-    #- path: https://cloud-images.ubuntu.com/minimal/releases/plucky/release/ubuntu-25.04-minimal-cloudimg-amd64.img
-    - path: https://install.portworx.com/25.8.1/version?kbver=1.32.8
+    - path: https://install.portworx.com/26.2.1/version?kbver=1.35.0
       name: versions.yaml
-    - path: https://install.portworx.com/25.8?comp=pxoperator&oem=px-csi&kbver=1.32.3&ns=portworx
+    - path: https://install.portworx.com/26.2?comp=pxoperator&oem=px-csi&kbver=1.35.0&ns=portworx
       name: operator.yaml
-    - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/readme.md
-      name: px_harvester.md
-    - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/StorageCluster_example.yaml
-    - path: https://raw.githubusercontent.com/clemenko/px-harvester/refs/heads/main/airgap_reademe.md
+    - path: https://raw.githubusercontent.com/clemenko/px-csi/refs/heads/main/StorageCluster_example.yaml
+    - path: https://raw.githubusercontent.com/clemenko/px-csi/refs/heads/main/airgap_readme.md
 ---
 apiVersion: content.hauler.cattle.io/v1
 kind: Charts
@@ -69,7 +66,7 @@ spec:
 We need to add the images specifically.
 
 ```ctr:server
-for i in $(curl -s https://install.portworx.com/26.1.0/images); do echo "    - name: "$i >> /opt/hauler/demo_manifest.yaml ; done
+for i in $(curl -s https://install.portworx.com/26.2.1/images); do echo "    - name: "$i >> /opt/hauler/demo_manifest.yaml ; done
 ```
 
 Now let's sync all the bits down.
@@ -103,6 +100,18 @@ Check the webserver: **http://${vminfo:server:public_ip}.sslip.io:8080**
 
 ####
 Check the registry: **http://${vminfo:server:public_ip}.sslip.io:5000/v2/_catalog**  
+
+### **F. tar the ball**
+
+Now we can tar the files for the DTA process.
+
+```ctr:server
+# add the binary
+rsync -avP /usr/local/bin/hauler /opt/hauler/hauler
+
+# tar all the things
+tar -cf /opt/pxcsi_airgap_$(date '+%m_%d_%y').tar $(ls)
+```
 
 ####
 We can clearly see how Hauler will accelerator the air gapping process.
